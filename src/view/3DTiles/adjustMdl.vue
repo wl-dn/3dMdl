@@ -7,8 +7,29 @@
  * @LastEditTime: 2021-11-04 21:21:19
 -->
 <template>
-  <div id="cesiumContainer" ref="parent">
-    <div class="CesiumTool">
+  <div id="cesiumContainer">
+    <div class="cesiumMenu_box">
+      <ul>
+        <li
+          v-for="(item, i) in cesiumMenuList"
+          :key="i"
+          :class="{ active: activeIndex === item.id }"
+          @click="activeMenuItemOnClick(item)"
+        >
+          <span :class="['iconfont', item.icon]">{{ item.label }}</span>
+        </li>
+      </ul>
+    </div>
+    <div class="cesiumContent_box">
+      <mapView
+        v-show="activeIndex === 1"
+        @sendTree2dViewInfo="recept2dViewInfo"
+      ></mapView>
+      <mdlView v-if="activeIndex === 2"></mdlView>
+      <mdlFenxi v-if="activeIndex === 3"></mdlFenxi>
+      <mdlTool v-if="activeIndex === 4"></mdlTool>
+    </div>
+    <div class="CesiumTool" v-if="false">
       <span @click="onClickGlobe">地球显隐</span>
       <span @click="showImageLayer">地形显影</span>
       <span @click="onClickModelShow">模型显隐</span>
@@ -25,7 +46,13 @@
 
 <script>
 import * as Cesium from "cesium";
-import adjustMdlComponent from "../../components/adjustMdlTool.vue";
+
+import adjustMdlComponent from "../../components/cesiumCompents/adjustMdlTool.vue";
+import mapView from "../../components/cesiumCompents/2dView.vue";
+import mdlView from "../../components/cesiumCompents/mdlView.vue";
+import mdlFenxi from "../../components/cesiumCompents/mdlFenxi.vue";
+import mdlTool from "../../components/cesiumCompents/mdlTool.vue";
+
 import { CesiumUtils } from "../../utils/utils.js";
 import { DrawPolygon } from "../../utils/drawUtils";
 import TerrainClipPlan from "../../utils/TerrainClipPlan";
@@ -45,10 +72,41 @@ export default {
       oriModelMatrix: null,
       _acrgisImagelayer: null,
       _wmsImageLayer: null,
+      cesiumMenuList: [
+        {
+          id: 1,
+          checked: false,
+          icon: "icon-map",
+          label: "二维服务",
+        },
+        {
+          id: 2,
+          checked: false,
+          icon: "icon-diqiu",
+          label: "三维服务",
+        },
+        {
+          id: 3,
+          checked: false,
+          icon: "icon-fenxi",
+          label: "专业分析",
+        },
+        {
+          id: 4,
+          checked: false,
+          icon: "icon-gongju",
+          label: "实用工具",
+        },
+      ],
+      activeIndex: 0,
     };
   },
   components: {
     adjustMdlComponent,
+    mapView,
+    mdlView,
+    mdlFenxi,
+    mdlTool,
   },
   computed: {
     mdlParmsChange() {
@@ -65,6 +123,14 @@ export default {
     },
   },
   methods: {
+    // 切换图层杨样式
+    activeMenuItemOnClick(item) {
+      item.checked = !item.checked;
+      this.activeIndex = item.checked === true ? item.id : 0;
+      this.cesiumMenuList.forEach((child) => {
+        if (child.id !== item.id) child.checked = false;
+      });
+    },
     // 初始化3DTILES模型
     initCesium() {
       // 初始化地球
@@ -80,30 +146,13 @@ export default {
         // scene3DOnly: true, // 每个几何实例仅以3D渲染以节省GPU内存.与sceneModePiker不能共存
         baseLayerPicker: showWedgit, // 底图切换控件
         animation: showWedgit, // 控制场景动画的播放速度控件
-        terrainProvider: Cesium.createWorldTerrain(),
+        // terrainProvider: Cesium.createWorldTerrain(),
         shadows: false,
       });
-      // 加载影像图
-      let imageryLayers = viewer.imageryLayers;
-      this._acrgisImagelayer = new Cesium.ArcGisMapServerImageryProvider({
-        url: "https://services.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer",
-      });
-      this._wmsImageLayer = new Cesium.WebMapServiceImageryProvider({
-        // url: "http://10.101.140.3/geoserver/cite/wms",
-        url: "http://60.205.223.69/geoserver/cite/wms",
-        layers: "cite:WL-SHP",
-        parameters: {
-          transparent: true, //是否透明
-          format: "image/png",
-          VERSION: "1.1.1",
-          srs: "EPSG:4326",
-          exceptions: "application/vnd.ogc.se_inimage",
-        },
-      });
-      imageryLayers.addImageryProvider(this._acrgisImagelayer);
-      imageryLayers.addImageryProvider(this._wmsImageLayer);
-      // 加载wfs服务
+      viewer._cesiumWidget._creditContainer.style.display = "none"; //是否显示cesium
 
+      // 初始化imagelauers
+      imageryLayers = viewer.imageryLayers;
       let mdlScene = viewer.scene;
 
       // 是否开启深度检测深度检测
@@ -146,7 +195,7 @@ export default {
         tempParams.longitude = 113.805972;
         tempParams.latitude = 27.664014;
         this.$store.commit("setTileMdlToolInfo", tempParams);
-        this.isShowTool = true; //调用工具会调用input值进行矩阵变换
+        this.isShowTool = false; //调用工具会调用input值进行矩阵变换
 
         // 定位到该模型
         viewer.zoomTo(
@@ -159,9 +208,65 @@ export default {
         );
       });
     },
-    //
+    // 加载地形服务
+    loadWmsLayer(url, layers, isChecked) {
+      // 判断图层是否存在
+      let obj = this.layerIsExist(url);
+      if (obj.flag) {
+        imageryLayers._layers[obj.index].show = isChecked;
+      } else {
+        let wmsImageLayer = new Cesium.WebMapServiceImageryProvider({
+          url: url,
+          layers: layers,
+          parameters: {
+            transparent: true, //是否透明
+            format: "image/png",
+            VERSION: "1.1.1",
+            srs: "EPSG:4326",
+            service: "WMS",
+            exceptions: "application/vnd.ogc.se_inimage",
+          },
+        });
+        if (imageryLayers) imageryLayers.addImageryProvider(wmsImageLayer);
+      }
+    },
+    loadWfsLayer(url, isChecked) {
+      alert("只能单图层添加");
+      return;
+    },
+    loadMapServer(url, isChecked) {
+      // 判断图层是否存在
+      let obj = this.layerIsExist(url);
+      if (obj.flag) {
+        imageryLayers._layers[obj.index].show = isChecked;
+      } else {
+        let acrgisImagelayer = new Cesium.ArcGisMapServerImageryProvider({
+          url: url,
+        });
+        if (imageryLayers) imageryLayers.addImageryProvider(acrgisImagelayer);
+      }
+    },
+
+    // 判断图层是否存在
+    layerIsExist(url) {
+      console.log(imageryLayers);
+      let flag = false;
+      let index = 0;
+      for (let i = 0; i < imageryLayers._layers.length; i++) {
+        if (imageryLayers._layers[i].imageryProvider.url === url) {
+          flag = true;
+          index = i;
+          break;
+        }
+      }
+      return { flag, index };
+    },
+
+    //地形显隐藏
     showImageLayer() {
+      console.log(imageryLayers);
       if (imageryLayers) {
+        console.log(imageryLayers._layers);
         imageryLayers._layers[1].show = !imageryLayers._layers[1].show;
       }
     },
@@ -292,6 +397,7 @@ export default {
             });
           }
         }, Cesium.ScreenSpaceEventType.RIGHT_CLICK);
+        // 注册左键事件
         viewer.screenSpaceEventHandler.setInputAction((movement) => {
           const ray = viewer.camera.getPickRay(movement.position);
           const cartesian = viewer.scene.globe.pick(ray, viewer.scene);
@@ -302,26 +408,28 @@ export default {
               let xy = new Cesium.Cartesian2();
               let alti = viewer.camera.positionCartographic.height;
               let level = this.getMapLevel(alti);
-              if (this._wmsImageLayer.ready) {
-                xy = this._wmsImageLayer.tilingScheme.positionToTileXY(
+              if (this._acrgisImagelayer.ready) {
+                xy = this._acrgisImagelayer.tilingScheme.positionToTileXY(
                   cartographic,
                   level,
                   xy
                 );
-                let promise = this._wmsImageLayer.pickFeatures(
+                let promise = this._acrgisImagelayer.pickFeatures(
                   xy.x,
                   xy.y,
                   level,
                   cartographic.longitude,
                   cartographic.latitude
                 );
-                console.log(this._acrgisImagelayer);
-                console.log(this._wmsImageLayer);
-                console.log(cartographic);
                 Cesium.when(promise, (layerInfo) => {
                   console.log(layerInfo);
                   //查询结果展示
                   if (layerInfo && layerInfo.length > 0) {
+                    Notification({
+                      title: "图层名称",
+                      message: layerInfo[0].name,
+                      duration: "2000",
+                    });
                   }
                 });
               }
@@ -372,6 +480,19 @@ export default {
         return 18;
       }
     },
+    recept2dViewInfo(data) {
+      if (data.nodeData.serviceType === "wms") {
+        this.loadWmsLayer(
+          data.nodeData.url,
+          data.nodeData.layers,
+          data.isChecked
+        );
+      } else if (data.nodeData.serviceType === "wfs") {
+        this.loadWfsLayer(data.nodeData.url, data.isChecked);
+      } else if (data.nodeData.serviceType === "mapserver") {
+        this.loadMapServer(data.nodeData.url, data.isChecked);
+      }
+    },
     onMessageFromComponent() {},
     destroyMessage() {},
   },
@@ -395,6 +516,43 @@ export default {
 </script>
 
 <style scoped>
+.cesiumMenu_box {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  width: 100px;
+  z-index: 1;
+  background-color: rgb(244, 244, 245);
+}
+.cesiumMenu_box ul {
+  font-size: 12px;
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+}
+.cesiumMenu_box ul li {
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  cursor: pointer;
+  padding: 5px;
+  margin-bottom: 1px;
+}
+.cesiumMenu_box ul li:hover {
+  background-color: rgb(144, 147, 153);
+}
+.active {
+  background-color: rgb(144, 147, 153);
+  color: white;
+}
+.cesiumContent_box {
+  position: absolute;
+  right: 100px;
+  top: 0px;
+  z-index: 1;
+  background-color: rgb(255, 255, 245);
+}
+
 .CesiumTool {
   position: absolute;
   top: 10px;

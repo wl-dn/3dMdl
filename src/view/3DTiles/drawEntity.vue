@@ -15,7 +15,7 @@
 
 <script>
 import * as Cesium from "cesium";
-import drawTool from "../../components/drawTool.vue";
+import drawTool from "../../components/cesiumCompents/drawTool.vue";
 import eventVue from "../../plugins/eventVue";
 import {CesiumUtils} from "../../utils/utils"
 

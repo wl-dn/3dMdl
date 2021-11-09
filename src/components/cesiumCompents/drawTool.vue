@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import eventVue from "../plugins/eventVue"
+import eventVue from "../../plugins/eventVue"
 export default {
   data() {
     return {
