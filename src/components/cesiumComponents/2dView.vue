@@ -4,7 +4,7 @@
  * @version: 
  * @Date: 2021-08-20 10:25:43
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-11-10 17:55:10
+ * @LastEditTime: 2021-11-10 18:21:32
 -->
 <template>
   <div class="mapView">
@@ -186,6 +186,21 @@ export default {
         //     },
         //   ],
         // },
+        {
+          id:"6",
+          label:"地形影像",
+          children:[
+            {
+              id:"6-1",
+              label:"Bing Map"
+            },
+            {
+              id:"6-2",
+              label:"天地图"
+            }
+
+          ]
+        }
       ],
       currentChecked: false,
       positionX: 0,
