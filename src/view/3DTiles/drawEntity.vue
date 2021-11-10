@@ -3,8 +3,8 @@
  * @Author: wenlong
  * @version: 
  * @Date: 2021-08-23 14:06:46
- * @LastEditors: wenlong
- * @LastEditTime: 2021-08-24 19:23:35
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2021-11-10 10:28:50
 -->
 <template>
   <div class="drawEntity_Box">
@@ -15,7 +15,7 @@
 
 <script>
 import * as Cesium from "cesium";
-import drawTool from "../../components/cesiumCompents/drawTool.vue";
+import drawTool from "../../components/cesiumComponents/drawTool.vue";
 import eventVue from "../../plugins/eventVue";
 import {CesiumUtils} from "../../utils/utils"
 

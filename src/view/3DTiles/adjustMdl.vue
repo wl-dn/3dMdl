@@ -4,7 +4,7 @@
  * @version: 
  * @Date: 2021-08-19 20:18:14
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-11-04 21:21:19
+ * @LastEditTime: 2021-11-10 18:07:48
 -->
 <template>
   <div id="cesiumContainer">
@@ -25,43 +25,43 @@
         v-show="activeIndex === 1"
         @sendTree2dViewInfo="recept2dViewInfo"
       ></mapView>
-      <mdlView v-if="activeIndex === 2"></mdlView>
-      <mdlFenxi v-if="activeIndex === 3"></mdlFenxi>
-      <mdlTool v-if="activeIndex === 4"></mdlTool>
+      <mdlView
+        v-show="activeIndex === 2"
+        @sendTree3dViewInfo="recept3dViewInfo"
+      ></mdlView>
+      <mdlFenxi
+        v-if="activeIndex === 3"
+        @sendFenxiInfo="receptFenxiInfo"
+      ></mdlFenxi>
+      <div class="CesiumTool" v-if="activeIndex === 4">
+        <span @click="onClickGlobe">地球显隐</span>
+        <span @click="onClickWireFrame">线框/实体</span>
+        <span @click="onClickUnder">地下空间</span>
+        <span @click="isShowTool = !isShowTool">调整工具</span>
+        <span @click="onClickReset">复位</span>
+      </div>
     </div>
-    <div class="CesiumTool" v-if="false">
-      <span @click="onClickGlobe">地球显隐</span>
-      <span @click="showImageLayer">地形显影</span>
-      <span @click="onClickModelShow">模型显隐</span>
-      <span @click="onClickWireFrame">线框/实体</span>
-      <span @click="onClickUnder">地下空间</span>
-      <span @click="onClickReset">复位</span>
-      <span @click="isShowTool = !isShowTool">调整工具</span>
-      <span @click="dig3DTerrian">地形挖掘</span>
-      <span @click="clearDraw"> 清除绘制</span>
-    </div>
-    <adjustMdlComponent v-if="isShowTool">/</adjustMdlComponent>
+    <adjustMdlComponent v-show="isShowTool">/</adjustMdlComponent>
   </div>
 </template>
 
 <script>
 import * as Cesium from "cesium";
 
-import adjustMdlComponent from "../../components/cesiumCompents/adjustMdlTool.vue";
-import mapView from "../../components/cesiumCompents/2dView.vue";
-import mdlView from "../../components/cesiumCompents/mdlView.vue";
-import mdlFenxi from "../../components/cesiumCompents/mdlFenxi.vue";
-import mdlTool from "../../components/cesiumCompents/mdlTool.vue";
+import adjustMdlComponent from "../../components/cesiumComponents/adjustMdlTool.vue";
+import mapView from "../../components/cesiumComponents/2dView.vue";
+import mdlView from "../../components/cesiumComponents/mdlView.vue";
+import mdlFenxi from "../../components/cesiumComponents/mdlFenxi.vue";
+import mdlTool from "../../components/cesiumComponents/mdlTool.vue";
 
 import { CesiumUtils } from "../../utils/utils.js";
 import { DrawPolygon } from "../../utils/drawUtils";
 import TerrainClipPlan from "../../utils/TerrainClipPlan";
 
 import { Notification } from "element-ui";
-let tileSet = null;
-let boundingSphereCenter = null;
+import PathGraphics from 'cesium/Source/DataSources/PathGraphics';
+let tileSetList = [];
 let viewer = null;
-let modelMatrix = null;
 let imageryLayers = null;
 // 设置这些初始值，都是应为要针对于初始tileset
 export default {
@@ -69,7 +69,6 @@ export default {
     return {
       isShowTool: false,
       flag: 0, // 记录首次加载
-      oriModelMatrix: null,
       _acrgisImagelayer: null,
       _wmsImageLayer: null,
       cesiumMenuList: [
@@ -121,6 +120,12 @@ export default {
         this.updateMatrixMdl(newV);
       },
     },
+    cesiumMenuList: {
+      deep: true,
+      handler: function (newV) {
+        if (!newV[3].checked) this.isShowTool = false;
+      },
+    },
   },
   methods: {
     // 切换图层杨样式
@@ -146,11 +151,11 @@ export default {
         // scene3DOnly: true, // 每个几何实例仅以3D渲染以节省GPU内存.与sceneModePiker不能共存
         baseLayerPicker: showWedgit, // 底图切换控件
         animation: showWedgit, // 控制场景动画的播放速度控件
-        // terrainProvider: Cesium.createWorldTerrain(),
+        // terrainProvider: Cesium.createWorldTerrain(), // 这一块接口容易失败
         shadows: false,
       });
       viewer._cesiumWidget._creditContainer.style.display = "none"; //是否显示cesium
-
+      console.log(viewer.dataSources);
       // 初始化imagelauers
       imageryLayers = viewer.imageryLayers;
       let mdlScene = viewer.scene;
@@ -162,51 +167,6 @@ export default {
       mdlScene.globe.translucency.enabled = true; // 开启地表透明
       mdlScene.globe.translucency.frontFaceAlphaByDistance =
         new Cesium.NearFarScalar(1000.0, 1, 1000000.0, 1);
-      // 加载3Dtiles文件
-      tileSet = new Cesium.Cesium3DTileset({
-        // url: "http://10.101.140.3/CesiumData/3DTiles/testTile/tileset.json",
-        // url: "3DTiles/geoModel/3dtiles/tileset.json",
-        url: "3DTiles/model_3dtiles/tileset.json",
-        // url: "http://60.205.223.69/CesiumData/3DTiles/testTile/tileset.json",
-      });
-      tileSet.readyPromise.then((tileset) => {
-        // 向场景中添加tileset
-        mdlScene.primitives.add(tileset);
-
-        // 设置模型透明度
-        // tileset.style = new Cesium.Cesium3DTileStyle({
-        //   color: "color('rgba(255,255,255,1)')",
-        // });
-        modelMatrix = tileset.modelMatrix.clone(); // 必须要是哟个clone进行深拷贝
-        boundingSphereCenter = tileset.boundingSphere.center.clone(); // 需要记录原始网格的中央坐标
-        // 设置模型选装的初始值
-        // 获取经度和纬度
-        let cartographicCenter =
-          Cesium.Cartographic.fromCartesian(boundingSphereCenter);
-        let mdlCenterParams = this.getMdlDegreeCenter(cartographicCenter);
-        let tempParams = JSON.parse(
-          JSON.stringify(this.$store.getters.getTileMdlTool)
-        );
-
-        // tempParams.height = mdlCenterParams[0] * 4;
-        // tempParams.longitude = mdlCenterParams[1];
-        // tempParams.latitude = mdlCenterParams[2];
-        tempParams.height = mdlCenterParams[0];
-        tempParams.longitude = 113.805972;
-        tempParams.latitude = 27.664014;
-        this.$store.commit("setTileMdlToolInfo", tempParams);
-        this.isShowTool = false; //调用工具会调用input值进行矩阵变换
-
-        // 定位到该模型
-        viewer.zoomTo(
-          tileSet,
-          new Cesium.HeadingPitchRange(
-            0.0,
-            -0.5,
-            tileSet.boundingSphere.radius * 4.0
-          )
-        );
-      });
     },
     // 加载地形服务
     loadWmsLayer(url, layers, isChecked) {
@@ -246,7 +206,99 @@ export default {
         if (imageryLayers) imageryLayers.addImageryProvider(acrgisImagelayer);
       }
     },
+    // 加载kml文件
+    loadKmlSource(url, name, isChecked) {
+      // 判断是否加载过kml
+      let flagObj = this.kmlSourceIsExist(name);
+      if (flagObj.flag) {
+        flagObj.dataSource.show = isChecked;
+        return;
+      }
+      const kmlOptions = {
+        camera: viewer.scene.camera,
+        canvas: viewer.scene.canvas,
+        clampToGround: true, // 开启贴地
+      };
+      let geocachePromise = Cesium.KmlDataSource.load(url, kmlOptions);
+      geocachePromise.then((dataSource) => {
+        viewer.dataSources.add(dataSource); 
+        viewer.flyTo(dataSource.entities)
+      });
+    },
+    // 加载三维模型
+    async load3dTiles(url, name, isChecked) {
+      if (url === "") return;
+      const loadFlagObj = this.judgeIs3DTiles(url);
+      if (loadFlagObj.flag) {
+        loadFlagObj.tile.show = isChecked;
+        return;
+      }
+      // 加载3Dtiles文件
+      let tileSet = new Cesium.Cesium3DTileset({
+        url: url,
+      });
+      const tileset = await tileSet.readyPromise;
+      // 向场景中添加tileset
+      viewer.scene.primitives.add(tileset);
 
+      let modelMatrix = tileset.modelMatrix.clone(); // 必须要是哟个clone进行深拷贝
+      let boundingSphereCenter = tileset.boundingSphere.center.clone(); // 需要记录原始网格的中央坐标
+
+      tileSetList.push({
+        tileSet: tileset,
+        modelMatrix: modelMatrix,
+        boundingSphereCenter: boundingSphereCenter,
+        name: name,
+      });
+      // 设置模型选装的初始值
+      // 获取经度和纬度
+      let cartographicCenter =
+        Cesium.Cartographic.fromCartesian(boundingSphereCenter);
+      let mdlCenterParams = this.getMdlDegreeCenter(cartographicCenter);
+      let tempParams = JSON.parse(
+        JSON.stringify(this.$store.getters.getTileMdlTool)
+      );
+      // tempParams.height = mdlCenterParams[0] * 4;
+      // tempParams.longitude = mdlCenterParams[1];
+      // tempParams.latitude = mdlCenterParams[2];
+      tempParams.height = mdlCenterParams[0];
+      tempParams.longitude = 113.805972;
+      tempParams.latitude = 27.664014;
+      this.$store.commit("setTileMdlToolInfo", tempParams);
+      this.isShowTool = false; //调用工具会调用input值进行矩阵变换
+
+      // 定位到该模型
+      viewer.zoomTo(
+        tileSet,
+        new Cesium.HeadingPitchRange(
+          0.0,
+          -0.5,
+          tileSet.boundingSphere.radius * 4.0
+        )
+      );
+      // });
+    },
+    // 判断三维模型是否存在
+    judgeIs3DTiles(mdlUrl) {
+      const tilePrimitives = viewer.scene.primitives._primitives;
+      if (tilePrimitives.length === 0)
+        return {
+          flag: false,
+          tile: null,
+        };
+      for (let i = 0; i < tilePrimitives.length; i++) {
+        if (tilePrimitives[i]._url === mdlUrl) {
+          return {
+            flag: true,
+            tile: tilePrimitives[i],
+          };
+        }
+      }
+      return {
+        flag: false,
+        tile: null,
+      };
+    },
     // 判断图层是否存在
     layerIsExist(url) {
       console.log(imageryLayers);
@@ -261,14 +313,24 @@ export default {
       }
       return { flag, index };
     },
+    // 判断kml有没有加载过
+    kmlSourceIsExist(name) {
+      let flag = false;
+      let dataSource = null;
+      let dataSourceList = viewer.dataSources._dataSources;
+      if (dataSourceList.length === 0) return { flag, dataSource };
 
-    //地形显隐藏
-    showImageLayer() {
-      console.log(imageryLayers);
-      if (imageryLayers) {
-        console.log(imageryLayers._layers);
-        imageryLayers._layers[1].show = !imageryLayers._layers[1].show;
+      for (let i = 0; i < dataSourceList.length; i++) {
+        if (dataSourceList[i].name === name) {
+          flag = true;
+          dataSource = dataSourceList[i];
+          break;
+        }
       }
+      return {
+        flag,
+        dataSource,
+      };
     },
     // 获取模型的中心经纬度
     getMdlDegreeCenter(cartographic) {
@@ -286,34 +348,35 @@ export default {
       return [mdlCenterHeight, mdlCenterLongitude, mdlCenterLatitude];
     },
     // 更新模型矩阵
-    updateMatrixMdl(mdlParams) {
-      const tranformTool = CesiumUtils.transformUtils(
-        modelMatrix,
-        boundingSphereCenter
-      );
-      const tranM = tranformTool.translationMdl(
-        mdlParams.longitude,
-        mdlParams.latitude,
-        mdlParams.height
-      );
-      const rotateM = tranformTool.rotationMdl(
-        mdlParams.rotateX,
-        mdlParams.rotateY,
-        mdlParams.rotateZ
-      );
-      const scaleM = tranformTool.scaleMdl(
-        mdlParams.scale,
-        mdlParams.scale,
-        mdlParams.scale
-      );
-      const resultM = new Cesium.Matrix4();
-      Cesium.Matrix4.multiply(tranM, rotateM, resultM);
-      Cesium.Matrix4.multiply(resultM, scaleM, resultM);
-      tileSet.modelMatrix = resultM;
+    updateMatrixMdl(mdlParams, url) {
+      if (tileSetList.length === 0) return;
+      for (let i = 0; i < tileSetList.length; i++) {
+        const tranformTool = CesiumUtils.transformUtils(
+          tileSetList[i].modelMatrix,
+          tileSetList[i].boundingSphereCenter
+        );
+        const tranM = tranformTool.translationMdl(
+          mdlParams.longitude,
+          mdlParams.latitude,
+          mdlParams.height
+        );
+        const rotateM = tranformTool.rotationMdl(
+          mdlParams.rotateX,
+          mdlParams.rotateY,
+          mdlParams.rotateZ
+        );
+        const scaleM = tranformTool.scaleMdl(
+          mdlParams.scale,
+          mdlParams.scale,
+          mdlParams.scale
+        );
+        const resultM = new Cesium.Matrix4();
+        Cesium.Matrix4.multiply(tranM, rotateM, resultM);
+        Cesium.Matrix4.multiply(resultM, scaleM, resultM);
+        tileSetList[i].tileSet.modelMatrix = resultM;
 
-      if (this.flag === 0) {
-        this.oriModelMatrix = resultM;
-        this.flag = 1;
+        viewer.scene.globe.translucency.frontFaceAlphaByDistance.nearValue =
+          Cesium.Math.clamp(mdlParams.alpha, 0.0, 1.0);
       }
     },
     onClickGlobe() {
@@ -322,20 +385,23 @@ export default {
       }
     },
     onClickWireFrame() {
-      tileSet.debugWireframe = !tileSet.debugWireframe;
+      let tileSetList = viewer.scene.primitives._primitives;
+      if (tileSetList.length === 0) return;
+      tileSetList.forEach((item) => {
+        item.debugWireframe = !item.debugWireframe;
+      });
     },
+    //复位
     onClickReset() {
-      if (tileSet) {
-        tileSet.modelMatrix = this.oriModelMatrix;
-        viewer.flyTo(tileSet, {
-          duration: 1,
-          offset: new Cesium.HeadingPitchRange(
-            0.0,
-            -0.5,
-            tileSet.boundingSphere.radius * 4.0
-          ),
-        });
-      }
+      if (tileSetList.length === 0) return;
+      viewer.flyTo(tileSetList[0].tileSet, {
+        duration: 1,
+        offset: new Cesium.HeadingPitchRange(
+          0.0,
+          -0.5,
+          tileSetList[0].tileSet.boundingSphere.radius * 4.0
+        ),
+      });
     },
     onClickUnder() {
       if (viewer) {
@@ -343,12 +409,8 @@ export default {
           !viewer.scene.screenSpaceCameraController.enableCollisionDetection;
       }
     },
-    onClickModelShow() {
-      if (tileSet) {
-        tileSet.show = !tileSet.show;
-      }
-    },
 
+    // 地形开挖
     dig3DTerrian() {
       if (viewer.entities) {
         if (viewer.scene.globe.clippingPlanes) {
@@ -491,6 +553,24 @@ export default {
         this.loadWfsLayer(data.nodeData.url, data.isChecked);
       } else if (data.nodeData.serviceType === "mapserver") {
         this.loadMapServer(data.nodeData.url, data.isChecked);
+      } else if (data.nodeData.serviceType === "kml") {
+        this.loadKmlSource(
+          data.nodeData.url,
+          data.nodeData.name,
+          data.isChecked
+        );
+      }
+    },
+    recept3dViewInfo(data) {
+      if (data.nodeData.serviceType === "3DTiles") {
+        this.load3dTiles(data.nodeData.url, data.nodeData.name, data.isChecked);
+      }
+    },
+    receptFenxiInfo(data) {
+      if (data.label === "地形挖掘") {
+        this.dig3DTerrian();
+      } else if (data.label === "清除绘制") {
+        this.clearDraw();
       }
     },
     onMessageFromComponent() {},
@@ -511,6 +591,7 @@ export default {
       }
       viewer = null;
     }
+    tileSetList = [];
   },
 };
 </script>
@@ -554,13 +635,13 @@ export default {
 }
 
 .CesiumTool {
-  position: absolute;
-  top: 10px;
+  position: fixed;
+  top: 160px;
   color: white;
   /* width: 300px; */
   height: 100px;
   z-index: 1;
-  left: 100px;
+  right: 102px;
 }
 .CesiumTool span {
   display: inline-block;

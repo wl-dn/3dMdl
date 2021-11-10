@@ -4,7 +4,7 @@
  * @version: 
  * @Date: 2021-09-18 18:14:09
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-11-04 21:37:26
+ * @LastEditTime: 2021-11-10 10:27:48
 -->
 <!--
  * @Descripttion: 
@@ -172,8 +172,8 @@
 </template>
 
 <script>
-import threeMdlCommonTool from "../../components/threeCompnents/threeMdlTool.vue";
-import adjustMdlHeight from "../../components/threeCompnents/adjustMdlHeight.vue";
+import threeMdlCommonTool from "../../components/threeComponents/threeMdlTool.vue";
+import adjustMdlHeight from "../../components/threeComponents/adjustMdlHeight.vue";
 import eventVue from "../../assets/js/eventVue.js";
 
 //  加载three
