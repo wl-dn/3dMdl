@@ -4,7 +4,7 @@
  * @version: 
  * @Date: 2021-08-19 20:18:14
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-11-11 14:04:31
+ * @LastEditTime: 2021-11-11 21:03:35
 -->
 <template>
   <div id="cesiumContainer">
@@ -181,6 +181,7 @@ export default {
         },
       });
     },
+
     // 加载地形服务
     loadWmsLayer(url, layers, isChecked) {
       // 判断图层是否存在
@@ -201,7 +202,6 @@ export default {
           },
         });
         if (imageryLayers) imageryLayers.addImageryProvider(wmsImageLayer);
-        console.log(wmsImageLayer);
       }
     },
     loadWfsLayer(url, name, isChecked) {
@@ -307,7 +307,6 @@ export default {
       let tempParams = JSON.parse(
         JSON.stringify(this.$store.getters.getTileMdlTool)
       );
-      // tempParams.height = mdlCenterParams[0] * 4;
       // tempParams.longitude = mdlCenterParams[1];
       // tempParams.latitude = mdlCenterParams[2];
       tempParams.height = mdlCenterParams[0];
@@ -327,6 +326,7 @@ export default {
       );
       // });
     },
+
     // 判断三维模型是否存在
     judgeIs3DTiles(mdlUrl) {
       const tilePrimitives = viewer.scene.primitives._primitives;
@@ -380,6 +380,7 @@ export default {
         dataSource,
       };
     },
+    
     // 获取模型的中心经纬度
     getMdlDegreeCenter(cartographic) {
       let mdlCenterHeight;

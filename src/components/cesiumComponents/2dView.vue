@@ -4,7 +4,7 @@
  * @version: 
  * @Date: 2021-08-20 10:25:43
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-11-11 14:03:24
+ * @LastEditTime: 2021-11-11 21:07:44
 -->
 <template>
   <div class="mapView">
@@ -80,7 +80,7 @@ export default {
                   id: "1-3-1",
                   label: "区域地质图(株洲幅)",
                   name: "mfsserver_arc_geomap",
-                  url: "",
+                  url: "https://tsy-gis1.portal.com/server/services/Hosted/geoinfo_geomap/MapServer/WFSServer?service=wfs&request=getcapabilities",
                   layers: "",
                   serviceType: "wfs",
                 },
