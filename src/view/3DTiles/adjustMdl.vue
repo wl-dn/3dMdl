@@ -59,7 +59,7 @@ import { DrawPolygon } from "../../utils/drawUtils";
 import TerrainClipPlan from "../../utils/TerrainClipPlan";
 
 import { Notification } from "element-ui";
-import PathGraphics from 'cesium/Source/DataSources/PathGraphics';
+import PathGraphics from "cesium/Source/DataSources/PathGraphics";
 let tileSetList = [];
 let viewer = null;
 let imageryLayers = null;
@@ -151,7 +151,7 @@ export default {
         // scene3DOnly: true, // 每个几何实例仅以3D渲染以节省GPU内存.与sceneModePiker不能共存
         baseLayerPicker: showWedgit, // 底图切换控件
         animation: showWedgit, // 控制场景动画的播放速度控件
-        // terrainProvider: Cesium.createWorldTerrain(), // 这一块接口容易失败
+        // terrainProvider: Cesium. (), // 这一块接口容易失败
         shadows: false,
       });
       viewer._cesiumWidget._creditContainer.style.display = "none"; //是否显示cesium
@@ -214,15 +214,15 @@ export default {
         flagObj.dataSource.show = isChecked;
         return;
       }
-      const kmlOptions = {
+      let kmlOptions = {
         camera: viewer.scene.camera,
         canvas: viewer.scene.canvas,
-        clampToGround: true, // 开启贴地
+        // clampToGround: true, // 开启贴地
       };
       let geocachePromise = Cesium.KmlDataSource.load(url, kmlOptions);
       geocachePromise.then((dataSource) => {
-        viewer.dataSources.add(dataSource); 
-        viewer.flyTo(dataSource.entities)
+        viewer.dataSources.add(dataSource);
+        viewer.flyTo(dataSource.entities);
       });
     },
     // 加载三维模型

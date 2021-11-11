@@ -163,19 +163,19 @@ export default {
             },
           ],
         },
-        {
-          id: "4",
-          label: "KMZ",
-          children: [
-            {
-              id: "4-1",
-              label: "株洲",
-              name: "株洲",
-              url: "KMZ/zhuzhou.kmz",
-              serviceType: "kml",
-            },
-          ],
-        },
+        // {
+        //   id: "4",
+        //   label: "KMZ",
+        //   children: [
+        //     {
+        //       id: "4-1",
+        //       label: "株洲",
+        //       name: "株洲",
+        //       url: "/KML/zhuzhou.kmz",
+        //       serviceType: "kml",
+        //     },
+        //   ],
+        // },
         // {
         //   id: "5",
         //   label: "CZML",
