@@ -4,7 +4,7 @@
  * @version: 
  * @Date: 2021-08-19 20:18:14
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-11-10 18:07:48
+ * @LastEditTime: 2021-11-11 14:04:31
 -->
 <template>
   <div id="cesiumContainer">
@@ -59,7 +59,7 @@ import { DrawPolygon } from "../../utils/drawUtils";
 import TerrainClipPlan from "../../utils/TerrainClipPlan";
 
 import { Notification } from "element-ui";
-import PathGraphics from 'cesium/Source/DataSources/PathGraphics';
+import PathGraphics from "cesium/Source/DataSources/PathGraphics";
 let tileSetList = [];
 let viewer = null;
 let imageryLayers = null;
@@ -98,6 +98,7 @@ export default {
         },
       ],
       activeIndex: 0,
+      activeImageUrl: ["http://10.101.140.3/geoserver/cite/wms"],
     };
   },
   components: {
@@ -155,7 +156,6 @@ export default {
         shadows: false,
       });
       viewer._cesiumWidget._creditContainer.style.display = "none"; //是否显示cesium
-      console.log(viewer.dataSources);
       // 初始化imagelauers
       imageryLayers = viewer.imageryLayers;
       let mdlScene = viewer.scene;
@@ -167,6 +167,19 @@ export default {
       mdlScene.globe.translucency.enabled = true; // 开启地表透明
       mdlScene.globe.translucency.frontFaceAlphaByDistance =
         new Cesium.NearFarScalar(1000.0, 1, 1000000.0, 1);
+
+      // 将三维球定位到中国
+      viewer.camera.flyTo({
+        destination: Cesium.Cartesian3.fromDegrees(103.84, 31.15, 17850000),
+        orientation: {
+          heading: Cesium.Math.toRadians(348.4202942851978),
+          pitch: Cesium.Math.toRadians(-89.74026687972041),
+          roll: Cesium.Math.toRadians(0),
+        },
+        complete: function callback() {
+          // 定位完成之后的回调函数
+        },
+      });
     },
     // 加载地形服务
     loadWmsLayer(url, layers, isChecked) {
@@ -188,10 +201,24 @@ export default {
           },
         });
         if (imageryLayers) imageryLayers.addImageryProvider(wmsImageLayer);
+        console.log(wmsImageLayer);
       }
     },
-    loadWfsLayer(url, isChecked) {
-      alert("只能单图层添加");
+    loadWfsLayer(url, name, isChecked) {
+      let flagObj = this.kmlSourceIsExist(name);
+      console.log(flagObj);
+      if (flagObj.flag) {
+        flagObj.dataSource.show = isChecked;
+        return;
+      }
+      this.$http.get(url).then(async (res) => {
+        // res.data就是真是geojson数据
+        let datasource = await Cesium.GeoJsonDataSource.load(res.data);
+        datasource.name = name;
+        viewer.dataSources.add(datasource);
+        viewer.flyTo(datasource.entities);
+      });
+
       return;
     },
     loadMapServer(url, isChecked) {
@@ -206,6 +233,25 @@ export default {
         if (imageryLayers) imageryLayers.addImageryProvider(acrgisImagelayer);
       }
     },
+    loadTDMapLayer(url, layers, isChecked) {
+      let obj = this.layerIsExist(url);
+      if (obj.flag) {
+        imageryLayers._layers[obj.index].show = isChecked;
+        return;
+      }
+      const subdomains = ["0", "1", "2", "3", "4", "5", "6", "7"];
+      let wmtsImageLayer = new Cesium.WebMapTileServiceImageryProvider({
+        url: url,
+        subdomains: subdomains,
+        layer: layers,
+        style: "default",
+        format: "image/jpeg",
+        tileMatrixSetID: "GoogleMapsCompatible",
+        show: true,
+      });
+      imageryLayers.addImageryProvider(wmtsImageLayer);
+    },
+
     // 加载kml文件
     loadKmlSource(url, name, isChecked) {
       // 判断是否加载过kml
@@ -221,8 +267,10 @@ export default {
       };
       let geocachePromise = Cesium.KmlDataSource.load(url, kmlOptions);
       geocachePromise.then((dataSource) => {
-        viewer.dataSources.add(dataSource); 
-        viewer.flyTo(dataSource.entities)
+        dataSource.name = name;
+        viewer.dataSources.add(dataSource);
+        viewer.flyTo(dataSource.entities);
+        console.log(viewer.dataSources);
       });
     },
     // 加载三维模型
@@ -238,6 +286,7 @@ export default {
         url: url,
       });
       const tileset = await tileSet.readyPromise;
+      console.log(tileset);
       // 向场景中添加tileset
       viewer.scene.primitives.add(tileset);
 
@@ -301,7 +350,6 @@ export default {
     },
     // 判断图层是否存在
     layerIsExist(url) {
-      console.log(imageryLayers);
       let flag = false;
       let index = 0;
       for (let i = 0; i < imageryLayers._layers.length; i++) {
@@ -450,6 +498,9 @@ export default {
           if (Cesium.defined(pickedFeature)) {
             let urlStr = pickedFeature.content.url;
             let leftIndex = urlStr.indexOf("\\");
+            if (leftIndex === -1) {
+              leftIndex = urlStr.indexOf("%5C") + 2;
+            }
             let rightIndex = urlStr.lastIndexOf(".");
             let resStr = urlStr.substring(leftIndex + 1, rightIndex - 2);
             Notification({
@@ -459,6 +510,7 @@ export default {
             });
           }
         }, Cesium.ScreenSpaceEventType.RIGHT_CLICK);
+
         // 注册左键事件
         viewer.screenSpaceEventHandler.setInputAction((movement) => {
           const ray = viewer.camera.getPickRay(movement.position);
@@ -470,13 +522,17 @@ export default {
               let xy = new Cesium.Cartesian2();
               let alti = viewer.camera.positionCartographic.height;
               let level = this.getMapLevel(alti);
-              if (this._acrgisImagelayer.ready) {
-                xy = this._acrgisImagelayer.tilingScheme.positionToTileXY(
+              // 只有显示的并且是geoserver和arcgisserver的可以用
+              // 确定哪个图层可查
+              let tempImageryProvider = this.getQueryImageryProvider();
+              if (!tempImageryProvider) return;
+              if (tempImageryProvider.ready) {
+                xy = tempImageryProvider.tilingScheme.positionToTileXY(
                   cartographic,
                   level,
                   xy
                 );
-                let promise = this._acrgisImagelayer.pickFeatures(
+                let promise = tempImageryProvider.pickFeatures(
                   xy.x,
                   xy.y,
                   level,
@@ -500,6 +556,16 @@ export default {
         }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
         //注册左键事件
       }
+    },
+    // 获取能够查询imageryProvider
+    getQueryImageryProvider() {
+      let tempImagerys = imageryLayers._layers;
+      for (let i = 0; i < tempImagerys.length; i++) {
+        let url = tempImagerys[i].imageryProvider.url;
+        if (this.activeImageUrl.indexOf(url) >= 0 && tempImagerys[i].show)
+          return tempImagerys[i].imageryProvider;
+      }
+      return null;
     },
     getMapLevel(height) {
       if (height > 48000000) {
@@ -550,13 +616,23 @@ export default {
           data.isChecked
         );
       } else if (data.nodeData.serviceType === "wfs") {
-        this.loadWfsLayer(data.nodeData.url, data.isChecked);
+        this.loadWfsLayer(
+          data.nodeData.url,
+          data.nodeData.name,
+          data.isChecked
+        );
       } else if (data.nodeData.serviceType === "mapserver") {
         this.loadMapServer(data.nodeData.url, data.isChecked);
       } else if (data.nodeData.serviceType === "kml") {
         this.loadKmlSource(
           data.nodeData.url,
           data.nodeData.name,
+          data.isChecked
+        );
+      } else if (data.nodeData.serviceType === "天地图") {
+        this.loadTDMapLayer(
+          data.nodeData.url,
+          data.nodeData.layers,
           data.isChecked
         );
       }

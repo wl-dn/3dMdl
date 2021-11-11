@@ -4,7 +4,7 @@
  * @version: 
  * @Date: 2021-08-20 10:25:43
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-11-10 18:21:32
+ * @LastEditTime: 2021-11-11 14:03:24
 -->
 <template>
   <div class="mapView">
@@ -13,7 +13,7 @@
       :data="treeData"
       show-checkbox
       node-key="id"
-      :default-expanded-keys="['1', '2', '3', '4', '5']"
+      :default-expanded-keys="['1', '2', '3', '4', '5', '6']"
       @check-change="handleCheckChange"
       @check="handleCheck"
       @node-contextmenu="handleContextMenu"
@@ -100,8 +100,10 @@ export default {
                   id: "2-1-1",
                   label: "区域地质图(株洲幅)",
                   name: "geoserver_wms_geomap",
-                  url: "http://192.10.3.237/geoserver/crcc-dev/wms",
-                  layers: "crcc-dev:geomap-01",
+                  // url: "http://192.10.3.237/geoserver/crcc-dev/wms",
+                  url:"http://10.101.140.3/geoserver/cite/wms",
+                  // layers: "crcc-dev:geomap-01",
+                  layers:"cite:GeoBoundZone",
                   serviceType: "wms",
                 },
               ],
@@ -112,8 +114,8 @@ export default {
               children: [
                 {
                   label: "区域地质图(株洲幅)",
-                  name: "mapserver_wfs_geomap",
-                  url: "",
+                  name: "geoserver_wfs_geomap",
+                  url: "http://10.101.140.3/geoserver/cite/ows?service=WFS&version=1.2.0&request=GetFeature&typeName=cite:FaultZone&maxFeatures=50&outputFormat=application/json",
                   layers: "",
                   serviceType: "wfs",
                 },
@@ -128,37 +130,37 @@ export default {
             {
               id: "3-1",
               label: "可研报批版-赣州段-(赣州北水东设站方案-绕避戒毒所)",
-              name: "可研报批版-赣州段-(赣州北水东设站方案-绕避戒毒所).kml",
-              url: "KML/可研报批版-赣州段-(赣州北水东设站方案-绕避戒毒所).kml",
+              name: "kml_1",
+              url: "KML/kml_1.kml",
               serviceType: "kml",
             },
             {
               id: "3-2",
               label:
                 "可研报批版-赣州段-(赣州北水东设站方案-绕避戒毒所右线绕行)",
-              name: "可研报批版-赣州段-(赣州北水东设站方案-绕避戒毒所右线绕行).kml",
-              url: "KML/可研报批版-赣州段-(赣州北水东设站方案-绕避戒毒所右线绕行).kml",
+              name: "kml_2.kml",
+              url: "KML/kml_2.kml",
               serviceType: "kml",
             },
             {
               id: "3-3",
               label: "可研报批版-井冈山段-(替换桥隧表)",
-              name: "可研报批版-井冈山段-(替换桥隧表).kml",
-              url: "KML/可研报批版-井冈山段-(替换桥隧表).kml",
+              name: "kml_3.kml",
+              url: "KML/kml_3.kml",
               serviceType: "kml",
             },
             {
               id: "3-4",
               label: "可研报批版-萍乡段-(萍乡北并站方案替换桥隧表)",
-              name: "可研报批版-萍乡段-(萍乡北并站方案替换桥隧表).kml",
-              url: "KML/可研报批版-萍乡段-(萍乡北并站方案替换桥隧表).kml",
+              name: "kml_4.kml",
+              url: "KML/kml_4.kml",
               serviceType: "kml",
             },
             {
               id: "3-5",
               label: "可研报批版-长沙段-(机场负三层、浏阳北设站方案)",
-              name: "可研报批版-长沙段-(机场负三层、浏阳北设站方案).kml",
-              url: "KML/可研报批版-长沙段-(机场负三层、浏阳北设站方案).kml",
+              name: "kml_5.kml",
+              url: "KML/kml_5.kml",
               serviceType: "kml",
             },
           ],
@@ -170,7 +172,7 @@ export default {
             {
               id: "4-1",
               label: "株洲",
-              name: "株洲",
+              name: "zhuzhou",
               url: "KMZ/zhuzhou.kmz",
               serviceType: "kml",
             },
@@ -187,20 +189,31 @@ export default {
         //   ],
         // },
         {
-          id:"6",
-          label:"地形影像",
-          children:[
+          id: "6",
+          label: "地形影像",
+          children: [
             {
-              id:"6-1",
-              label:"Bing Map"
+              id: "6-1",
+              label: "天地图影像",
+              name: "TDMap",
+              url:
+                "http://t{s}.tianditu.com/img_w/wmts?service=wmts&request=GetTile&version=1.0.0&LAYER=img&tileMatrixSet=w&TileMatrix={TileMatrix}&TileRow={TileRow}&TileCol={TileCol}&style=default&format=tiles&tk=" +
+                this.tiandituTk,
+              layers: "tdtImgLayer",
+              serviceType: "天地图",
             },
             {
-              id:"6-2",
-              label:"天地图"
-            }
-
-          ]
-        }
+              id: "6-2",
+              label: "天地图注记",
+              url:
+                "http://t{s}.tianditu.com/cia_w/wmts?service=wmts&request=GetTile&version=1.0.0&LAYER=cia&tileMatrixSet=w&TileMatrix={TileMatrix}&TileRow={TileRow}&TileCol={TileCol}&style=default.jpg&tk=" +
+                this.tiandituTk,
+              name: "TDMark",
+              layers: "tdtCiaLayer",
+              serviceType: "天地图",
+            },
+          ],
+        },
       ],
       currentChecked: false,
       positionX: 0,
