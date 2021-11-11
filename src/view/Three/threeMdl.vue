@@ -4,7 +4,7 @@
  * @version: 
  * @Date: 2021-09-18 18:14:09
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-11-10 10:27:48
+ * @LastEditTime: 2021-11-11 21:15:04
 -->
 <!--
  * @Descripttion: 
@@ -333,6 +333,36 @@ export default {
         });
       }
     },
+    scaleValue(val) {
+      //进行z值缩放
+      if (mdlGroup) {
+        mdlGroup.scale.set(1, 1, this.scaleValue / 10.0);
+      }
+      if (stencilGroup) {
+        stencilGroup.scale.set(1, 1, this.scaleValue / 10.0);
+      }
+    },
+    alphaValue(val) {
+      // 进行透明度改变
+      if (mdlGroup) {
+        mdlGroup.traverse((child) => {
+          if (child instanceof THREE.Mesh) {
+            child.material.transparent = true;
+            child.material.opacity = this.alphaValue;
+          }
+        });
+      }
+    },
+    isWireframe(val) {
+      //进行线框模式
+      if (mdlGroup) {
+        mdlGroup.traverse((child) => {
+          if (child instanceof THREE.Mesh) {
+            child.material.wireframe = this.isWireframe;
+          }
+        });
+      }
+    },
   },
   methods: {
     // 初始化场景
@@ -405,33 +435,6 @@ export default {
 
       this.lookAtPlane();
       // const delta = clock.getDelta();
-
-      //进行线框模式
-      if (mdlGroup) {
-        mdlGroup.traverse((child) => {
-          if (child instanceof THREE.Mesh) {
-            child.material.wireframe = this.isWireframe;
-          }
-        });
-      }
-      //进行z值缩放
-      if (mdlGroup) {
-        mdlGroup.scale.set(1, 1, this.scaleValue / 10.0);
-      }
-
-      // 进行透明度改变
-      if (mdlGroup) {
-        mdlGroup.traverse((child) => {
-          if (child instanceof THREE.Mesh) {
-            child.material.transparent = true;
-            child.material.opacity = this.alphaValue;
-          }
-        });
-      }
-
-      if (stencilGroup) {
-        stencilGroup.scale.set(1, 1, this.scaleValue / 10.0);
-      }
 
       if (this.animatePlaneValue && this.animatePlaneValue >= 0) {
         this.distancePlane -= 0.1;
@@ -1330,7 +1333,7 @@ export default {
     this.objGeoLevelList = tempList;
 
     //this.loadObjMdl(res.path, res.objNameList);
-    this.loadGltfMdl("tempGltf/", this.objNameList);
+    this.loadGltfMdl("dracoGltf/", this.objNameList);
   },
   created() {},
   beforeDestroy() {

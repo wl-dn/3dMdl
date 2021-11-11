@@ -4,7 +4,7 @@
  * @version: 
  * @Date: 2021-09-19 10:51:29
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-11-04 21:00:41
+ * @LastEditTime: 2021-11-11 21:16:01
 -->
 <template>
   <div class="CesiumTool" v-if="isShow">
@@ -56,11 +56,11 @@ export default {
           index: 3,
           active: false,
         },
-        // {
-        //   label: "模型透明度",
-        //   index: 8,
-        //   active: false,
-        // },
+        {
+          label: "模型透明度",
+          index: 8,
+          active: false,
+        },
         {
           label: "模型切割",
           index: 4,

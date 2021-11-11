@@ -3,8 +3,8 @@
  * @Author: wenlong
  * @version: 
  * @Date: 2021-05-21 09:36:42
- * @LastEditors: wenlong
- * @LastEditTime: 2021-08-23 09:23:56
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2021-11-11 11:08:45
  */
 const path = require('path');
 const CopyPlugin = require('copy-webpack-plugin');
@@ -41,7 +41,18 @@ module.exports = {
             { from: 'node_modules/cesium/Build/Cesium/Assets', to: 'static/Assets' },
             { from: 'node_modules/cesium/Build/Cesium/Widgets', to: 'static/Widgets' },
             { from: 'node_modules/cesium/Build/Cesium/Workers', to: 'static/Workers' },
+            { from: "node_modules/cesium/Build/Cesium/ThirdParty", to: "static/ThirdParty" },
             { from: 'src/assets', to: 'assets' }
-        ])]
+        ])],
+        module: {
+            rules: [
+                {
+                    test: /\.js$/,
+                    use: {
+                        loader: '@open-wc/webpack-import-meta-loader',
+                    }
+                }
+            ]
+        }
     }
 }
