@@ -4,7 +4,7 @@
  * @version: 
  * @Date: 2021-09-18 18:14:09
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-11-10 10:27:48
+ * @LastEditTime: 2021-11-11 14:11:13
 -->
 <!--
  * @Descripttion: 
@@ -1330,7 +1330,7 @@ export default {
     this.objGeoLevelList = tempList;
 
     //this.loadObjMdl(res.path, res.objNameList);
-    this.loadGltfMdl("tempGltf/", this.objNameList);
+    this.loadGltfMdl("dracoGltf/", this.objNameList);
   },
   created() {},
   beforeDestroy() {
