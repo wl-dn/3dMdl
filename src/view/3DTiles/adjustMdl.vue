@@ -98,7 +98,13 @@ export default {
         },
       ],
       activeIndex: 0,
-      activeImageUrl: ["http://10.101.140.3/geoserver/cite/wms"],
+      activeImageUrl: [
+        "https://tsy-gis1.portal.com/server/rest/services/geoinfo_geomap/MapServer/",
+        "https://tsy-gis1.portal.com/server/services/geoinfo_geomap/MapServer/WMSServer",
+        "http://192.10.3.237/geoserver/crcc-dev/wms",
+        "http://192.10.3.237/geoserver/wms",
+        "http://192.10.3.237/geoserver/crcc-dev/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=crcc-dev:geoboundzone&maxFeatures=50&outputFormat=application/json",
+      ],
     };
   },
   components: {
@@ -152,9 +158,11 @@ export default {
         // scene3DOnly: true, // 每个几何实例仅以3D渲染以节省GPU内存.与sceneModePiker不能共存
         baseLayerPicker: showWedgit, // 底图切换控件
         animation: showWedgit, // 控制场景动画的播放速度控件
-        // terrainProvider: Cesium. (), // 这一块接口容易失败
+        // terrainProvider: new Cesium.createWorldTerrain(), // 这一块接口容易失败
         shadows: false,
+        imageryProvider:new Cesium.SingleTileImageryProvider({ url: "GlobalBkLayer.jpg" }),// 简单加载，解决无法加载地图的问题
       });
+
       viewer._cesiumWidget._creditContainer.style.display = "none"; //是否显示cesium
       // 初始化imagelauers
       imageryLayers = viewer.imageryLayers;
@@ -263,7 +271,7 @@ export default {
       let kmlOptions = {
         camera: viewer.scene.camera,
         canvas: viewer.scene.canvas,
-        // clampToGround: true, // 开启贴地
+        clampToGround: true, // 开启贴地
       };
       let geocachePromise = Cesium.KmlDataSource.load(url, kmlOptions);
       geocachePromise.then((dataSource) => {
@@ -379,7 +387,7 @@ export default {
         dataSource,
       };
     },
-    
+
     // 获取模型的中心经纬度
     getMdlDegreeCenter(cartographic) {
       let mdlCenterHeight;

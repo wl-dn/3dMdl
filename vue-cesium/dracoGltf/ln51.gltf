@@ -1,0 +1,2674 @@
+{
+  "accessors": [
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_0-Mesh_0_indices",
+      "componentType": 5123,
+      "count": 324,
+      "min": [
+        0
+      ],
+      "max": [
+        323
+      ],
+      "type": "SCALAR"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_0-Mesh_0_positions",
+      "componentType": 5126,
+      "count": 60,
+      "min": [
+        462997.47676477773,
+        3089065.1642647777,
+        104.38148126942272
+      ],
+      "max": [
+        463566.2122313141,
+        3089753.0857352223,
+        234.6467475127056
+      ],
+      "type": "VEC3"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_0-Mesh_0_normals",
+      "componentType": 5126,
+      "count": 60,
+      "min": [
+        -0.9971388905656104,
+        -0.9879737227570777,
+        -1.00728145533917
+      ],
+      "max": [
+        1.0010620682847267,
+        0.9635766300500608,
+        0.9909195035111671
+      ],
+      "type": "VEC3"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_0-Mesh_0_indices",
+      "componentType": 5123,
+      "count": 147,
+      "min": [
+        0
+      ],
+      "max": [
+        146
+      ],
+      "type": "SCALAR"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_0-Mesh_0_positions",
+      "componentType": 5126,
+      "count": 28,
+      "min": [
+        475376.7245664387,
+        3042041.7245664387,
+        249.12456033517515
+      ],
+      "max": [
+        475941.0879335613,
+        3042492.884739863,
+        285.48179042799393
+      ],
+      "type": "VEC3"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_0-Mesh_0_normals",
+      "componentType": 5126,
+      "count": 28,
+      "min": [
+        -0.8366999107248643,
+        -0.9870064335710862,
+        -1.0078058915979722
+      ],
+      "max": [
+        1.0054905063965742,
+        0.9176311163341297,
+        0.9983082490808823
+      ],
+      "type": "VEC3"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_0-Mesh_0_indices",
+      "componentType": 5123,
+      "count": 9,
+      "min": [
+        0
+      ],
+      "max": [
+        8
+      ],
+      "type": "SCALAR"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_0-Mesh_0_positions",
+      "componentType": 5126,
+      "count": 5,
+      "min": [
+        475376.9062042013,
+        3042214.1562042013,
+        249.30619809775453
+      ],
+      "max": [
+        475501.2794333171,
+        3042406.3437957987,
+        267.12739985642577
+      ],
+      "type": "VEC3"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_0-Mesh_0_normals",
+      "componentType": 5126,
+      "count": 5,
+      "min": [
+        -0.12527486015768613,
+        -0.0004893549224909614,
+        -1.000489354922491
+      ],
+      "max": [
+        0.0004893549224909699,
+        0.0004893549224909614,
+        -0.9916809663176537
+      ],
+      "type": "VEC3"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_indices",
+      "componentType": 5123,
+      "count": 3,
+      "min": [
+        0
+      ],
+      "max": [
+        2
+      ],
+      "type": "SCALAR"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_positions",
+      "componentType": 5126,
+      "count": 3,
+      "min": [
+        475500.98803126527,
+        3042214.0505312653,
+        249.20052516175062
+      ],
+      "max": [
+        475909.69946873473,
+        3042406.537860283,
+        285.50383488329436
+      ],
+      "type": "VEC3"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_normals",
+      "componentType": 5126,
+      "count": 3,
+      "min": [
+        0.09016197151413151,
+        -0.00392156862745098,
+        -0.9994858505679112
+      ],
+      "max": [
+        0.09800510876903347,
+        0.00392156862745098,
+        -0.9916427133130092
+      ],
+      "type": "VEC3"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_indices",
+      "componentType": 5123,
+      "count": 303,
+      "min": [
+        0
+      ],
+      "max": [
+        302
+      ],
+      "type": "SCALAR"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_positions",
+      "componentType": 5126,
+      "count": 59,
+      "min": [
+        478329.0037096971,
+        3037126.847459697,
+        145.26640500961773
+      ],
+      "max": [
+        479003.25871702493,
+        3037951.652540303,
+        386.38804643609546
+      ],
+      "type": "VEC3"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_normals",
+      "componentType": 5126,
+      "count": 59,
+      "min": [
+        -0.968615043630787,
+        -0.9308547859098397,
+        -1.007336545458027
+      ],
+      "max": [
+        1.007356868304458,
+        0.9902290173605375,
+        1.0078411583806952
+      ],
+      "type": "VEC3"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_indices",
+      "componentType": 5123,
+      "count": 75,
+      "min": [
+        0
+      ],
+      "max": [
+        74
+      ],
+      "type": "SCALAR"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_positions",
+      "componentType": 5126,
+      "count": 15,
+      "min": [
+        478316.95765144116,
+        3041563.020151441,
+        226.14696723703182
+      ],
+      "max": [
+        478675.98110039084,
+        3042033.979848559,
+        273.03607324582515
+      ],
+      "type": "VEC3"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_normals",
+      "componentType": 5126,
+      "count": 15,
+      "min": [
+        -0.9019570848521065,
+        -0.8317855498370003,
+        -1.0070394775446723
+      ],
+      "max": [
+        0.8684249197735505,
+        0.9009287525625789,
+        0.929080416875727
+      ],
+      "type": "VEC3"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_indices",
+      "componentType": 5123,
+      "count": 108,
+      "min": [
+        0
+      ],
+      "max": [
+        107
+      ],
+      "type": "SCALAR"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_positions",
+      "componentType": 5126,
+      "count": 20,
+      "min": [
+        482121.07703346363,
+        3038528.0145334634,
+        371.48654884446466
+      ],
+      "max": [
+        482529.1405410357,
+        3039010.4854665366,
+        428.2339841155931
+      ],
+      "type": "VEC3"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_normals",
+      "componentType": 5126,
+      "count": 20,
+      "min": [
+        -1.004049153655183,
+        -0.9157500580245374,
+        -0.9944898799353955
+      ],
+      "max": [
+        0.8955620940993814,
+        0.6880200937682506,
+        1.0063301638060924
+      ],
+      "type": "VEC3"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_indices",
+      "componentType": 5123,
+      "count": 240,
+      "min": [
+        0
+      ],
+      "max": [
+        239
+      ],
+      "type": "SCALAR"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_positions",
+      "componentType": 5126,
+      "count": 48,
+      "min": [
+        488421.7588696873,
+        3026598.5088696876,
+        404.4308667576598
+      ],
+      "max": [
+        488915.8348803127,
+        3027060.5145487296,
+        533.9178446521396
+      ],
+      "type": "VEC3"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_normals",
+      "componentType": 5126,
+      "count": 48,
+      "min": [
+        -0.8629914246353448,
+        -0.9395598493370355,
+        -1.0058165512832942
+      ],
+      "max": [
+        0.9472181584320818,
+        0.8939571532548642,
+        0.9908523879799189
+      ],
+      "type": "VEC3"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_indices",
+      "componentType": 5123,
+      "count": 3189,
+      "min": [
+        0
+      ],
+      "max": [
+        3188
+      ],
+      "type": "SCALAR"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_positions",
+      "componentType": 5126,
+      "count": 598,
+      "min": [
+        488393.0408829995,
+        3035500.2283829995,
+        125.88035290917945
+      ],
+      "max": [
+        490210.71992550074,
+        3039130.2716170005,
+        699.8842610674599
+      ],
+      "type": "VEC3"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_normals",
+      "componentType": 5126,
+      "count": 598,
+      "min": [
+        -1.0078336900355769,
+        -1.0067752903583003,
+        -1.007842928755517
+      ],
+      "max": [
+        1.0077990001323176,
+        0.985328613543043,
+        1.0077897614123774
+      ],
+      "type": "VEC3"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_indices",
+      "componentType": 5123,
+      "count": 3,
+      "min": [
+        0
+      ],
+      "max": [
+        2
+      ],
+      "type": "SCALAR"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_positions",
+      "componentType": 5126,
+      "count": 3,
+      "min": [
+        488343.3502228872,
+        3038226.756472887,
+        598.4564850941832
+      ],
+      "max": [
+        488507.2439698339,
+        3038725.743527113,
+        643.9960551967723
+      ],
+      "type": "VEC3"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_normals",
+      "componentType": 5126,
+      "count": 3,
+      "min": [
+        -0.4127361776782017,
+        -0.00392156862745098,
+        -0.9165390136195164
+      ],
+      "max": [
+        -0.40489304042329977,
+        0.00392156862745098,
+        -0.9086958763646145
+      ],
+      "type": "VEC3"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_indices",
+      "componentType": 5123,
+      "count": 36,
+      "min": [
+        0
+      ],
+      "max": [
+        35
+      ],
+      "type": "SCALAR"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_positions",
+      "componentType": 5126,
+      "count": 8,
+      "min": [
+        488513.67322606256,
+        3040341.5169760627,
+        463.3592307012024
+      ],
+      "max": [
+        488991.13927393744,
+        3040712.2580605764,
+        476.17554726202314
+      ],
+      "type": "VEC3"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_normals",
+      "componentType": 5126,
+      "count": 8,
+      "min": [
+        -0.7724655139680002,
+        -0.6628913152451609,
+        -0.7149562108750437
+      ],
+      "max": [
+        0.3629053108832414,
+        1.0044818389649484,
+        0.8421237774923735
+      ],
+      "type": "VEC3"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_indices",
+      "componentType": 5123,
+      "count": 99,
+      "min": [
+        0
+      ],
+      "max": [
+        98
+      ],
+      "type": "SCALAR"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_positions",
+      "componentType": 5126,
+      "count": 20,
+      "min": [
+        488530.1956521739,
+        3040722.945652174,
+        458.0887796153193
+      ],
+      "max": [
+        489153.8043478261,
+        3041282.945652174,
+        614.523562224015
+      ],
+      "type": "VEC3"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_normals",
+      "componentType": 5126,
+      "count": 20,
+      "min": [
+        -0.9716807844592076,
+        -1.0027265193415622,
+        -0.9952235462618809
+      ],
+      "max": [
+        1.0024221184206943,
+        0.6103536736731434,
+        0.9020660140935111
+      ],
+      "type": "VEC3"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_indices",
+      "componentType": 5123,
+      "count": 3,
+      "min": [
+        0
+      ],
+      "max": [
+        2
+      ],
+      "type": "SCALAR"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_positions",
+      "componentType": 5126,
+      "count": 3,
+      "min": [
+        488506.6618527113,
+        3040718.7556027113,
+        506.05559050425353
+      ],
+      "max": [
+        489007.4318972887,
+        3041217.8148662676,
+        643.1624694734768
+      ],
+      "type": "VEC3"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_normals",
+      "componentType": 5126,
+      "count": 3,
+      "min": [
+        0.05803519091477581,
+        -0.25174860679635813,
+        -0.9707427027178746
+      ],
+      "max": [
+        0.06587832816967777,
+        -0.2439054695414562,
+        -0.9628995654629726
+      ],
+      "type": "VEC3"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_indices",
+      "componentType": 5123,
+      "count": 27,
+      "min": [
+        0
+      ],
+      "max": [
+        26
+      ],
+      "type": "SCALAR"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_positions",
+      "componentType": 5126,
+      "count": 11,
+      "min": [
+        488877.93688935024,
+        3041217.4368893504,
+        573.4368893502686
+      ],
+      "max": [
+        489007.25061064976,
+        3041282.819522472,
+        596.8509404005862
+      ],
+      "type": "VEC3"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_normals",
+      "componentType": 5126,
+      "count": 11,
+      "min": [
+        0.15614983170640234,
+        -0.00012132794249291513,
+        -0.9878354993520998
+      ],
+      "max": [
+        0.18733111292708154,
+        0.00012132794249291513,
+        -0.9822544139974257
+      ],
+      "type": "VEC3"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_indices",
+      "componentType": 5123,
+      "count": 390,
+      "min": [
+        0
+      ],
+      "max": [
+        389
+      ],
+      "type": "SCALAR"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_positions",
+      "componentType": 5126,
+      "count": 69,
+      "min": [
+        489028.65676905226,
+        3027431.406769052,
+        307.683471933131
+      ],
+      "max": [
+        489731.93698094774,
+        3027931.4942598925,
+        531.1268189043083
+      ],
+      "type": "VEC3"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_normals",
+      "componentType": 5126,
+      "count": 69,
+      "min": [
+        -0.9892407249001895,
+        -1.0062811563996708,
+        -1.0073480199365055
+      ],
+      "max": [
+        0.8758840729208555,
+        0.9999035000801089,
+        1.0066732953576483
+      ],
+      "type": "VEC3"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_indices",
+      "componentType": 5123,
+      "count": 6,
+      "min": [
+        0
+      ],
+      "max": [
+        5
+      ],
+      "type": "SCALAR"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_positions",
+      "componentType": 5126,
+      "count": 4,
+      "min": [
+        489006.94313324377,
+        3027760.505633244,
+        505.1556271402558
+      ],
+      "max": [
+        489507.65061675623,
+        3027760.994366756,
+        533.0134373503192
+      ],
+      "type": "VEC3"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_normals",
+      "componentType": 5126,
+      "count": 4,
+      "min": [
+        -0.00784313725490196,
+        -1.007843137254902,
+        -0.00784313725490196
+      ],
+      "max": [
+        0.00784313725490196,
+        1.007843137254902,
+        1.011764705882353
+      ],
+      "type": "VEC3"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_indices",
+      "componentType": 5123,
+      "count": 30,
+      "min": [
+        0
+      ],
+      "max": [
+        29
+      ],
+      "type": "SCALAR"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_positions",
+      "componentType": 5126,
+      "count": 12,
+      "min": [
+        489042.8669241573,
+        3027491.5231741574,
+        505.1731680537877
+      ],
+      "max": [
+        489507.6330758427,
+        3027931.5653089886,
+        531.0313141212034
+      ],
+      "type": "VEC3"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_normals",
+      "componentType": 5126,
+      "count": 12,
+      "min": [
+        -0.10144444435250526,
+        -0.007841220790264654,
+        -1.0078412207902647
+      ],
+      "max": [
+        0.0396975298722585,
+        0.007841220790264654,
+        1.0073525223077513
+      ],
+      "type": "VEC3"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_indices",
+      "componentType": 5123,
+      "count": 9,
+      "min": [
+        0
+      ],
+      "max": [
+        8
+      ],
+      "type": "SCALAR"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_positions",
+      "componentType": 5126,
+      "count": 5,
+      "min": [
+        489007.0565766976,
+        3036963.3690766976,
+        563.2691011116688
+      ],
+      "max": [
+        489275.3184233024,
+        3037230.3216902786,
+        650.9877137154792
+      ],
+      "type": "VEC3"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_normals",
+      "componentType": 5126,
+      "count": 5,
+      "min": [
+        -0.12402976868199367,
+        0.24620457919789296,
+        -0.9675757792358305
+      ],
+      "max": [
+        0.03278224734114665,
+        0.25779768544084886,
+        -0.9602538173981742
+      ],
+      "type": "VEC3"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_indices",
+      "componentType": 5123,
+      "count": 3,
+      "min": [
+        0
+      ],
+      "max": [
+        2
+      ],
+      "type": "SCALAR"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_positions",
+      "componentType": 5126,
+      "count": 3,
+      "min": [
+        489505.17980581336,
+        3038211.2423058134,
+        535.7922936063542
+      ],
+      "max": [
+        489507.4111199316,
+        3038227.0076941866,
+        536.3078041095296
+      ],
+      "type": "VEC3"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_normals",
+      "componentType": 5126,
+      "count": 3,
+      "min": [
+        -0.09768231981525234,
+        -0.00392156862745098,
+        -0.9995163085413914
+      ],
+      "max": [
+        -0.08983918256035038,
+        0.00392156862745098,
+        -0.9916731712864895
+      ],
+      "type": "VEC3"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_indices",
+      "componentType": 5123,
+      "count": 6,
+      "min": [
+        0
+      ],
+      "max": [
+        5
+      ],
+      "type": "SCALAR"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_positions",
+      "componentType": 5126,
+      "count": 4,
+      "min": [
+        489007.1235497069,
+        3041217.436049707,
+        594.1360619139194
+      ],
+      "max": [
+        489138.1577002931,
+        3041282.793249267,
+        614.152503657935
+      ],
+      "type": "VEC3"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_normals",
+      "componentType": 5126,
+      "count": 4,
+      "min": [
+        0.1251766698033202,
+        -8.777076122807522e-8,
+        -0.9921345396369111
+      ],
+      "max": [
+        0.1251992268889558,
+        8.777076122807522e-8,
+        -0.9921315554310294
+      ],
+      "type": "VEC3"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_indices",
+      "componentType": 5123,
+      "count": 21,
+      "min": [
+        0
+      ],
+      "max": [
+        20
+      ],
+      "type": "SCALAR"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_positions",
+      "componentType": 5126,
+      "count": 8,
+      "min": [
+        489859.3338574743,
+        3035695.1776074744,
+        599.127619681384
+      ],
+      "max": [
+        490007.6661425257,
+        3035735.065889106,
+        601.5889655533917
+      ],
+      "type": "VEC3"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_normals",
+      "componentType": 5126,
+      "count": 8,
+      "min": [
+        -0.29907863069983087,
+        -0.007716821922975428,
+        -0.9755064122817095
+      ],
+      "max": [
+        0.25653254775439993,
+        0.25465512345818914,
+        1.0077168219229755
+      ],
+      "type": "VEC3"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_indices",
+      "componentType": 5123,
+      "count": 6,
+      "min": [
+        0
+      ],
+      "max": [
+        5
+      ],
+      "type": "SCALAR"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_positions",
+      "componentType": 5126,
+      "count": 6,
+      "min": [
+        489507.16189851,
+        3037230.00564851,
+        604.3869351311084
+      ],
+      "max": [
+        490007.83810149,
+        3037230.49435149,
+        604.8756381110791
+      ],
+      "type": "VEC3"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_normals",
+      "componentType": 5126,
+      "count": 6,
+      "min": [
+        -0.00392156862745098,
+        -0.00392156862745098,
+        0.996078431372549
+      ],
+      "max": [
+        0.00392156862745098,
+        0.00392156862745098,
+        1.003921568627451
+      ],
+      "type": "VEC3"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_indices",
+      "componentType": 5123,
+      "count": 1101,
+      "min": [
+        0
+      ],
+      "max": [
+        1100
+      ],
+      "type": "SCALAR"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_positions",
+      "componentType": 5126,
+      "count": 198,
+      "min": [
+        491427.0464551783,
+        3043311.8902051784,
+        56.117278847743314
+      ],
+      "max": [
+        492941.8578865413,
+        3046098.1097948216,
+        295.4411674652323
+      ],
+      "type": "VEC3"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_normals",
+      "componentType": 5126,
+      "count": 198,
+      "min": [
+        -1.0075421366037107,
+        -1.007831874781964,
+        -1.007831874781964
+      ],
+      "max": [
+        1.0052496823610042,
+        0.9423049459270401,
+        0.9814643198368593
+      ],
+      "type": "VEC3"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_indices",
+      "componentType": 5123,
+      "count": 18,
+      "min": [
+        0
+      ],
+      "max": [
+        17
+      ],
+      "type": "SCALAR"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_positions",
+      "componentType": 5126,
+      "count": 8,
+      "min": [
+        491486.0643166829,
+        3043709.470566683,
+        187.57057278646627
+      ],
+      "max": [
+        491508.34533768933,
+        3043769.779433317,
+        195.1349352681468
+      ],
+      "type": "VEC3"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_normals",
+      "componentType": 5126,
+      "count": 8,
+      "min": [
+        -0.3438762484812269,
+        -0.00012431133027170218,
+        -0.9501891492628584
+      ],
+      "max": [
+        -0.31192823660139946,
+        0.00012431133027170218,
+        -0.9388768182081335
+      ],
+      "type": "VEC3"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_indices",
+      "componentType": 5123,
+      "count": 15,
+      "min": [
+        0
+      ],
+      "max": [
+        14
+      ],
+      "type": "SCALAR"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_positions",
+      "componentType": 5126,
+      "count": 7,
+      "min": [
+        491724.90408219345,
+        3044207.5603321935,
+        209.61033524521164
+      ],
+      "max": [
+        492008.64712078654,
+        3044596.1896678065,
+        256.4582834621144
+      ],
+      "type": "VEC3"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_normals",
+      "componentType": 5126,
+      "count": 7,
+      "min": [
+        0.09345880331946355,
+        -0.0003687348728086434,
+        -0.9959572162990477
+      ],
+      "max": [
+        0.1882236656312849,
+        0.0003687348728086434,
+        -0.9819452911323192
+      ],
+      "type": "VEC3"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_indices",
+      "componentType": 5123,
+      "count": 12,
+      "min": [
+        0
+      ],
+      "max": [
+        11
+      ],
+      "type": "SCALAR"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_positions",
+      "componentType": 5126,
+      "count": 6,
+      "min": [
+        492283.48378724966,
+        3045702.89003725,
+        139.19004030139143
+      ],
+      "max": [
+        492508.79746275034,
+        3045829.347200171,
+        146.77747007667233
+      ],
+      "type": "VEC3"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_normals",
+      "componentType": 5126,
+      "count": 6,
+      "min": [
+        -0.00392156862745098,
+        -0.00392156862745098,
+        -1.003921568627451
+      ],
+      "max": [
+        0.00392156862745098,
+        0.00392156862745098,
+        -0.996078431372549
+      ],
+      "type": "VEC3"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_indices",
+      "componentType": 5123,
+      "count": 840,
+      "min": [
+        0
+      ],
+      "max": [
+        839
+      ],
+      "type": "SCALAR"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_positions",
+      "componentType": 5126,
+      "count": 187,
+      "min": [
+        493232.48299340496,
+        3046565.732993405,
+        91.14171532881103
+      ],
+      "max": [
+        494291.82950659504,
+        3047505.1339765512,
+        223.49540365318816
+      ],
+      "type": "VEC3"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_normals",
+      "componentType": 5126,
+      "count": 187,
+      "min": [
+        -0.9622746114637337,
+        -0.999860525598713,
+        -1.007843137254902
+      ],
+      "max": [
+        1.0063528395166583,
+        0.9687669253816791,
+        1.007843137254902
+      ],
+      "type": "VEC3"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_indices",
+      "componentType": 5123,
+      "count": 21,
+      "min": [
+        0
+      ],
+      "max": [
+        20
+      ],
+      "type": "SCALAR"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_positions",
+      "componentType": 5126,
+      "count": 13,
+      "min": [
+        493232.8579628725,
+        3046599.1079628724,
+        164.7579567689807
+      ],
+      "max": [
+        493509.2622129946,
+        3046890.1420371276,
+        211.77224597269347
+      ],
+      "type": "VEC3"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_normals",
+      "componentType": 5126,
+      "count": 13,
+      "min": [
+        -0.2221422662337621,
+        -0.007795008023579916,
+        -0.9955220540364583
+      ],
+      "max": [
+        0.15981312692165378,
+        0.2494402567545573,
+        1.00779500802358
+      ],
+      "type": "VEC3"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_indices",
+      "componentType": 5123,
+      "count": 12,
+      "min": [
+        0
+      ],
+      "max": [
+        11
+      ],
+      "type": "SCALAR"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_positions",
+      "componentType": 5126,
+      "count": 6,
+      "min": [
+        493317.9734062042,
+        3046699.535906204,
+        160.58590925595908
+      ],
+      "max": [
+        493509.3732596483,
+        3047138.214093796,
+        171.71878663749303
+      ],
+      "type": "VEC3"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_normals",
+      "componentType": 5126,
+      "count": 6,
+      "min": [
+        -0.03125576946665259,
+        -2.7172705706428078e-9,
+        -0.9995114234440466
+      ],
+      "max": [
+        -0.03125507112811594,
+        2.7172705706428078e-9,
+        -0.9995114180095056
+      ],
+      "type": "VEC3"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_indices",
+      "componentType": 5123,
+      "count": 6,
+      "min": [
+        0
+      ],
+      "max": [
+        5
+      ],
+      "type": "SCALAR"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_positions",
+      "componentType": 5126,
+      "count": 6,
+      "min": [
+        493536.7756778212,
+        3047141.463177821,
+        157.32568087295957
+      ],
+      "max": [
+        493612.2243221788,
+        3047170.7736321446,
+        157.50979176695077
+      ],
+      "type": "VEC3"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_normals",
+      "componentType": 5126,
+      "count": 6,
+      "min": [
+        -0.00392156862745098,
+        -0.00392156862745098,
+        0.996078431372549
+      ],
+      "max": [
+        0.00392156862745098,
+        0.00392156862745098,
+        1.003921568627451
+      ],
+      "type": "VEC3"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_indices",
+      "componentType": 5123,
+      "count": 45,
+      "min": [
+        0
+      ],
+      "max": [
+        44
+      ],
+      "type": "SCALAR"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_positions",
+      "componentType": 5126,
+      "count": 21,
+      "min": [
+        493508.8796562042,
+        3046699.535906204,
+        160.58590925595908
+      ],
+      "max": [
+        493790.19890388375,
+        3047138.214093796,
+        175.57247496187017
+      ],
+      "type": "VEC3"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_normals",
+      "componentType": 5126,
+      "count": 21,
+      "min": [
+        -1.0047244240255917,
+        -0.0047786642523372875,
+        -1.0047786642523373
+      ],
+      "max": [
+        0.2233922888250912,
+        0.0047786642523372875,
+        -0.006037835513844181
+      ],
+      "type": "VEC3"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_indices",
+      "componentType": 5123,
+      "count": 72,
+      "min": [
+        0
+      ],
+      "max": [
+        71
+      ],
+      "type": "SCALAR"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_positions",
+      "componentType": 5126,
+      "count": 14,
+      "min": [
+        495316.6489985344,
+        3047081.7427485343,
+        287.7879755852219
+      ],
+      "max": [
+        495843.7572514656,
+        3047404.850589277,
+        294.4765136897651
+      ],
+      "type": "VEC3"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_normals",
+      "componentType": 5126,
+      "count": 14,
+      "min": [
+        -0.5730837190852446,
+        -0.8753013218150419,
+        -1.005648752521066
+      ],
+      "max": [
+        0.9307329577558181,
+        0.9185916683253119,
+        0.9561831558451932
+      ],
+      "type": "VEC3"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_indices",
+      "componentType": 5123,
+      "count": 147,
+      "min": [
+        0
+      ],
+      "max": [
+        146
+      ],
+      "type": "SCALAR"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_positions",
+      "componentType": 5126,
+      "count": 28,
+      "min": [
+        495083.7374664143,
+        3049174.4874664145,
+        164.9664245441476
+      ],
+      "max": [
+        495621.6687835857,
+        3049541.7719528577,
+        211.95993639075238
+      ],
+      "type": "VEC3"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_normals",
+      "componentType": 5126,
+      "count": 28,
+      "min": [
+        -0.9092464484420477,
+        -0.9897054471221625,
+        -1.0077418722358404
+      ],
+      "max": [
+        0.9797703771030202,
+        0.9999557174888312,
+        0.9354680589601105
+      ],
+      "type": "VEC3"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_indices",
+      "componentType": 5123,
+      "count": 672,
+      "min": [
+        0
+      ],
+      "max": [
+        671
+      ],
+      "type": "SCALAR"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_positions",
+      "componentType": 5126,
+      "count": 128,
+      "min": [
+        496524.786394724,
+        3048402.036394724,
+        188.03499091539257
+      ],
+      "max": [
+        497673.690889106,
+        3049864.213605276,
+        381.42202071509945
+      ],
+      "type": "VEC3"
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh_0_normals",
+      "componentType": 5126,
+      "count": 128,
+      "min": [
+        -1.0078017606454737,
+        -1.0023728503900415,
+        -1.007816244574154
+      ],
+      "max": [
+        1.0009730949121365,
+        0.9595045377226439,
+        0.9540611435385313
+      ],
+      "type": "VEC3"
+    }
+  ],
+  "asset": {
+    "generator": "obj2gltf",
+    "version": "2.0"
+  },
+  "buffers": [
+    {
+      "name": "ln51",
+      "byteLength": 13920,
+      "uri": "data:application/octet-stream;base64,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"
+    }
+  ],
+  "bufferViews": [
+    {
+      "buffer": 0,
+      "byteOffset": 0,
+      "byteLength": 522
+    },
+    {
+      "buffer": 0,
+      "byteOffset": 528,
+      "byteLength": 306
+    },
+    {
+      "buffer": 0,
+      "byteOffset": 840,
+      "byteLength": 141
+    },
+    {
+      "buffer": 0,
+      "byteOffset": 984,
+      "byteLength": 130
+    },
+    {
+      "buffer": 0,
+      "byteOffset": 1120,
+      "byteLength": 514
+    },
+    {
+      "buffer": 0,
+      "byteOffset": 1640,
+      "byteLength": 219
+    },
+    {
+      "buffer": 0,
+      "byteOffset": 1864,
+      "byteLength": 250
+    },
+    {
+      "buffer": 0,
+      "byteOffset": 2120,
+      "byteLength": 445
+    },
+    {
+      "buffer": 0,
+      "byteOffset": 2568,
+      "byteLength": 3554
+    },
+    {
+      "buffer": 0,
+      "byteOffset": 6128,
+      "byteLength": 127
+    },
+    {
+      "buffer": 0,
+      "byteOffset": 6256,
+      "byteLength": 166
+    },
+    {
+      "buffer": 0,
+      "byteOffset": 6424,
+      "byteLength": 251
+    },
+    {
+      "buffer": 0,
+      "byteOffset": 6680,
+      "byteLength": 130
+    },
+    {
+      "buffer": 0,
+      "byteOffset": 6816,
+      "byteLength": 180
+    },
+    {
+      "buffer": 0,
+      "byteOffset": 7000,
+      "byteLength": 569
+    },
+    {
+      "buffer": 0,
+      "byteOffset": 7576,
+      "byteLength": 130
+    },
+    {
+      "buffer": 0,
+      "byteOffset": 7712,
+      "byteLength": 196
+    },
+    {
+      "buffer": 0,
+      "byteOffset": 7912,
+      "byteLength": 141
+    },
+    {
+      "buffer": 0,
+      "byteOffset": 8056,
+      "byteLength": 131
+    },
+    {
+      "buffer": 0,
+      "byteOffset": 8192,
+      "byteLength": 132
+    },
+    {
+      "buffer": 0,
+      "byteOffset": 8328,
+      "byteLength": 161
+    },
+    {
+      "buffer": 0,
+      "byteOffset": 8496,
+      "byteLength": 129
+    },
+    {
+      "buffer": 0,
+      "byteOffset": 8632,
+      "byteLength": 1285
+    },
+    {
+      "buffer": 0,
+      "byteOffset": 9920,
+      "byteLength": 155
+    },
+    {
+      "buffer": 0,
+      "byteOffset": 10080,
+      "byteLength": 158
+    },
+    {
+      "buffer": 0,
+      "byteOffset": 10240,
+      "byteLength": 153
+    },
+    {
+      "buffer": 0,
+      "byteOffset": 10400,
+      "byteLength": 1303
+    },
+    {
+      "buffer": 0,
+      "byteOffset": 11704,
+      "byteLength": 197
+    },
+    {
+      "buffer": 0,
+      "byteOffset": 11904,
+      "byteLength": 146
+    },
+    {
+      "buffer": 0,
+      "byteOffset": 12056,
+      "byteLength": 144
+    },
+    {
+      "buffer": 0,
+      "byteOffset": 12200,
+      "byteLength": 252
+    },
+    {
+      "buffer": 0,
+      "byteOffset": 12456,
+      "byteLength": 206
+    },
+    {
+      "buffer": 0,
+      "byteOffset": 12664,
+      "byteLength": 314
+    },
+    {
+      "buffer": 0,
+      "byteOffset": 12984,
+      "byteLength": 931
+    }
+  ],
+  "materials": [
+    {
+      "name": "material_20",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          0.933333,
+          0.415686,
+          0.313725,
+          1
+        ],
+        "metallicFactor": 0,
+        "roughnessFactor": 1
+      },
+      "emissiveFactor": [
+        0,
+        0,
+        0
+      ],
+      "alphaMode": "OPAQUE",
+      "doubleSided": false
+    }
+  ],
+  "meshes": [
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_0-Mesh",
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 1,
+            "NORMAL": 2
+          },
+          "indices": 0,
+          "material": 0,
+          "mode": 4,
+          "extensions": {
+            "KHR_draco_mesh_compression": {
+              "bufferView": 0,
+              "attributes": {
+                "POSITION": 0,
+                "NORMAL": 1
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_0-Mesh",
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 4,
+            "NORMAL": 5
+          },
+          "indices": 3,
+          "material": 0,
+          "mode": 4,
+          "extensions": {
+            "KHR_draco_mesh_compression": {
+              "bufferView": 1,
+              "attributes": {
+                "POSITION": 0,
+                "NORMAL": 1
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_0-Mesh",
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 7,
+            "NORMAL": 8
+          },
+          "indices": 6,
+          "material": 0,
+          "mode": 4,
+          "extensions": {
+            "KHR_draco_mesh_compression": {
+              "bufferView": 2,
+              "attributes": {
+                "POSITION": 0,
+                "NORMAL": 1
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_0-Mesh",
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 10,
+            "NORMAL": 11
+          },
+          "indices": 9,
+          "material": 0,
+          "mode": 4,
+          "extensions": {
+            "KHR_draco_mesh_compression": {
+              "bufferView": 3,
+              "attributes": {
+                "POSITION": 0,
+                "NORMAL": 1
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh",
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 13,
+            "NORMAL": 14
+          },
+          "indices": 12,
+          "material": 0,
+          "mode": 4,
+          "extensions": {
+            "KHR_draco_mesh_compression": {
+              "bufferView": 4,
+              "attributes": {
+                "POSITION": 0,
+                "NORMAL": 1
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh",
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 16,
+            "NORMAL": 17
+          },
+          "indices": 15,
+          "material": 0,
+          "mode": 4,
+          "extensions": {
+            "KHR_draco_mesh_compression": {
+              "bufferView": 5,
+              "attributes": {
+                "POSITION": 0,
+                "NORMAL": 1
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh",
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 19,
+            "NORMAL": 20
+          },
+          "indices": 18,
+          "material": 0,
+          "mode": 4,
+          "extensions": {
+            "KHR_draco_mesh_compression": {
+              "bufferView": 6,
+              "attributes": {
+                "POSITION": 0,
+                "NORMAL": 1
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh",
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 22,
+            "NORMAL": 23
+          },
+          "indices": 21,
+          "material": 0,
+          "mode": 4,
+          "extensions": {
+            "KHR_draco_mesh_compression": {
+              "bufferView": 7,
+              "attributes": {
+                "POSITION": 0,
+                "NORMAL": 1
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh",
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 25,
+            "NORMAL": 26
+          },
+          "indices": 24,
+          "material": 0,
+          "mode": 4,
+          "extensions": {
+            "KHR_draco_mesh_compression": {
+              "bufferView": 8,
+              "attributes": {
+                "POSITION": 0,
+                "NORMAL": 1
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh",
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 28,
+            "NORMAL": 29
+          },
+          "indices": 27,
+          "material": 0,
+          "mode": 4,
+          "extensions": {
+            "KHR_draco_mesh_compression": {
+              "bufferView": 9,
+              "attributes": {
+                "POSITION": 0,
+                "NORMAL": 1
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh",
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 31,
+            "NORMAL": 32
+          },
+          "indices": 30,
+          "material": 0,
+          "mode": 4,
+          "extensions": {
+            "KHR_draco_mesh_compression": {
+              "bufferView": 10,
+              "attributes": {
+                "POSITION": 0,
+                "NORMAL": 1
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh",
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 34,
+            "NORMAL": 35
+          },
+          "indices": 33,
+          "material": 0,
+          "mode": 4,
+          "extensions": {
+            "KHR_draco_mesh_compression": {
+              "bufferView": 11,
+              "attributes": {
+                "POSITION": 0,
+                "NORMAL": 1
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh",
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 37,
+            "NORMAL": 38
+          },
+          "indices": 36,
+          "material": 0,
+          "mode": 4,
+          "extensions": {
+            "KHR_draco_mesh_compression": {
+              "bufferView": 12,
+              "attributes": {
+                "POSITION": 0,
+                "NORMAL": 1
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh",
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 40,
+            "NORMAL": 41
+          },
+          "indices": 39,
+          "material": 0,
+          "mode": 4,
+          "extensions": {
+            "KHR_draco_mesh_compression": {
+              "bufferView": 13,
+              "attributes": {
+                "POSITION": 0,
+                "NORMAL": 1
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh",
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 43,
+            "NORMAL": 44
+          },
+          "indices": 42,
+          "material": 0,
+          "mode": 4,
+          "extensions": {
+            "KHR_draco_mesh_compression": {
+              "bufferView": 14,
+              "attributes": {
+                "POSITION": 0,
+                "NORMAL": 1
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh",
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 46,
+            "NORMAL": 47
+          },
+          "indices": 45,
+          "material": 0,
+          "mode": 4,
+          "extensions": {
+            "KHR_draco_mesh_compression": {
+              "bufferView": 15,
+              "attributes": {
+                "POSITION": 0,
+                "NORMAL": 1
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh",
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 49,
+            "NORMAL": 50
+          },
+          "indices": 48,
+          "material": 0,
+          "mode": 4,
+          "extensions": {
+            "KHR_draco_mesh_compression": {
+              "bufferView": 16,
+              "attributes": {
+                "POSITION": 0,
+                "NORMAL": 1
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh",
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 52,
+            "NORMAL": 53
+          },
+          "indices": 51,
+          "material": 0,
+          "mode": 4,
+          "extensions": {
+            "KHR_draco_mesh_compression": {
+              "bufferView": 17,
+              "attributes": {
+                "POSITION": 0,
+                "NORMAL": 1
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh",
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 55,
+            "NORMAL": 56
+          },
+          "indices": 54,
+          "material": 0,
+          "mode": 4,
+          "extensions": {
+            "KHR_draco_mesh_compression": {
+              "bufferView": 18,
+              "attributes": {
+                "POSITION": 0,
+                "NORMAL": 1
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh",
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 58,
+            "NORMAL": 59
+          },
+          "indices": 57,
+          "material": 0,
+          "mode": 4,
+          "extensions": {
+            "KHR_draco_mesh_compression": {
+              "bufferView": 19,
+              "attributes": {
+                "POSITION": 0,
+                "NORMAL": 1
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh",
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 61,
+            "NORMAL": 62
+          },
+          "indices": 60,
+          "material": 0,
+          "mode": 4,
+          "extensions": {
+            "KHR_draco_mesh_compression": {
+              "bufferView": 20,
+              "attributes": {
+                "POSITION": 0,
+                "NORMAL": 1
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh",
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 64,
+            "NORMAL": 65
+          },
+          "indices": 63,
+          "material": 0,
+          "mode": 4,
+          "extensions": {
+            "KHR_draco_mesh_compression": {
+              "bufferView": 21,
+              "attributes": {
+                "POSITION": 0,
+                "NORMAL": 1
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh",
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 67,
+            "NORMAL": 68
+          },
+          "indices": 66,
+          "material": 0,
+          "mode": 4,
+          "extensions": {
+            "KHR_draco_mesh_compression": {
+              "bufferView": 22,
+              "attributes": {
+                "POSITION": 0,
+                "NORMAL": 1
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh",
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 70,
+            "NORMAL": 71
+          },
+          "indices": 69,
+          "material": 0,
+          "mode": 4,
+          "extensions": {
+            "KHR_draco_mesh_compression": {
+              "bufferView": 23,
+              "attributes": {
+                "POSITION": 0,
+                "NORMAL": 1
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh",
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 73,
+            "NORMAL": 74
+          },
+          "indices": 72,
+          "material": 0,
+          "mode": 4,
+          "extensions": {
+            "KHR_draco_mesh_compression": {
+              "bufferView": 24,
+              "attributes": {
+                "POSITION": 0,
+                "NORMAL": 1
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh",
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 76,
+            "NORMAL": 77
+          },
+          "indices": 75,
+          "material": 0,
+          "mode": 4,
+          "extensions": {
+            "KHR_draco_mesh_compression": {
+              "bufferView": 25,
+              "attributes": {
+                "POSITION": 0,
+                "NORMAL": 1
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh",
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 79,
+            "NORMAL": 80
+          },
+          "indices": 78,
+          "material": 0,
+          "mode": 4,
+          "extensions": {
+            "KHR_draco_mesh_compression": {
+              "bufferView": 26,
+              "attributes": {
+                "POSITION": 0,
+                "NORMAL": 1
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh",
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 82,
+            "NORMAL": 83
+          },
+          "indices": 81,
+          "material": 0,
+          "mode": 4,
+          "extensions": {
+            "KHR_draco_mesh_compression": {
+              "bufferView": 27,
+              "attributes": {
+                "POSITION": 0,
+                "NORMAL": 1
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh",
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 85,
+            "NORMAL": 86
+          },
+          "indices": 84,
+          "material": 0,
+          "mode": 4,
+          "extensions": {
+            "KHR_draco_mesh_compression": {
+              "bufferView": 28,
+              "attributes": {
+                "POSITION": 0,
+                "NORMAL": 1
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh",
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 88,
+            "NORMAL": 89
+          },
+          "indices": 87,
+          "material": 0,
+          "mode": 4,
+          "extensions": {
+            "KHR_draco_mesh_compression": {
+              "bufferView": 29,
+              "attributes": {
+                "POSITION": 0,
+                "NORMAL": 1
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh",
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 91,
+            "NORMAL": 92
+          },
+          "indices": 90,
+          "material": 0,
+          "mode": 4,
+          "extensions": {
+            "KHR_draco_mesh_compression": {
+              "bufferView": 30,
+              "attributes": {
+                "POSITION": 0,
+                "NORMAL": 1
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh",
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 94,
+            "NORMAL": 95
+          },
+          "indices": 93,
+          "material": 0,
+          "mode": 4,
+          "extensions": {
+            "KHR_draco_mesh_compression": {
+              "bufferView": 31,
+              "attributes": {
+                "POSITION": 0,
+                "NORMAL": 1
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh",
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 97,
+            "NORMAL": 98
+          },
+          "indices": 96,
+          "material": 0,
+          "mode": 4,
+          "extensions": {
+            "KHR_draco_mesh_compression": {
+              "bufferView": 32,
+              "attributes": {
+                "POSITION": 0,
+                "NORMAL": 1
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0-Mesh",
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 100,
+            "NORMAL": 101
+          },
+          "indices": 99,
+          "material": 0,
+          "mode": 4,
+          "extensions": {
+            "KHR_draco_mesh_compression": {
+              "bufferView": 33,
+              "attributes": {
+                "POSITION": 0,
+                "NORMAL": 1
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_0",
+      "mesh": 0
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_0",
+      "mesh": 1
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_0",
+      "mesh": 2
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_0",
+      "mesh": 3
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_0",
+      "mesh": 4
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0",
+      "mesh": 5
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0",
+      "mesh": 6
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0",
+      "mesh": 7
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0",
+      "mesh": 8
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0",
+      "mesh": 9
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0",
+      "mesh": 10
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0",
+      "mesh": 11
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0",
+      "mesh": 12
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0",
+      "mesh": 13
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0",
+      "mesh": 14
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0",
+      "mesh": 15
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0",
+      "mesh": 16
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0",
+      "mesh": 17
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0",
+      "mesh": 18
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0",
+      "mesh": 19
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0",
+      "mesh": 20
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0",
+      "mesh": 21
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0",
+      "mesh": 22
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0",
+      "mesh": 23
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0",
+      "mesh": 24
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0",
+      "mesh": 25
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0",
+      "mesh": 26
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0",
+      "mesh": 27
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0",
+      "mesh": 28
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0",
+      "mesh": 29
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0",
+      "mesh": 30
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0",
+      "mesh": 31
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0",
+      "mesh": 32
+    },
+    {
+      "name": "Switch_Switch_osgPicked_gmeGeoEntityGeode_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_Geometry_0",
+      "mesh": 33
+    }
+  ],
+  "scene": 0,
+  "scenes": [
+    {
+      "nodes": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33
+      ]
+    }
+  ],
+  "extensionsRequired": [
+    "KHR_draco_mesh_compression"
+  ],
+  "extensionsUsed": [
+    "KHR_draco_mesh_compression"
+  ]
+}

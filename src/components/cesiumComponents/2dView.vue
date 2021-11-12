@@ -72,20 +72,20 @@ export default {
                 },
               ],
             },
-            {
-              id: "1-3",
-              label: "WfsServer",
-              children: [
-                {
-                  id: "1-3-1",
-                  label: "区域地质图(株洲幅)",
-                  name: "mfsserver_arc_geomap",
-                  url: "https://tsy-gis1.portal.com/server/services/Hosted/geoinfo_geomap/MapServer/WFSServer?service=wfs&request=getcapabilities",
-                  layers: "",
-                  serviceType: "wfs",
-                },
-              ],
-            },
+            // {
+            //   id: "1-3",
+            //   label: "WfsServer",
+            //   children: [
+            //     {
+            //       id: "1-3-1",
+            //       label: "区域地质图(株洲幅)",
+            //       name: "wfsserver_arc_geomap",
+            //       url: "https://tsy-gis1.portal.com/server/rest/services/Hosted/geoinfo_geomap/MapServer?f=pjson",
+            //       layers: "",
+            //       serviceType: "wfs",
+            //     },
+            //   ],
+            // },
           ],
         },
         {
@@ -100,10 +100,19 @@ export default {
                   id: "2-1-1",
                   label: "区域地质图(株洲幅)",
                   name: "geoserver_wms_geomap",
-                  // url: "http://192.10.3.237/geoserver/crcc-dev/wms",
-                  url:"http://10.101.140.3/geoserver/cite/wms",
-                  // layers: "crcc-dev:geomap-01",
-                  layers:"cite:GeoBoundZone",
+                  url: "http://192.10.3.237/geoserver/crcc-dev/wms",
+                  layers: "crcc-dev:geomap-01",
+
+                  // url:"http://10.101.140.3/geoserver/cite/wms",
+                  // layers:"cite:GeoBoundZone",
+                  serviceType: "wms",
+                },
+                {
+                  id: "2-1-2",
+                  label: "长赣-遥感解译",
+                  name: "changgan_wms+geo",
+                  url: "http://192.10.3.237/geoserver/wms",
+                  layers: "geomap-rs",
                   serviceType: "wms",
                 },
               ],
@@ -113,9 +122,9 @@ export default {
               label: "WfsServer",
               children: [
                 {
-                  label: "区域地质图(株洲幅)",
-                  name: "geoserver_wfs_geomap",
-                  url: "http://10.101.140.3/geoserver/cite/ows?service=WFS&version=1.2.0&request=GetFeature&typeName=cite:FaultZone&maxFeatures=50&outputFormat=application/json",
+                  label: "地层界限分布",
+                  name: "dicengjiexian_wfs_geomap",
+                  url: "http://192.10.3.237/geoserver/crcc-dev/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=crcc-dev:geoboundzone&maxFeatures=50&outputFormat=application/json",
                   layers: "",
                   serviceType: "wfs",
                 },

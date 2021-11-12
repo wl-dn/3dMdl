@@ -51,6 +51,13 @@ export default {
               url: "3DTiles/model_3dtiles/tileset.json",
               serviceType: "3DTiles",
             },
+              {
+              id: "1-2",
+              label: "三维地质模型2",
+              name: "3dmdl2",
+              url: "3DTiles/model_3dtilesv2/tileset.json",
+              serviceType: "3DTiles",
+            },
           ],
         },
         {
