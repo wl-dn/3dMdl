@@ -160,7 +160,9 @@ export default {
         animation: showWedgit, // 控制场景动画的播放速度控件
         // terrainProvider: new Cesium.createWorldTerrain(), // 这一块接口容易失败
         shadows: false,
-        imageryProvider:new Cesium.SingleTileImageryProvider({ url: "GlobalBkLayer.jpg" }),// 简单加载，解决无法加载地图的问题
+        imageryProvider: new Cesium.SingleTileImageryProvider({
+          url: "GlobalBkLayer.jpg",
+        }), // 简单加载，解决无法加载地图的问题
       });
 
       viewer._cesiumWidget._creditContainer.style.display = "none"; //是否显示cesium
@@ -290,7 +292,8 @@ export default {
       }
       // 加载3Dtiles文件
       let tileSet = new Cesium.Cesium3DTileset({
-        url: url,
+        // url: url,
+        url: Cesium.IonResource.fromAssetId(75343),
       });
       const tileset = await tileSet.readyPromise;
       console.log(tileset);
@@ -504,6 +507,7 @@ export default {
         viewer.screenSpaceEventHandler.setInputAction(function (movement) {
           let pickedFeature = viewer.scene.pick(movement.position);
           if (Cesium.defined(pickedFeature)) {
+            console.log(tileSetList);
             let urlStr = pickedFeature.content.url;
             let leftIndex = urlStr.indexOf("\\");
             if (leftIndex === -1) {
@@ -516,6 +520,12 @@ export default {
               message: resStr,
               duration: "2000",
             });
+          }
+
+          let endFeature = viewer.scene.pick(movement.position);
+          console.log(endFeature);
+          if (endFeature.primitive instanceof Cesium.Cesium3DTileset) {
+            console.log(4);
           }
         }, Cesium.ScreenSpaceEventType.RIGHT_CLICK);
 
