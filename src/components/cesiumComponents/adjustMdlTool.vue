@@ -4,10 +4,14 @@
  * @version: 
  * @Date: 2021-08-20 10:25:43
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-11-10 16:02:03
+ * @LastEditTime: 2021-11-18 20:54:03
 -->
 <template>
   <div class="adjustMdlBox">
+    <div>
+      <span>线框/实体</span>
+      <el-checkbox v-model="isWireframevCheck" @change="WireOnChange"></el-checkbox>
+    </div>
     <div>
       <span>比例(Z)</span>
       <el-input-number
@@ -21,7 +25,7 @@
       <el-input-number
         v-model="tileModelTool.longitude"
         label="描述文字"
-        :step="0.0005"
+        :step="0.0001"
       ></el-input-number>
     </div>
     <div>
@@ -29,7 +33,7 @@
       <el-input-number
         v-model="tileModelTool.latitude"
         label="描述文字"
-        :step="0.0005"
+        :step="0.0001"
       ></el-input-number>
     </div>
     <div>
@@ -79,6 +83,7 @@
 
 <script>
 export default {
+  props:["isWireframevCheck"],
   data() {
     return {};
   },
@@ -91,6 +96,9 @@ export default {
     },
   },
   methods: {
+    WireOnChange(val) {
+      this.$emit("sendWifeinfo",val)
+    },
     onMessageFromComponent() {},
     destroyComponent() {},
   },
@@ -103,7 +111,7 @@ export default {
 <style scoped>
 .adjustMdlBox {
   position: fixed;
-  bottom: 10px;
+  top: 210px;
   right: 20px;
   z-index: 1;
   background-color: rgba(1, 8, 6, 0.5);
@@ -129,5 +137,8 @@ export default {
 }
 .adjustMdlBox div span {
   line-height: 44px;
+}
+.el-checkbox {
+  padding-left: 40px;
 }
 </style>

@@ -4,10 +4,10 @@
  * @version: 
  * @Date: 2021-09-19 10:51:29
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-11-11 21:16:01
+ * @LastEditTime: 2021-11-18 20:11:08
 -->
 <template>
-  <div class="CesiumTool" v-if="isShow">
+  <div class="threeTool" v-if="isShow">
     <transition name="el-zoom-in-center">
       <div v-show="isMenuTool">
         <span
@@ -118,7 +118,7 @@ export default {
 </script>
 
 <style scoped>
-.CesiumTool {
+.threeTool {
   position: absolute;
   top: 10px;
   color: white;
@@ -127,7 +127,7 @@ export default {
   z-index: 1;
   left: 100px;
 }
-.CesiumTool span {
+.threeTool span {
   display: inline-block;
   background-color: rgb(84, 92, 100);
   padding: 10px;
@@ -136,13 +136,14 @@ export default {
   cursor: pointer;
   margin-left: 10px;
 }
-.CesiumTool span:hover {
+.threeTool span:hover {
   cursor: pointer;
 }
 .close_span {
   position: absolute;
-  left: -40px;
-  top: 4px;
+  left: -50px;
+  top: 2px;
+  width: 20px;
 }
 .activeSpan {
   background-color: darkcyan !important;

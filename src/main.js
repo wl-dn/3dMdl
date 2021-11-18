@@ -4,7 +4,7 @@
  * @version: 
  * @Date: 2021-05-20 16:35:09
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-11-11 10:42:54
+ * @LastEditTime: 2021-11-18 13:19:04
  */
 import Vue from 'vue'
 import App from './App.vue'
@@ -31,7 +31,7 @@ import { Ion } from 'cesium';
 Ion.defaultAccessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJlZjEzMjIxZS1hODZiLTRhY2EtOWQ5Yy0yZTkyNTljNDZlZDkiLCJpZCI6NjI0NTMsImlhdCI6MTYzNjY4OTkwNH0.MUOoQjk2jBJCXtTiS-zlcc3H1EmH_KQxKagLgCidiV4"
 // 配置axios请求
 import axios from 'axios'
-axios.defaults.baseURL = "http://192.10.3.237"; //tsy内网
+axios.defaults.baseURL = "http://192.168.1.25:8383/tsy"; //tsy内网
 Vue.prototype.$http = axios;
 
 // 配置天地图token

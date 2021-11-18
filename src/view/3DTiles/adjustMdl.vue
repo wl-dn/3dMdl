@@ -4,7 +4,7 @@
  * @version: 
  * @Date: 2021-08-19 20:18:14
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-11-11 21:03:35
+ * @LastEditTime: 2021-11-18 21:14:34
 -->
 <template>
   <div id="cesiumContainer">
@@ -33,15 +33,38 @@
         v-if="activeIndex === 3"
         @sendFenxiInfo="receptFenxiInfo"
       ></mdlFenxi>
-      <div class="CesiumTool" v-if="activeIndex === 4">
-        <span @click="onClickGlobe">地球显隐</span>
-        <span @click="onClickWireFrame">线框/实体</span>
-        <span @click="onClickUnder">地下空间</span>
-        <span @click="isShowTool = !isShowTool">调整工具</span>
-        <span @click="onClickReset">复位</span>
+      <div class="mdlTool_box" v-if="activeIndex === 4">
+        <el-select
+          v-model="mdlNameValue"
+          placeholder="请选择模型"
+          @change="selectOnMdlchange"
+        >
+          <el-option
+            v-for="item in mdlOptions"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          >
+          </el-option>
+        </el-select>
       </div>
     </div>
-    <adjustMdlComponent v-show="isShowTool">/</adjustMdlComponent>
+    <cesiumCommonTool
+      @commonToolHandleOnClick="commonToolHandleOnClick"
+      :isCesiumCommonToolVisible="isCesiumCommonToolVisible"
+    ></cesiumCommonTool>
+    <adjustMdlComponent
+      v-show="isShowTool"
+      :isWireframevCheck="isWireframevCheck"
+      @sendWifeinfo="receptWifeinfo"
+      >/</adjustMdlComponent
+    >
+    <holeLayerInfo
+      :drillname="drillName"
+      :layerInfo="layerInfo"
+      :isVisible="isLayerDialogVisible"
+      @sendCloseLayerDialog="isLayerDialogVisible = false"
+    ></holeLayerInfo>
   </div>
 </template>
 
@@ -52,14 +75,15 @@ import adjustMdlComponent from "../../components/cesiumComponents/adjustMdlTool.
 import mapView from "../../components/cesiumComponents/2dView.vue";
 import mdlView from "../../components/cesiumComponents/mdlView.vue";
 import mdlFenxi from "../../components/cesiumComponents/mdlFenxi.vue";
-import mdlTool from "../../components/cesiumComponents/mdlTool.vue";
+import cesiumCommonTool from "../../components/cesiumComponents/cesiumCommonTool.vue";
+import holeLayerInfo from "../../components/toolComponents/holeLayerInfo.vue";
 
 import { CesiumUtils } from "../../utils/utils.js";
 import { DrawPolygon } from "../../utils/drawUtils";
 import TerrainClipPlan from "../../utils/TerrainClipPlan";
 
 import { Notification } from "element-ui";
-import PathGraphics from "cesium/Source/DataSources/PathGraphics";
+
 let tileSetList = [];
 let viewer = null;
 let imageryLayers = null;
@@ -71,6 +95,8 @@ export default {
       flag: 0, // 记录首次加载
       _acrgisImagelayer: null,
       _wmsImageLayer: null,
+      mdlNameValue: "",
+      mdlOptions: [],
       cesiumMenuList: [
         {
           id: 1,
@@ -94,10 +120,17 @@ export default {
           id: 4,
           checked: false,
           icon: "icon-gongju",
-          label: "实用工具",
+          label: "模型工具",
         },
       ],
       activeIndex: 0,
+      isWireframevCheck: false,
+      mdlName: "",
+      layerInfo: [],
+      drillName: "Jz-Ⅲ2101-123533-2",
+      isLayerDialogVisible: false,
+      isMdlSelectVisible: false,
+      isCesiumCommonToolVisible: true,
       activeImageUrl: [
         "https://tsy-gis1.portal.com/server/rest/services/geoinfo_geomap/MapServer/",
         "https://tsy-gis1.portal.com/server/services/geoinfo_geomap/MapServer/WMSServer",
@@ -112,7 +145,8 @@ export default {
     mapView,
     mdlView,
     mdlFenxi,
-    mdlTool,
+    cesiumCommonTool,
+    holeLayerInfo,
   },
   computed: {
     mdlParmsChange() {
@@ -130,8 +164,26 @@ export default {
     cesiumMenuList: {
       deep: true,
       handler: function (newV) {
-        if (!newV[3].checked) this.isShowTool = false;
+        if (!newV[3].checked) {
+          this.isShowTool = false;
+          this.mdlNameValue = "";
+        }
       },
+    },
+    isShowTool(val) {
+      if (val) {
+        let tempParams = JSON.parse(
+          JSON.stringify(this.$store.getters.getTileMdlTool)
+        );
+        for (let i = 0; i < tileSetList.length; i++) {
+          if (tileSetList[i].name === this.mdlName) {
+            tempParams.longitude = tileSetList[i].longitude;
+            tempParams.latitude = tileSetList[i].latitude;
+            tempParams.height = tileSetList[i].height;
+            this.$store.commit("setTileMdlToolInfo", tempParams);
+          }
+        }
+      }
     },
   },
   methods: {
@@ -158,9 +210,15 @@ export default {
         // scene3DOnly: true, // 每个几何实例仅以3D渲染以节省GPU内存.与sceneModePiker不能共存
         baseLayerPicker: showWedgit, // 底图切换控件
         animation: showWedgit, // 控制场景动画的播放速度控件
-        // terrainProvider: new Cesium.createWorldTerrain(), // 这一块接口容易失败
         shadows: false,
-        imageryProvider:new Cesium.SingleTileImageryProvider({ url: "GlobalBkLayer.jpg" }),// 简单加载，解决无法加载地图的问题
+
+        terrainProvider: new Cesium.createWorldTerrain(), // Cesium在线Ion地形,地图上有3d起伏的地形 这一块接口容易失败
+        // terrainProvider:new Cesium.CesiumTerrainProvider(url), // 加载自定义的地形
+        // terrainProvider: new Cesium.EllipsoidTerrainProvider(), // 不适用地形
+
+        imageryProvider: new Cesium.SingleTileImageryProvider({
+          url: "GlobalBkLayer.jpg",
+        }), // 简单加载，解决无法加载地图的问题
       });
 
       viewer._cesiumWidget._creditContainer.style.display = "none"; //是否显示cesium
@@ -280,8 +338,24 @@ export default {
         viewer.flyTo(dataSource.entities);
       });
     },
+    selectOnMdlchange(val) {
+      this.mdlName = val;
+      let tempParams = JSON.parse(
+        JSON.stringify(this.$store.getters.getTileMdlTool)
+      );
+      for (let i = 0; i < tileSetList.length; i++) {
+        if (tileSetList[i].name === this.mdlName) {
+          tempParams.longitude = tileSetList[i].longitude;
+          tempParams.latitude = tileSetList[i].latitude;
+          tempParams.height = tileSetList[i].height;
+          this.$store.commit("setTileMdlToolInfo", tempParams);
+        }
+      }
+
+      this.isShowTool = true;
+    },
     // 加载三维模型
-    async load3dTiles(url, name, isChecked) {
+    async load3dTiles(url, name, isChecked, label) {
       if (url === "") return;
       const loadFlagObj = this.judgeIs3DTiles(url);
       if (loadFlagObj.flag) {
@@ -293,19 +367,12 @@ export default {
         url: url,
       });
       const tileset = await tileSet.readyPromise;
-      console.log(tileset);
       // 向场景中添加tileset
       viewer.scene.primitives.add(tileset);
 
       let modelMatrix = tileset.modelMatrix.clone(); // 必须要是哟个clone进行深拷贝
       let boundingSphereCenter = tileset.boundingSphere.center.clone(); // 需要记录原始网格的中央坐标
 
-      tileSetList.push({
-        tileSet: tileset,
-        modelMatrix: modelMatrix,
-        boundingSphereCenter: boundingSphereCenter,
-        name: name,
-      });
       // 设置模型选装的初始值
       // 获取经度和纬度
       let cartographicCenter =
@@ -314,11 +381,45 @@ export default {
       let tempParams = JSON.parse(
         JSON.stringify(this.$store.getters.getTileMdlTool)
       );
-      // tempParams.longitude = mdlCenterParams[1];
-      // tempParams.latitude = mdlCenterParams[2];
+      tempParams.longitude = mdlCenterParams[1];
+      tempParams.latitude = mdlCenterParams[2];
       tempParams.height = mdlCenterParams[0];
-      tempParams.longitude = 113.805972;
-      tempParams.latitude = 27.664014;
+
+      // 根据不同的模型设置不同的位移参数
+      if (name === "3dmdl") {
+        // tempParams.longitude = 113.805972;
+        // tempParams.latitude = 27.664014;
+      } else if (name === "holemdl") {
+        tempParams.longitude = 113.624622;
+        tempParams.latitude = 27.849269;
+      } else if (name === "sec1mdl") {
+        // tempParams.longitude = 113.858972;
+        // tempParams.latitude = 27.749514;
+      } else if (name === "sec2mdl") {
+        // tempParams.longitude = 113.988072;
+        // tempParams.latitude = 27.505514;
+      } else if (name === "sec3mdl") {
+        // tempParams.longitude = 113.978072;
+        // tempParams.latitude = 27.402714;
+      } else {
+      }
+
+      // 缓存数据
+      tileSetList.push({
+        tileSet: tileset,
+        modelMatrix: modelMatrix,
+        boundingSphereCenter: boundingSphereCenter,
+        name: name,
+        longitude: tempParams.longitude,
+        latitude: tempParams.latitude,
+        height: tempParams.height,
+      });
+      this.mdlOptions.push({
+        value: name,
+        label: label,
+      });
+      this.mdlName = name;
+
       this.$store.commit("setTileMdlToolInfo", tempParams);
       this.isShowTool = false; //调用工具会调用input值进行矩阵变换
 
@@ -388,7 +489,7 @@ export default {
       };
     },
 
-    // 获取模型的中心经纬度
+    // 获取模型的经纬度和拾取高度
     getMdlDegreeCenter(cartographic) {
       let mdlCenterHeight;
       let mdlCenterLongitude;
@@ -404,49 +505,41 @@ export default {
       return [mdlCenterHeight, mdlCenterLongitude, mdlCenterLatitude];
     },
     // 更新模型矩阵
-    updateMatrixMdl(mdlParams, url) {
+    updateMatrixMdl(mdlParams) {
       if (tileSetList.length === 0) return;
       for (let i = 0; i < tileSetList.length; i++) {
-        const tranformTool = CesiumUtils.transformUtils(
-          tileSetList[i].modelMatrix,
-          tileSetList[i].boundingSphereCenter
-        );
-        const tranM = tranformTool.translationMdl(
-          mdlParams.longitude,
-          mdlParams.latitude,
-          mdlParams.height
-        );
-        const rotateM = tranformTool.rotationMdl(
-          mdlParams.rotateX,
-          mdlParams.rotateY,
-          mdlParams.rotateZ
-        );
-        const scaleM = tranformTool.scaleMdl(
-          mdlParams.scale,
-          mdlParams.scale,
-          mdlParams.scale
-        );
-        const resultM = new Cesium.Matrix4();
-        Cesium.Matrix4.multiply(tranM, rotateM, resultM);
-        Cesium.Matrix4.multiply(resultM, scaleM, resultM);
-        tileSetList[i].tileSet.modelMatrix = resultM;
+        if (tileSetList[i].name === this.mdlName) {
+          // 偏移
+          const tranformTool = CesiumUtils.transformUtils(
+            tileSetList[i].modelMatrix,
+            tileSetList[i].boundingSphereCenter
+          );
+          const tranM = tranformTool.translationMdl(
+            mdlParams.longitude,
+            mdlParams.latitude,
+            mdlParams.height
+          );
+          const rotateM = tranformTool.rotationMdl(
+            mdlParams.rotateX,
+            mdlParams.rotateY,
+            mdlParams.rotateZ
+          );
+          const scaleM = tranformTool.scaleMdl(
+            mdlParams.scale,
+            mdlParams.scale,
+            mdlParams.scale
+          );
+          const resultM = new Cesium.Matrix4();
+          Cesium.Matrix4.multiply(tranM, rotateM, resultM);
+          Cesium.Matrix4.multiply(resultM, scaleM, resultM);
+          tileSetList[i].tileSet.modelMatrix = resultM;
 
-        viewer.scene.globe.translucency.frontFaceAlphaByDistance.nearValue =
-          Cesium.Math.clamp(mdlParams.alpha, 0.0, 1.0);
+          viewer.scene.globe.translucency.frontFaceAlphaByDistance.nearValue =
+            Cesium.Math.clamp(mdlParams.alpha, 0.0, 1.0);
+        }
       }
     },
-    onClickGlobe() {
-      if (viewer) {
-        viewer.scene.globe.show = !viewer.scene.globe.show;
-      }
-    },
-    onClickWireFrame() {
-      let tileSetList = viewer.scene.primitives._primitives;
-      if (tileSetList.length === 0) return;
-      tileSetList.forEach((item) => {
-        item.debugWireframe = !item.debugWireframe;
-      });
-    },
+
     //复位
     onClickReset() {
       if (tileSetList.length === 0) return;
@@ -459,12 +552,7 @@ export default {
         ),
       });
     },
-    onClickUnder() {
-      if (viewer) {
-        viewer.scene.screenSpaceCameraController.enableCollisionDetection =
-          !viewer.scene.screenSpaceCameraController.enableCollisionDetection;
-      }
-    },
+    onClickUnder() {},
 
     // 地形开挖
     dig3DTerrian() {
@@ -501,21 +589,70 @@ export default {
     registerOnclickEvent() {
       if (viewer) {
         // 注册右键事件
-        viewer.screenSpaceEventHandler.setInputAction(function (movement) {
+        viewer.screenSpaceEventHandler.setInputAction((movement) => {
           let pickedFeature = viewer.scene.pick(movement.position);
           if (Cesium.defined(pickedFeature)) {
-            let urlStr = pickedFeature.content.url;
-            let leftIndex = urlStr.indexOf("\\");
-            if (leftIndex === -1) {
-              leftIndex = urlStr.indexOf("%5C") + 2;
+            // var cartesian = viewer.scene.pickPosition(movement.position);
+            // var cartographic = Cesium.Cartographic.fromCartesian(cartesian);
+            // console.log(this.getMdlDegreeCenter(cartographic));
+            console.log(pickedFeature);
+            if (pickedFeature.tileset) {
+              if (
+                pickedFeature.tileset._url ===
+                "3DTiles/drill_3dtiles/tileset.json"
+              ) {
+                const holecode = pickedFeature.getProperty("钻孔编码");
+                this.$http
+                  .get("/getHoleLayerInfoByHoleCode", {
+                    params: {
+                      holecode: holecode,
+                    },
+                  })
+                  .then((res) => {
+                    this.drillName = holecode;
+                    this.layerInfo = res.data.data;
+                    this.isLayerDialogVisible = true;
+                  });
+              } else if (
+                pickedFeature.tileset._url ===
+                "3DTiles/model_3dtiles/tileset.json"
+              ) {
+                let titles = "地层信息";
+                let resStr = pickedFeature.getProperty("地层编码");
+
+                Notification({
+                  title: titles,
+                  message: resStr,
+                  duration: "2000",
+                });
+              } else {
+                let propertyList = pickedFeature.getPropertyNames();
+                let titles = "";
+                let resStr = "";
+                for (let i = 0; i < propertyList.length; i++) {
+                  titles += propertyList[i];
+                  resStr += pickedFeature.getProperty(propertyList[i]);
+                }
+                Notification({
+                  title: titles,
+                  message: resStr,
+                  duration: "2000",
+                });
+              }
+            } else {
+              let urlStr = pickedFeature.content.url;
+              let leftIndex = urlStr.indexOf("\\");
+              if (leftIndex === -1) {
+                leftIndex = urlStr.indexOf("%5C") + 2;
+              }
+              let rightIndex = urlStr.lastIndexOf(".");
+              let resStr = urlStr.substring(leftIndex + 1, rightIndex - 2);
+              Notification({
+                title: "标准层号",
+                message: resStr,
+                duration: "2000",
+              });
             }
-            let rightIndex = urlStr.lastIndexOf(".");
-            let resStr = urlStr.substring(leftIndex + 1, rightIndex - 2);
-            Notification({
-              title: "标准层号",
-              message: resStr,
-              duration: "2000",
-            });
           }
         }, Cesium.ScreenSpaceEventType.RIGHT_CLICK);
 
@@ -562,7 +699,8 @@ export default {
             }
           }
         }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
-        //注册左键事件
+
+        //注册移动事件
       }
     },
     // 获取能够查询imageryProvider
@@ -616,6 +754,7 @@ export default {
         return 18;
       }
     },
+    // 接收二维服务
     recept2dViewInfo(data) {
       if (data.nodeData.serviceType === "wms") {
         this.loadWmsLayer(
@@ -645,9 +784,46 @@ export default {
         );
       }
     },
+    // 接收三维服务
     recept3dViewInfo(data) {
       if (data.nodeData.serviceType === "3DTiles") {
-        this.load3dTiles(data.nodeData.url, data.nodeData.name, data.isChecked);
+        this.load3dTiles(
+          data.nodeData.url,
+          data.nodeData.name,
+          data.isChecked,
+          data.nodeData.label
+        );
+      }
+    },
+    // 接收通用组件传递过来的值
+    commonToolHandleOnClick(item) {
+      switch (item.index) {
+        case 1:
+          if (viewer) {
+            viewer.scene.globe.show = !viewer.scene.globe.show;
+          }
+          break;
+        case 2:
+          if (viewer) {
+            viewer.scene.screenSpaceCameraController.enableCollisionDetection =
+              !viewer.scene.screenSpaceCameraController
+                .enableCollisionDetection;
+          }
+          break;
+        case 3:
+          if (viewer) {
+            this.onClickReset();
+          }
+          break;
+        default:
+          break;
+      }
+    },
+    receptWifeinfo(val) {
+      for (let i = 0; i < tileSetList.length; i++) {
+        if (tileSetList[i].name === this.mdlName) {
+          tileSetList[i].tileSet.debugWireframe = val;
+        }
       }
     },
     receptFenxiInfo(data) {
@@ -718,26 +894,10 @@ export default {
   background-color: rgb(255, 255, 245);
 }
 
-.CesiumTool {
+.mdlTool_box {
   position: fixed;
   top: 160px;
-  color: white;
-  /* width: 300px; */
-  height: 100px;
-  z-index: 1;
-  right: 102px;
-}
-.CesiumTool span {
-  display: inline-block;
-  background-color: rgb(84, 92, 100);
-  padding: 10px;
-  box-shadow: 0 0 5px #fff;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-left: 10px;
-}
-.CesiumTool span:hover {
-  cursor: pointer;
+  right: 100px;
 }
 </style>
 

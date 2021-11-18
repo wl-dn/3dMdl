@@ -3,8 +3,8 @@
  * @Author: wenlong
  * @version: 
  * @Date: 2021-08-23 19:57:19
- * @LastEditors: wenlong
- * @LastEditTime: 2021-08-27 13:55:27
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2021-11-17 10:05:48
  */
 import * as Cesium from "cesium"
 export default class TransformUtils {
@@ -26,7 +26,7 @@ export default class TransformUtils {
         const cartographicCenter = Cesium.Cartographic.fromCartesian(
             this.boundingSphereCenter
         )
-      
+
         //构建模型世界中心坐标(从弧度坐标)
         const surface = Cesium.Cartesian3.fromRadians(
             cartographicCenter.longitude,
@@ -82,6 +82,8 @@ export default class TransformUtils {
      * @return {*}
      */
     scaleMdl(scaleX, scaleY, scaleZ) {
+        scaleX = 1;
+        scaleZ = 1;
         let scaleMatrix = new Cesium.Matrix4();
         // 构造本地矩阵
         const cartesianScale = new Cesium.Cartesian3(scaleX, scaleY, scaleZ);
