@@ -4,7 +4,7 @@
  * @version: 
  * @Date: 2021-08-20 10:25:43
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-11-10 14:14:50
+ * @LastEditTime: 2021-11-18 17:42:14
 -->
 <template>
   <div class="mdlView">
@@ -51,11 +51,39 @@ export default {
               url: "3DTiles/model_3dtiles/tileset.json",
               serviceType: "3DTiles",
             },
-              {
+            {
               id: "1-2",
-              label: "三维地质模型2",
-              name: "3dmdl2",
-              url: "3DTiles/model_3dtilesv2/tileset.json",
+              label: "三维钻孔模型",
+              name: "holemdl",
+              url: "3DTiles/drill_3dtiles/tileset.json",
+              serviceType: "3DTiles",
+            },
+            {
+              id: "1-3",
+              label: "sec-1",
+              name: "sec1mdl",
+              url: "3DTiles/sectionMdl/sec-1/tileset.json",
+              serviceType: "3DTiles",
+            },
+            {
+              id: "1-4",
+              label: "sec-2",
+              name: "sec2mdl",
+              url: "3DTiles/sectionMdl/sec-2/tileset.json",
+              serviceType: "3DTiles",
+            },
+            {
+              id: "1-5",
+              label: "sec-3",
+              name: "sec3mdl",
+              url: "3DTiles/sectionMdl/sec-3/tileset.json",
+              serviceType: "3DTiles",
+            },
+            {
+              id: "1-6",
+              label: "holeTEST",
+              name: "holeTEST",
+              url: "3DTiles/TileModelv1/tileset.json",
               serviceType: "3DTiles",
             },
           ],
@@ -82,7 +110,7 @@ export default {
     };
   },
   components: {
-    mdlRightDialog:rightDialog,
+    mdlRightDialog: rightDialog,
   },
   computed: {},
   methods: {

@@ -4,7 +4,7 @@
  * @version: 
  * @Date: 2021-09-18 18:14:09
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-11-11 21:15:04
+ * @LastEditTime: 2021-11-15 09:27:50
 -->
 <!--
  * @Descripttion: 
@@ -560,6 +560,8 @@ export default {
         //循环递归加载gltf数据
         for (let i = 0; i < modelNameArr.length; i++) {
           gltfLoader.load(modelPath + modelNameArr[i] + ".gltf", (gltf) => {
+            let meshArr = [];
+            let materialArr = [];
             let gltfGroup = gltf.scene;
             gltfGroup.name = modelNameArr[i];
             gltfGroup.traverse((child) => {
@@ -573,6 +575,8 @@ export default {
                 child.scale.set(0.001, 0.001, 0.001);
                 // child.material.side = THREE.DoubleSide;
                 child.material.side = THREE.BackSide;
+                meshArr.push(child);
+                materialArr.push(child.material);
               }
             });
             objAndMtls.push({
