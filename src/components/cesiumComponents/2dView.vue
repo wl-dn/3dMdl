@@ -4,7 +4,7 @@
  * @version: 
  * @Date: 2021-08-20 10:25:43
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-11-11 21:07:44
+ * @LastEditTime: 2021-11-22 17:15:38
 -->
 <template>
   <div class="mapView">
@@ -222,6 +222,14 @@ export default {
               serviceType: "天地图",
             },
           ],
+        },
+        {
+          id: "7",
+          label: "钻孔",
+          url: "/getAllHoleInfo",
+          name:"holeLayer",
+          layer:"",
+          serviceType:"billboards"
         },
       ],
       currentChecked: false,

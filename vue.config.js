@@ -4,7 +4,7 @@
  * @version: 
  * @Date: 2021-05-21 09:36:42
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-11-11 11:08:45
+ * @LastEditTime: 2021-11-22 15:09:39
  */
 const path = require('path');
 const CopyPlugin = require('copy-webpack-plugin');
@@ -48,6 +48,7 @@ module.exports = {
             rules: [
                 {
                     test: /\.js$/,
+                    include: path.resolve(__dirname, 'node_modules/cesium/Source'),
                     use: {
                         loader: '@open-wc/webpack-import-meta-loader',
                     }

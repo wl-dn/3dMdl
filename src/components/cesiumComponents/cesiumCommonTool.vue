@@ -4,14 +4,16 @@
  * @version: 
  * @Date: 2021-08-20 10:25:43
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-11-18 20:34:13
+ * @LastEditTime: 2021-11-22 11:00:25
 -->
 <template>
   <div class="CesiumTool_box" v-if="isCesiumCommonToolVisible">
     <span
-      :class="{
-        activeSpan: item.active === true,
-      }"
+      :class="[
+        {
+          activeSpan: item.active === true,
+        },
+      ]"
       v-for="(item, i) in toolList"
       :key="i"
       @click="onClickCesiumTool(item)"
@@ -86,5 +88,8 @@ export default {
 }
 .activeSpan {
   background-color: darkcyan !important;
+}
+.isActiveClass {
+  color: #000;
 }
 </style>

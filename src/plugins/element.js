@@ -3,8 +3,8 @@
  * @Author: wenlong
  * @version: 
  * @Date: 2021-08-18 17:39:28
- * @LastEditors: wenlong
- * @LastEditTime: 2021-08-20 10:51:46
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2021-11-22 11:28:06
  */
 import Vue from 'vue'
 import 'element-ui/lib/theme-chalk/index.css';
@@ -63,7 +63,8 @@ import {
     MenuItemGroup,
     Card,
     Slider,
-    InputNumber
+    InputNumber,
+    Autocomplete
 
 } from 'element-ui'
 
@@ -118,6 +119,7 @@ Vue.use(Submenu)
 Vue.use(Card)
 Vue.use(Slider)
 Vue.use(InputNumber)
+Vue.use(Autocomplete)
 
 Vue.prototype.$message = Message
 Vue.prototype.$confirm = MessageBox.confirm
