@@ -4,7 +4,7 @@
  * @version: 
  * @Date: 2021-08-19 20:18:14
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-11-22 20:44:59
+ * @LastEditTime: 2021-11-22 22:05:18
 -->
 <template>
   <div id="cesiumContainer">
@@ -232,7 +232,7 @@ export default {
         animation: showWedgit, // 控制场景动画的播放速度控件
         shadows: false,
 
-        // terrainProvider: new Cesium.createWorldTerrain(), // Cesium在线Ion地形,地图上有3d起伏的地形 这一块接口容易失败
+        terrainProvider: new Cesium.createWorldTerrain(), // Cesium在线Ion地形,地图上有3d起伏的地形 这一块接口容易失败
         // terrainProvider:new Cesium.CesiumTerrainProvider(url), // 加载自定义的地形
         // terrainProvider: new Cesium.EllipsoidTerrainProvider(), // 不适用地形
 
@@ -248,7 +248,7 @@ export default {
       let mdlScene = viewer.scene;
 
       // 是否开启深度检测深度检测
-      // mdlScene.globe.depthTestAgainstTerrain = true;
+      mdlScene.globe.depthTestAgainstTerrain = true;
 
       // // 开启地下透明
       mdlScene.globe.translucency.enabled = true; // 开启地表透明
@@ -491,7 +491,8 @@ export default {
     addHolePrimitive(billboards, position, label) {
       let image = document.createElement("img");
       image.src = require("../../assets/images/hole.png");
-      image.onload = (e) => {  // 异步加载的过程
+      image.onload = (e) => {
+        // 异步加载的过程
         billboards.add({
           position: position,
           // image: require("../../assets/images/hole.png"),
@@ -710,7 +711,6 @@ export default {
       if (viewer) {
         // 注册右键事件
         viewer.screenSpaceEventHandler.setInputAction((movement) => {
-          console.log(tileSetList[0].tileSet);
           // If a feature was previously highlighted, undo the highlight
           if (Cesium.defined(rightClickHighted.feature)) {
             rightClickHighted.feature.color = rightClickHighted.originalColor;
@@ -801,6 +801,40 @@ export default {
         // 注册左键事件
         viewer.screenSpaceEventHandler.setInputAction((movement) => {
           let pick = viewer.scene.pick(movement.position);
+          if (Cesium.defined(pick)) {
+            let cartesian1 = viewer.scene.pickPosition(movement.position);
+            let cartographic = Cesium.Cartographic.fromCartesian(cartesian1);
+
+            let dgreeCenter = this.getMdlDegreeCenter(cartographic);
+            let startPoint = Cesium.Cartesian3.fromDegrees(
+              dgreeCenter[1],
+              dgreeCenter[2],
+              // dgreeCenter[0]
+              10000
+            );
+            let endPoint = Cesium.Cartesian3.fromDegrees(
+              dgreeCenter[1],
+              dgreeCenter[2],
+              -9999999
+            );
+            console.log(startPoint);
+            console.log(endPoint);
+            this.drawLine(startPoint, endPoint, Cesium.Color.RED);
+            var direction = Cesium.Cartesian3.normalize(
+              Cesium.Cartesian3.subtract(
+                endPoint,
+                startPoint,
+                new Cesium.Cartesian3()
+              ),
+              new Cesium.Cartesian3()
+            );
+            var ray1 = new Cesium.Ray(startPoint, direction);
+
+            var result = viewer.scene.drillPickFromRay(ray1, []); // 计算交互点，返回第一个
+            console.log(result);
+          }
+
+          return;
           if (Cesium.defined(pick) && Cesium.defined(pick.id)) {
             this.$http
               .get("/getHoleLayerInfoByHoleCode", {
@@ -896,6 +930,18 @@ export default {
         },
         Cesium.ScreenSpaceEventType.MOUSE_MOVE);
       }
+    },
+    // 绘制线
+    drawLine(leftPoint, secPoint, color) {
+      viewer.entities.add({
+        polyline: {
+          positions: [leftPoint, secPoint],
+          arcType: Cesium.ArcType.NONE,
+          width: 5,
+          material: color,
+          depthFailMaterial: color,
+        },
+      });
     },
     // 获取能够查询imageryProvider
     getQueryImageryProvider() {
