@@ -4,7 +4,7 @@
  * @version: 
  * @Date: 2021-08-19 20:18:14
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-11-22 22:05:18
+ * @LastEditTime: 2021-11-25 11:30:39
 -->
 <template>
   <div id="cesiumContainer">
@@ -241,12 +241,13 @@ export default {
         }), // 简单加载，解决无法加载地图的问题
       });
 
-      viewer._cesiumWidget._creditContainer.style.display = "none"; //是否显示cesium
+      viewer._cesiumWidget._creditContainer.style.display = "none"; //是否显示cesium标识
 
       // 初始化imagelauers
       imageryLayers = viewer.imageryLayers;
       let mdlScene = viewer.scene;
 
+      viewer.extend(Cesium.viewerCesium3DTilesInspectorMixin);
       // 是否开启深度检测深度检测
       mdlScene.globe.depthTestAgainstTerrain = true;
 
@@ -801,40 +802,38 @@ export default {
         // 注册左键事件
         viewer.screenSpaceEventHandler.setInputAction((movement) => {
           let pick = viewer.scene.pick(movement.position);
-          if (Cesium.defined(pick)) {
-            let cartesian1 = viewer.scene.pickPosition(movement.position);
-            let cartographic = Cesium.Cartographic.fromCartesian(cartesian1);
+          // if (Cesium.defined(pick)) {
+          //   let cartesian1 = viewer.scene.pickPosition(movement.position);
+          //   let cartographic = Cesium.Cartographic.fromCartesian(cartesian1);
 
-            let dgreeCenter = this.getMdlDegreeCenter(cartographic);
-            let startPoint = Cesium.Cartesian3.fromDegrees(
-              dgreeCenter[1],
-              dgreeCenter[2],
-              // dgreeCenter[0]
-              10000
-            );
-            let endPoint = Cesium.Cartesian3.fromDegrees(
-              dgreeCenter[1],
-              dgreeCenter[2],
-              -9999999
-            );
-            console.log(startPoint);
-            console.log(endPoint);
-            this.drawLine(startPoint, endPoint, Cesium.Color.RED);
-            var direction = Cesium.Cartesian3.normalize(
-              Cesium.Cartesian3.subtract(
-                endPoint,
-                startPoint,
-                new Cesium.Cartesian3()
-              ),
-              new Cesium.Cartesian3()
-            );
-            var ray1 = new Cesium.Ray(startPoint, direction);
+          //   let degreeCenter = this.getMdlDegreeCenter(cartographic);
+          //   let startPoint = Cesium.Cartesian3.fromDegrees(
+          //     degreeCenter[1],
+          //     degreeCenter[2],
+          //     10000
+          //   );
+          //   let endPoint = Cesium.Cartesian3.fromDegrees(
+          //     degreeCenter[1],
+          //     degreeCenter[2],
+          //     -99999
+          //   );
+          //   console.log(startPoint);
+          //   console.log(endPoint);
+          //   this.drawLine(startPoint, endPoint, Cesium.Color.RED);
+          //   var direction = Cesium.Cartesian3.normalize(
+          //     Cesium.Cartesian3.subtract(
+          //       endPoint,
+          //       startPoint,
+          //       new Cesium.Cartesian3()
+          //     ),
+          //     new Cesium.Cartesian3()
+          //   );
+          //   var ray1 = new Cesium.Ray(startPoint, direction);
 
-            var result = viewer.scene.drillPickFromRay(ray1, []); // 计算交互点，返回第一个
-            console.log(result);
-          }
+          //   var result = viewer.scene.drillPickFromRay(ray1); // 计算交互点，返回第一个
+          //   console.log(result);
+          // }
 
-          return;
           if (Cesium.defined(pick) && Cesium.defined(pick.id)) {
             this.$http
               .get("/getHoleLayerInfoByHoleCode", {
