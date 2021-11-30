@@ -385,6 +385,7 @@ export default {
       // 加载3Dtiles文件
       let tileSet = new Cesium.Cesium3DTileset({
         url: url,
+        // url: Cesium.IonResource.fromAssetId(8564),
       });
       const tileset = await tileSet.readyPromise;
       tileset.name = name;
@@ -830,7 +831,7 @@ export default {
             );
             var ray1 = new Cesium.Ray(startPoint, direction);
 
-            var result = viewer.scene.drillPickFromRay(ray1, []); // 计算交互点，返回第一个
+            var result = viewer.scene.drillPickFromRay(ray1); // 计算交互点，返回第一个
             console.log(result);
           }
 
