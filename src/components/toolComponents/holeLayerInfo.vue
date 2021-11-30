@@ -13,12 +13,14 @@
         <span>{{ drillname }}</span>
         <span class="close_span" @click="closeOnClick">×</span>
       </div>
-      <el-table :data="layerInfo" border style="width: 100%">
+      <el-table :data="layerInfo" border style="width: 100%" height="400px">
         <el-table-column prop="stdstratumcode" label="标准层号">
         </el-table-column>
         <el-table-column prop="topsidedepth" label="顶板埋深">
         </el-table-column>
         <el-table-column prop="undersidedepth" label="顶底埋深">
+        </el-table-column>
+        <el-table-column prop="boreheight" label="孔口标高">
         </el-table-column>
         <el-table-column prop="qgenesis" label="地质成因"> </el-table-column>
         <el-table-column prop="stratumeras" label="地质年代"> </el-table-column>
@@ -61,10 +63,8 @@ export default {
   background-color: rgb(244, 244, 245);
   position: fixed;
   z-index: 1;
-  top: 50%;
+  bottom: 0px;
   right: 0px;
-  transform: translateX(-50%);
-  transform: translateY(-50%);
 }
 .holeLayer_head_box {
   width: 100%;

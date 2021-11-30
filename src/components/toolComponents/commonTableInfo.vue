@@ -7,19 +7,21 @@
  * @FilePath: \geoinfocentere:\STUDY\开发\web3d\3dMdl\src\components\toolComponents\commonTableInfo.vue
 -->
 <template>
-  <div class="commonTableBox" v-if="isCommonVisible">
-    <div class="head_box">
-      <span class="close_span" @click="closeOnClick">×</span>
+  <transition name="fade">
+    <div class="commonTableBox" v-if="isCommonVisible">
+      <div class="head_box">
+        <span class="close_span" @click="closeOnClick">×</span>
+      </div>
+      <div class="content_box">
+        <table border>
+          <tr v-for="(item, row) in tableData" :key="row">
+            <td>{{ item.label }}</td>
+            <td>{{ item.value }}</td>
+          </tr>
+        </table>
+      </div>
     </div>
-    <div>
-      <table>
-        <tr v-for="(item, row) in tableData" :key="row">
-          <td>{{ item.label }}</td>
-          <td>{{ item.value }}</td>
-        </tr>
-      </table>
-    </div>
-  </div>
+  </transition>
 </template>
 
 <script>
@@ -38,12 +40,7 @@ export default {
   },
   data() {
     return {
-      tableData: [
-        {
-          label: "标准编号",
-          value: "QH1",
-        },
-      ],
+    
     };
   },
   methods: {
@@ -56,13 +53,14 @@ export default {
 
 <style scoped>
 .commonTableBox {
-  width: 300px;
+  width: 600px;
+  height: 400px;
   padding: 5px;
   /* height: 500px; */
   background-color: rgb(244, 244, 245);
   position: fixed;
   z-index: 1;
-  top: 50%;
+  bottom: 0px;
   right: 0px;
 }
 .commonTableBox .head_box {
@@ -73,5 +71,39 @@ export default {
   line-height: 40px;
   padding-left: 3px;
   box-sizing: border-box;
+}
+.commonTableBox .content_box {
+  width: 100%;
+  height: 350px;
+  overflow-y: auto;
+}
+.commonTableBox table {
+  width: 100%;
+  /* height: 400px; */
+}
+.commonTableBox table tr {
+  height: 30px;
+  text-align: center;
+}
+.commonTableBox table tr td {
+  width: 50%;
+  height: 30px;
+}
+.close_span {
+  position: absolute;
+  right: 10px;
+  top: 7px;
+  font-size: 20px;
+  cursor: pointer;
+}
+/* 动画效果 */
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.2s ease;
+}
+.fade-enter,
+.fade-leave-to {
+  transform: translateX(600px);
+  opacity: 0;
 }
 </style>

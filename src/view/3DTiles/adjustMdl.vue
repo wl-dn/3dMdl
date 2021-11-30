@@ -70,13 +70,13 @@
     ></holeLayerInfo>
 
     <virtualBox
-      :tableData="tableCommonData"
+      :virtualLayerInfo="virtualLayerInfo"
       :isVisible="isvirtualLayerDialogVisible"
       @sendCloseVirtualDialog="isvirtualLayerDialogVisible = false"
     ></virtualBox>
 
     <commonTableBox
-      :virtualLayerInfo="virtualLayerInfo"
+      :tableData="tableCommonData"
       :isCommonVisible="isCommonVisible"
       @sendCommonCloseInfo="isCommonVisible = false"
     ></commonTableBox>
@@ -181,7 +181,8 @@ export default {
       virtualLayerInfo: [],
 
       // 通用盒子信息
-      isCommonVisible: true,
+      isCommonVisible: false,
+      tableCommonData: [],
     };
   },
   components: {
@@ -259,7 +260,7 @@ export default {
         animation: showWedgit, // 控制场景动画的播放速度控件
         shadows: false,
 
-        // terrainProvider: new Cesium.createWorldTerrain(), // Cesium在线Ion地形,地图上有3d起伏的地形 这一块接口容易失败
+        terrainProvider: new Cesium.createWorldTerrain(), // Cesium在线Ion地形,地图上有3d起伏的地形 这一块接口容易失败
         // terrainProvider:new Cesium.CesiumTerrainProvider(url), // 加载自定义的地形
         // terrainProvider: new Cesium.EllipsoidTerrainProvider(), // 不适用地形
 
@@ -269,12 +270,12 @@ export default {
       });
 
       // 加载三维地形
-      let terrainProvider = new Cesium.CesiumTerrainProvider({
-        url: Cesium.IonResource.fromAssetId(3957),
-        requestVertexNormals: true,
-        requestWaterMask: true,
-      });
-      viewer.terrainProvider = terrainProvider;
+      // let terrainProvider = new Cesium.CesiumTerrainProvider({
+      //   url: Cesium.IonResource.fromAssetId(3957),
+      //   requestVertexNormals: true,
+      //   requestWaterMask: true,
+      // });
+      // viewer.terrainProvider = terrainProvider;
 
       viewer._cesiumWidget._creditContainer.style.display = "none"; //是否显示cesium标识
 
@@ -799,14 +800,15 @@ export default {
                 pickedFeature.tileset._url ===
                 "3DTiles/model_3dtiles/tileset.json"
               ) {
+                this.tableCommonData = [];
                 let titles = "地层信息";
                 let resStr = pickedFeature.getProperty("地层编码");
-
-                Notification({
-                  title: titles,
-                  message: resStr,
-                  duration: "2000",
-                });
+                let obj = {
+                  label: titles,
+                  value: resStr,
+                };
+                this.tableCommonData.push(obj);
+                this.isCommonVisible = true;
               } else {
                 let titles = "地层信息";
                 let resStr =
@@ -839,56 +841,6 @@ export default {
 
         // 注册左键事件
         viewer.screenSpaceEventHandler.setInputAction((movement) => {
-<<<<<<< HEAD
-          let pick = viewer.scene.pick(movement.position);
-          if (Cesium.defined(pick)) {
-            let cartesian1 = viewer.scene.pickPosition(movement.position);
-            let cartographic = Cesium.Cartographic.fromCartesian(cartesian1);
-
-            let dgreeCenter = this.getMdlDegreeCenter(cartographic);
-            let startPoint = Cesium.Cartesian3.fromDegrees(
-              dgreeCenter[1],
-              dgreeCenter[2],
-              // dgreeCenter[0]
-              10000
-            );
-            let endPoint = Cesium.Cartesian3.fromDegrees(
-              dgreeCenter[1],
-              dgreeCenter[2],
-              -9999999
-            );
-            console.log(startPoint);
-            console.log(endPoint);
-            this.drawLine(startPoint, endPoint, Cesium.Color.RED);
-            var direction = Cesium.Cartesian3.normalize(
-              Cesium.Cartesian3.subtract(
-                endPoint,
-                startPoint,
-                new Cesium.Cartesian3()
-              ),
-              new Cesium.Cartesian3()
-            );
-            var ray1 = new Cesium.Ray(startPoint, direction);
-
-            var result = viewer.scene.drillPickFromRay(ray1); // 计算交互点，返回第一个
-            console.log(result);
-          }
-
-          return;
-          if (Cesium.defined(pick) && Cesium.defined(pick.id)) {
-            this.$http
-              .get("/getHoleLayerInfoByHoleCode", {
-                params: {
-                  holecode: pick.id,
-                },
-              })
-              .then((res) => {
-                this.drillName = pick.id;
-                this.layerInfo = res.data.data;
-                this.isLayerDialogVisible = true;
-              });
-          }
-=======
           clearTimeout(this.flagTimer);
           this.flagTimer = window.setTimeout(() => {
             let pick = viewer.scene.pick(movement.position);
@@ -905,7 +857,6 @@ export default {
                   this.isLayerDialogVisible = true;
                 });
             }
->>>>>>> 9f2ec0b7f50f03b125bd8fcd9b774512c65ba628
 
             if (Cesium.defined(rightClickHighted.feature)) {
               rightClickHighted.feature.color = rightClickHighted.originalColor;
@@ -1034,12 +985,15 @@ export default {
                   resultLayerData.push(drillLayerInfo);
                 }
               }
-              this.virtualLayerInfo = resultLayerData;
-              console.log(this.virtualLayerInfo);
+              console.log(resultFeatureList[0].object);
+
+              this.virtualLayerInfo = resultLayerData.reverse();
               this.isvirtualLayerDialogVisible = true;
             }
           }
         }, Cesium.ScreenSpaceEventType.LEFT_DOUBLE_CLICK);
+
+        //
       }
     },
     // 绘制线

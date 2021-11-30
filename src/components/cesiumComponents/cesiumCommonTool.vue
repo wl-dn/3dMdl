@@ -67,12 +67,12 @@ export default {
 
 <style scoped>
 .CesiumTool_box {
-  position: fixed;
+  position: absolute;
   bottom: -40px;
   color: white;
   height: 100px;
   z-index: 1;
-  right: 20px;
+  left: 20px;
 }
 .CesiumTool_box span {
   display: inline-block;

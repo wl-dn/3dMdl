@@ -7,26 +7,29 @@
  * @FilePath: \geoinfocentere:\STUDY\开发\web3d\3dMdl\src\components\toolComponents\virtralHoleInfo.vue
 -->
 <template>
-  <div class="virtualBox" v-if="isVisible">
-    <div class="virtualBox_head_box">
-      <span class="close_span" @click="closeOnClick">×</span>
-    </div>
-    <el-table
-      :data="virtualLayerInfo"
-      border
-      style="width: 100%"
-      v-if="virtualLayerInfo.length !== 0"
-    >
-      <el-table-column prop="layerNum" label="标准层号"> </el-table-column>
-      <!-- <el-table-column prop="topsidedepth" label="顶板埋深">
+  <transition name ="fade">
+    <div class="virtualBox" v-if="isVisible">
+      <div class="virtualBox_head_box">
+        <span class="close_span" @click="closeOnClick">×</span>
+      </div>
+      <el-table
+        :data="virtualLayerInfo"
+        border
+        style="width: 100%"
+        height="400px"
+        v-if="virtualLayerInfo.length !== 0"
+      >
+        <el-table-column prop="layerNum" label="标准层号"> </el-table-column>
+        <!-- <el-table-column prop="topsidedepth" label="顶板埋深">
         </el-table-column>
         <el-table-column prop="undersidedepth" label="顶底埋深">
         </el-table-column>
         <el-table-column prop="qgenesis" label="地质成因"> </el-table-column>
         <el-table-column prop="stratumeras" label="地质年代"> </el-table-column>
         <el-table-column prop="lithology" label="岩性"> </el-table-column> -->
-    </el-table>
-  </div>
+      </el-table>
+    </div>
+  </transition>
 </template>
 
 <script>
@@ -34,9 +37,9 @@ export default {
   props: {
     virtualLayerInfo: {
       type: Array,
-      default(){
-        return []
-      }
+      default() {
+        return [];
+      },
     },
     isVisible: {
       type: Boolean,
@@ -56,15 +59,14 @@ export default {
 
 <style scoped>
 .virtualBox {
-  width: 200px;
+  width: 600px;
   padding: 5px;
   /* height: 500px; */
   background-color: rgb(244, 244, 245);
   position: fixed;
   z-index: 1;
-  top: 50%;
+  bottom: 0px;
   right: 0px;
- 
 }
 .virtualBox_head_box {
   width: 100%;
@@ -100,6 +102,16 @@ export default {
 .holefade-enter,
 .holefade-leave-to {
   transform: translateX(600px);
+  opacity: 0;
+}
+/* 动画效果 */
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.2s ease;
+}
+.fade-enter,
+.fade-leave-to {
+  transform: translateX(200px);
   opacity: 0;
 }
 </style>
