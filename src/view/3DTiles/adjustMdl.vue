@@ -4,7 +4,7 @@
  * @version: 
  * @Date: 2021-08-19 20:18:14
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-11-30 13:05:21
+ * @LastEditTime: 2021-11-30 14:29:55
 -->
 <template>
   <div id="cesiumContainer">
@@ -70,10 +70,16 @@
     ></holeLayerInfo>
 
     <virtualBox
-      :virtualLayerInfo="virtualLayerInfo"
+      :tableData="tableCommonData"
       :isVisible="isvirtualLayerDialogVisible"
       @sendCloseVirtualDialog="isvirtualLayerDialogVisible = false"
     ></virtualBox>
+
+    <commonTableBox
+      :virtualLayerInfo="virtualLayerInfo"
+      :isCommonVisible="isCommonVisible"
+      @sendCommonCloseInfo="isCommonVisible = false"
+    ></commonTableBox>
 
     <!--  搜索框 -->
     <searchBar @sendSearchParmsFromSerachBar="receptSearchInfo"></searchBar>
@@ -91,6 +97,7 @@ import cesiumCommonTool from "../../components/cesiumComponents/cesiumCommonTool
 import holeLayerInfo from "../../components/toolComponents/holeLayerInfo.vue";
 import virtualBox from "../../components/toolComponents/virtualHoleInfo.vue";
 import searchBar from "../../components/toolComponents/searchComopent.vue";
+import commonTableBox from "../../components/toolComponents/commonTableInfo.vue";
 
 import { CesiumUtils } from "../../utils/utils.js";
 import { DrawPolygon } from "../../utils/drawUtils";
@@ -172,6 +179,9 @@ export default {
       //虚拟钻孔
       isvirtualLayerDialogVisible: false,
       virtualLayerInfo: [],
+
+      // 通用盒子信息
+      isCommonVisible: true,
     };
   },
   components: {
@@ -183,6 +193,7 @@ export default {
     holeLayerInfo,
     searchBar,
     virtualBox,
+    commonTableBox,
   },
   computed: {
     mdlParmsChange() {
@@ -248,7 +259,7 @@ export default {
         animation: showWedgit, // 控制场景动画的播放速度控件
         shadows: false,
 
-        terrainProvider: new Cesium.createWorldTerrain(), // Cesium在线Ion地形,地图上有3d起伏的地形 这一块接口容易失败
+        // terrainProvider: new Cesium.createWorldTerrain(), // Cesium在线Ion地形,地图上有3d起伏的地形 这一块接口容易失败
         // terrainProvider:new Cesium.CesiumTerrainProvider(url), // 加载自定义的地形
         // terrainProvider: new Cesium.EllipsoidTerrainProvider(), // 不适用地形
 
@@ -256,6 +267,14 @@ export default {
           url: "GlobalBkLayer.jpg",
         }), // 简单加载，解决无法加载地图的问题
       });
+
+      // 加载三维地形
+      let terrainProvider = new Cesium.CesiumTerrainProvider({
+        url: Cesium.IonResource.fromAssetId(3957),
+        requestVertexNormals: true,
+        requestWaterMask: true,
+      });
+      viewer.terrainProvider = terrainProvider;
 
       viewer._cesiumWidget._creditContainer.style.display = "none"; //是否显示cesium标识
 
