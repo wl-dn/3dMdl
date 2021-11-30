@@ -4,7 +4,7 @@
  * @version: 
  * @Date: 2021-08-20 10:25:43
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-11-10 15:54:26
+ * @LastEditTime: 2021-11-30 10:11:48
 -->
 <template>
   <div class="mdlFenxi">
@@ -27,6 +27,10 @@ export default {
         },
         {
           id: 2,
+          label: "虚拟钻孔",
+        },
+        {
+          id: 3,
           label: "清除绘制",
         },
       ],

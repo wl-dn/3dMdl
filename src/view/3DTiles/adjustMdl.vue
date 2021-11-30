@@ -4,7 +4,7 @@
  * @version: 
  * @Date: 2021-08-19 20:18:14
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-11-25 11:30:39
+ * @LastEditTime: 2021-11-30 13:05:21
 -->
 <template>
   <div id="cesiumContainer">
@@ -69,6 +69,12 @@
       @sendCloseLayerDialog="isLayerDialogVisible = false"
     ></holeLayerInfo>
 
+    <virtualBox
+      :virtualLayerInfo="virtualLayerInfo"
+      :isVisible="isvirtualLayerDialogVisible"
+      @sendCloseVirtualDialog="isvirtualLayerDialogVisible = false"
+    ></virtualBox>
+
     <!--  搜索框 -->
     <searchBar @sendSearchParmsFromSerachBar="receptSearchInfo"></searchBar>
   </div>
@@ -83,6 +89,7 @@ import mdlView from "../../components/cesiumComponents/mdlView.vue";
 import mdlFenxi from "../../components/cesiumComponents/mdlFenxi.vue";
 import cesiumCommonTool from "../../components/cesiumComponents/cesiumCommonTool.vue";
 import holeLayerInfo from "../../components/toolComponents/holeLayerInfo.vue";
+import virtualBox from "../../components/toolComponents/virtualHoleInfo.vue";
 import searchBar from "../../components/toolComponents/searchComopent.vue";
 
 import { CesiumUtils } from "../../utils/utils.js";
@@ -102,7 +109,8 @@ let rightClickHighted = {
   feature: undefined,
   originalColor: new Cesium.Color(),
 };
-let billboards = null;
+
+let dbClickRay = null;
 
 // 设置这些初始值，都是应为要针对于初始tileset
 export default {
@@ -157,6 +165,13 @@ export default {
       // 图形是否闪烁
       flashX: 0.5,
       flashFlag: true,
+
+      activeDoubleEvent: false, // 是否激活双击事件
+      flagTimer: null, // 区分单击和双击
+
+      //虚拟钻孔
+      isvirtualLayerDialogVisible: false,
+      virtualLayerInfo: [],
     };
   },
   components: {
@@ -167,6 +182,7 @@ export default {
     cesiumCommonTool,
     holeLayerInfo,
     searchBar,
+    virtualBox,
   },
   computed: {
     mdlParmsChange() {
@@ -247,7 +263,7 @@ export default {
       imageryLayers = viewer.imageryLayers;
       let mdlScene = viewer.scene;
 
-      viewer.extend(Cesium.viewerCesium3DTilesInspectorMixin);
+      // viewer.extend(Cesium.viewerCesium3DTilesInspectorMixin); 3dtiles监视器
       // 是否开启深度检测深度检测
       mdlScene.globe.depthTestAgainstTerrain = true;
 
@@ -699,6 +715,7 @@ export default {
         });
       });
     },
+    // 清除绘制
     clearDraw() {
       if (viewer.entities) {
         if (viewer.scene.globe.clippingPlanes) {
@@ -706,6 +723,7 @@ export default {
         }
         viewer.entities.removeAll();
       }
+      this.activeDoubleEvent = false;
     },
     // 注册cesium事件
     registerOnclickEvent() {
@@ -801,107 +819,76 @@ export default {
 
         // 注册左键事件
         viewer.screenSpaceEventHandler.setInputAction((movement) => {
-          let pick = viewer.scene.pick(movement.position);
-          // if (Cesium.defined(pick)) {
-          //   let cartesian1 = viewer.scene.pickPosition(movement.position);
-          //   let cartographic = Cesium.Cartographic.fromCartesian(cartesian1);
-
-          //   let degreeCenter = this.getMdlDegreeCenter(cartographic);
-          //   let startPoint = Cesium.Cartesian3.fromDegrees(
-          //     degreeCenter[1],
-          //     degreeCenter[2],
-          //     10000
-          //   );
-          //   let endPoint = Cesium.Cartesian3.fromDegrees(
-          //     degreeCenter[1],
-          //     degreeCenter[2],
-          //     -99999
-          //   );
-          //   console.log(startPoint);
-          //   console.log(endPoint);
-          //   this.drawLine(startPoint, endPoint, Cesium.Color.RED);
-          //   var direction = Cesium.Cartesian3.normalize(
-          //     Cesium.Cartesian3.subtract(
-          //       endPoint,
-          //       startPoint,
-          //       new Cesium.Cartesian3()
-          //     ),
-          //     new Cesium.Cartesian3()
-          //   );
-          //   var ray1 = new Cesium.Ray(startPoint, direction);
-
-          //   var result = viewer.scene.drillPickFromRay(ray1); // 计算交互点，返回第一个
-          //   console.log(result);
-          // }
-
-          if (Cesium.defined(pick) && Cesium.defined(pick.id)) {
-            this.$http
-              .get("/getHoleLayerInfoByHoleCode", {
-                params: {
-                  holecode: pick.id,
-                },
-              })
-              .then((res) => {
-                this.drillName = pick.id;
-                this.layerInfo = res.data.data;
-                this.isLayerDialogVisible = true;
-              });
-          }
-
-          if (Cesium.defined(rightClickHighted.feature)) {
-            rightClickHighted.feature.color = rightClickHighted.originalColor;
-            rightClickHighted.feature = undefined;
-          }
-          const ray = viewer.camera.getPickRay(movement.position);
-          const cartesian = viewer.scene.globe.pick(ray, viewer.scene);
-
-          if (cartesian) {
-            let cartographic = Cesium.Cartographic.fromCartesian(cartesian); // 获取当前点击点的世界坐标系
-            if (cartographic) {
-              let xy = new Cesium.Cartesian2();
-              let alti = viewer.camera.positionCartographic.height;
-              let level = this.getMapLevel(alti);
-              // 只有显示的并且是geoserver和arcgisserver的可以用
-              // 确定哪个图层可查
-              let tempImageryProvider = this.getQueryImageryProvider();
-              if (!tempImageryProvider) return;
-              if (tempImageryProvider.ready) {
-                xy = tempImageryProvider.tilingScheme.positionToTileXY(
-                  cartographic,
-                  level,
-                  xy
-                );
-                let promise = tempImageryProvider.pickFeatures(
-                  xy.x,
-                  xy.y,
-                  level,
-                  cartographic.longitude,
-                  cartographic.latitude
-                );
-                Cesium.when(promise, (layerInfo) => {
-                  console.log(layerInfo);
-                  //查询结果展示
-                  if (layerInfo && layerInfo.length > 0) {
-                    Notification({
-                      title: "图层名称",
-                      message: layerInfo[0].name,
-                      duration: "2000",
-                    });
-                  }
+          clearTimeout(this.flagTimer);
+          this.flagTimer = window.setTimeout(() => {
+            let pick = viewer.scene.pick(movement.position);
+            if (Cesium.defined(pick) && Cesium.defined(pick.id)) {
+              this.$http
+                .get("/getHoleLayerInfoByHoleCode", {
+                  params: {
+                    holecode: pick.id,
+                  },
+                })
+                .then((res) => {
+                  this.drillName = pick.id;
+                  this.layerInfo = res.data.data;
+                  this.isLayerDialogVisible = true;
                 });
+            }
+
+            if (Cesium.defined(rightClickHighted.feature)) {
+              rightClickHighted.feature.color = rightClickHighted.originalColor;
+              rightClickHighted.feature = undefined;
+            }
+            const ray = viewer.camera.getPickRay(movement.position);
+            const cartesian = viewer.scene.globe.pick(ray, viewer.scene);
+
+            if (cartesian) {
+              let cartographic = Cesium.Cartographic.fromCartesian(cartesian); // 获取当前点击点的世界坐标系
+              if (cartographic) {
+                let xy = new Cesium.Cartesian2();
+                let alti = viewer.camera.positionCartographic.height;
+                let level = this.getMapLevel(alti);
+                // 只有显示的并且是geoserver和arcgisserver的可以用
+                // 确定哪个图层可查
+                let tempImageryProvider = this.getQueryImageryProvider();
+                if (!tempImageryProvider) return;
+                if (tempImageryProvider.ready) {
+                  xy = tempImageryProvider.tilingScheme.positionToTileXY(
+                    cartographic,
+                    level,
+                    xy
+                  );
+                  let promise = tempImageryProvider.pickFeatures(
+                    xy.x,
+                    xy.y,
+                    level,
+                    cartographic.longitude,
+                    cartographic.latitude
+                  );
+                  Cesium.when(promise, (layerInfo) => {
+                    console.log(layerInfo);
+                    //查询结果展示
+                    if (layerInfo && layerInfo.length > 0) {
+                      Notification({
+                        title: "图层名称",
+                        message: layerInfo[0].name,
+                        duration: "2000",
+                      });
+                    }
+                  });
+                }
               }
             }
-          }
+          }, 200);
         }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
 
         //注册移动事件
         //Color a feature yellow on hover.
-        viewer.screenSpaceEventHandler.setInputAction(function onMouseMove(
-          movement
-        ) {
+        viewer.screenSpaceEventHandler.setInputAction((movement) => {
           // 移动变小手
           const moveFeature = viewer.scene.pick(movement.endPosition);
-          if (Cesium.defined(moveFeature) && Cesium.defined(moveFeature.id)) {
+          if (Cesium.defined(moveFeature)) {
             viewer._container.style.cursor = "pointer";
           } else {
             viewer._container.style.cursor = "default";
@@ -926,8 +913,62 @@ export default {
             moveHighlighted.originalColor
           );
           pickedFeature.color = Cesium.Color.YELLOW;
-        },
-        Cesium.ScreenSpaceEventType.MOUSE_MOVE);
+        }, Cesium.ScreenSpaceEventType.MOUSE_MOVE);
+
+        // 注册双击事件（注意区分单击和双击事件）
+        viewer.screenSpaceEventHandler.setInputAction((movement) => {
+          clearTimeout(this.flagTimer);
+          if (this.activeDoubleEvent) {
+            let pick = viewer.scene.pick(movement.position);
+            if (Cesium.defined(pick)) {
+              let cartesian = viewer.scene.pickPosition(movement.position);
+              let cartographic = Cesium.Cartographic.fromCartesian(cartesian);
+              let degreeCenter = this.getMdlDegreeCenter(cartographic);
+              let startPoint = Cesium.Cartesian3.fromDegrees(
+                degreeCenter[1],
+                degreeCenter[2],
+                -99999
+                // 10000
+              );
+              let endPoint = Cesium.Cartesian3.fromDegrees(
+                degreeCenter[1],
+                degreeCenter[2],
+                10000
+                // -99999
+              );
+              // this.drawLine(startPoint, endPoint, Cesium.Color.RED); //绘制交汇线
+              var direction = Cesium.Cartesian3.normalize(
+                Cesium.Cartesian3.subtract(
+                  endPoint,
+                  startPoint,
+                  new Cesium.Cartesian3()
+                ),
+                new Cesium.Cartesian3()
+              );
+              dbClickRay = new Cesium.Ray(startPoint, direction);
+
+              let resultFeatureList = viewer.scene.drillPickFromRay(dbClickRay); // 计算交互点，返回第一个
+              let resultLayerData = [];
+              for (let i = 0; i < resultFeatureList.length; i++) {
+                if (
+                  resultFeatureList[i].object instanceof
+                  Cesium.Cesium3DTileFeature
+                ) {
+                  let properList =
+                    resultFeatureList[i].object.getPropertyNames();
+                  let drillLayerInfo = {
+                    layerNum:
+                      resultFeatureList[i].object.getProperty("地层编码"),
+                  };
+                  resultLayerData.push(drillLayerInfo);
+                }
+              }
+              this.virtualLayerInfo = resultLayerData;
+              console.log(this.virtualLayerInfo);
+              this.isvirtualLayerDialogVisible = true;
+            }
+          }
+        }, Cesium.ScreenSpaceEventType.LEFT_DOUBLE_CLICK);
       }
     },
     // 绘制线
@@ -1076,6 +1117,8 @@ export default {
         this.dig3DTerrian();
       } else if (data.label === "清除绘制") {
         this.clearDraw();
+      } else if (data.label === "虚拟钻孔") {
+        this.activeDoubleEvent = true;
       }
     },
     async receptSearchInfo(item) {
@@ -1172,7 +1215,7 @@ export default {
   right: 100px;
   top: 0px;
   z-index: 1;
-  background-color: rgb(255, 255, 245);
+  background-color: rgb(255, 255, 255);
 }
 
 .mdlTool_box {
