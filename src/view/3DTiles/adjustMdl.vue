@@ -4,7 +4,7 @@
  * @version: 
  * @Date: 2021-08-19 20:18:14
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-11-30 13:05:21
+ * @LastEditTime: 2021-11-30 14:06:10
 -->
 <template>
   <div id="cesiumContainer">
@@ -248,7 +248,7 @@ export default {
         animation: showWedgit, // 控制场景动画的播放速度控件
         shadows: false,
 
-        terrainProvider: new Cesium.createWorldTerrain(), // Cesium在线Ion地形,地图上有3d起伏的地形 这一块接口容易失败
+        // terrainProvider: new Cesium.createWorldTerrain(), // Cesium在线Ion地形,地图上有3d起伏的地形 这一块接口容易失败
         // terrainProvider:new Cesium.CesiumTerrainProvider(url), // 加载自定义的地形
         // terrainProvider: new Cesium.EllipsoidTerrainProvider(), // 不适用地形
 
@@ -257,6 +257,14 @@ export default {
         }), // 简单加载，解决无法加载地图的问题
       });
 
+      // 加载三维地形
+      let terrainProvider = new Cesium.CesiumTerrainProvider({
+        url: Cesium.IonResource.fromAssetId(3957),
+        requestVertexNormals: true,
+        requestWaterMask: true,
+      });
+      viewer.terrainProvider=terrainProvider;
+      
       viewer._cesiumWidget._creditContainer.style.display = "none"; //是否显示cesium标识
 
       // 初始化imagelauers
