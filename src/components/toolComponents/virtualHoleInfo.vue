@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-11-30 12:42:04
- * @LastEditTime: 2021-11-30 13:02:47
+ * @LastEditTime: 2021-11-30 14:19:24
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: \geoinfocentere:\STUDY\开发\web3d\3dMdl\src\components\toolComponents\virtralHoleInfo.vue
@@ -64,8 +64,7 @@ export default {
   z-index: 1;
   top: 50%;
   right: 0px;
-  transform: translateX(-50%);
-  transform: translateY(-50%);
+ 
 }
 .virtualBox_head_box {
   width: 100%;
