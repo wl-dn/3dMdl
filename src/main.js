@@ -4,7 +4,7 @@
  * @version: 
  * @Date: 2021-05-20 16:35:09
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-11-18 13:19:04
+ * @LastEditTime: 2021-12-01 13:04:33
  */
 import Vue from 'vue'
 import App from './App.vue'
@@ -40,6 +40,10 @@ Vue.prototype.$http = axios;
 
 // 配置天地图token
 Vue.prototype.tiandituTk = "59e1f33a85b33bcf1b27dea77be6b96d";
+
+// 引入xml转json工具
+import X2JS from 'x2js';
+Vue.prototype.$x2js = new X2JS()
 
 new Vue({
   router,

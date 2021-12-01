@@ -4,7 +4,7 @@
  * @version: 
  * @Date: 2021-08-19 20:18:14
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-11-30 14:29:55
+ * @LastEditTime: 2021-12-01 16:55:03
 -->
 <template>
   <div id="cesiumContainer">
@@ -96,7 +96,7 @@ import mdlFenxi from "../../components/cesiumComponents/mdlFenxi.vue";
 import cesiumCommonTool from "../../components/cesiumComponents/cesiumCommonTool.vue";
 import holeLayerInfo from "../../components/toolComponents/holeLayerInfo.vue";
 import virtualBox from "../../components/toolComponents/virtualHoleInfo.vue";
-import searchBar from "../../components/toolComponents/searchComopent.vue";
+import searchBar from "../../components/toolComponents/searchCompent/searchComopent.vue";
 import commonTableBox from "../../components/toolComponents/commonTableInfo.vue";
 
 import { CesiumUtils } from "../../utils/utils.js";
@@ -104,11 +104,12 @@ import { DrawPolygon } from "../../utils/drawUtils";
 import TerrainClipPlan from "../../utils/TerrainClipPlan";
 
 import { Notification } from "element-ui";
+import PathGraphics from "cesium/Source/DataSources/PathGraphics";
 
 let tileSetList = [];
 let viewer = null;
 let imageryLayers = null;
-var moveHighlighted = {
+let moveHighlighted = {
   feature: undefined,
   originalColor: new Cesium.Color(),
 };
@@ -166,6 +167,7 @@ export default {
         "https://tsy-gis1.portal.com/server/services/geoinfo_geomap/MapServer/WMSServer",
         "http://192.10.3.237/geoserver/crcc-dev/wms",
         "http://192.10.3.237/geoserver/wms",
+        "http://10.101.140.3/geoserver/db-24/wms",
         "http://192.10.3.237/geoserver/crcc-dev/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=crcc-dev:geoboundzone&maxFeatures=50&outputFormat=application/json",
       ],
 
@@ -322,9 +324,11 @@ export default {
             VERSION: "1.1.1",
             srs: "EPSG:4326",
             service: "WMS",
+            // CQL_FILTER: "id = 22",
             exceptions: "application/vnd.ogc.se_inimage",
           },
         });
+
         if (imageryLayers) imageryLayers.addImageryProvider(wmsImageLayer);
       }
     },
@@ -498,9 +502,37 @@ export default {
           tileSet.boundingSphere.radius * 4.0
         )
       );
+      // 注册模型事件
+      // tileSet.tileLoad.addEventListener((tile) => {
+      //   this.processTileFeatures(tile, (feature) => {
+      //     console.log(feature);
+      //   });
       // });
     },
+    // 获取所有feature
+    processTileFeatures(tile, callback) {
+      let content = tile.content;
 
+      let innerContents = content.innerContents;
+
+      if (Cesium.defined(innerContents)) {
+        let length = innerContents.length;
+
+        for (let i = 0; i < length; ++i) {
+          this.processContentFeatures(innerContents[i], callback);
+        }
+      } else {
+        this.processContentFeatures(content, callback);
+      }
+    },
+    processContentFeatures(content, callback) {
+      let featuresLength = content.featuresLength;
+
+      for (let i = 0; i < featuresLength; ++i) {
+        let feature = content.getFeature(i);
+        callback(feature);
+      }
+    },
     // 加载广告牌
     async loadHoleLayer(url, name, isChecked) {
       let flagObj = this.billbordsIsExist(name);
@@ -678,8 +710,8 @@ export default {
     },
     // 根据图片和文字绘制canvas
     drawCanvas(img, text, fontsize) {
-      var canvas = document.createElement("canvas"); //创建canvas标签
-      var ctx = canvas.getContext("2d");
+      let canvas = document.createElement("canvas"); //创建canvas标签
+      let ctx = canvas.getContext("2d");
 
       // ctx.fillStyle = "#99f";
       ctx.font = fontsize + "px Arial";
@@ -758,7 +790,7 @@ export default {
           }
 
           // Pick a new feature
-          var pickedFeature = viewer.scene.pick(movement.position);
+          let pickedFeature = viewer.scene.pick(movement.position);
           if (!Cesium.defined(pickedFeature)) {
             // this.isLayerDialogVisible = false;
             return;
@@ -776,10 +808,10 @@ export default {
           pickedFeature.color = Cesium.Color.BLUE;
           // let pickedFeature = viewer.scene.pick(movement.position);
           if (Cesium.defined(pickedFeature)) {
-            // var cartesian = viewer.scene.pickPosition(movement.position);
-            // var cartographic = Cesium.Cartographic.fromCartesian(cartesian);
+            // let cartesian = viewer.scene.pickPosition(movement.position);
+            // let cartographic = Cesium.Cartographic.fromCartesian(cartesian);
             // console.log(this.getMdlDegreeCenter(cartographic));
-            if (pickedFeature.tileset) {
+            if (pickedFeature instanceof Cesium.Cesium3DTileFeature) {
               if (
                 pickedFeature.tileset._url ===
                 "3DTiles/drill_3dtiles/tileset.json"
@@ -801,7 +833,7 @@ export default {
                 "3DTiles/model_3dtiles/tileset.json"
               ) {
                 this.tableCommonData = [];
-                let titles = "地层信息";
+                let titles = "地层编码";
                 let resStr = pickedFeature.getProperty("地层编码");
                 let obj = {
                   label: titles,
@@ -810,29 +842,21 @@ export default {
                 this.tableCommonData.push(obj);
                 this.isCommonVisible = true;
               } else {
-                let titles = "地层信息";
-                let resStr =
-                  pickedFeature.getProperty("profilegeostratumcode") +
-                  "  " +
-                  pickedFeature.getProperty("profilelithology");
-
-                Notification({
-                  title: titles,
-                  message: resStr,
-                  duration: "2000",
-                });
+                this.tableCommonData = [];
+                let propertyList = pickedFeature.getPropertyNames();
+                for (let i = 0; i < propertyList.length; i++) {
+                  let obj = {
+                    label: propertyList[i],
+                    value: pickedFeature.getProperty(propertyList[i]),
+                  };
+                  this.tableCommonData.push(obj);
+                  this.isCommonVisible = true;
+                }
               }
             } else {
-              let urlStr = pickedFeature.content.url;
-              let leftIndex = urlStr.indexOf("\\");
-              if (leftIndex === -1) {
-                leftIndex = urlStr.indexOf("%5C") + 2;
-              }
-              let rightIndex = urlStr.lastIndexOf(".");
-              let resStr = urlStr.substring(leftIndex + 1, rightIndex - 2);
               Notification({
-                title: "标准层号",
-                message: resStr,
+                title: "提示",
+                message: "该3dtiles没有属性",
                 duration: "2000",
               });
             }
@@ -844,6 +868,8 @@ export default {
           clearTimeout(this.flagTimer);
           this.flagTimer = window.setTimeout(() => {
             let pick = viewer.scene.pick(movement.position);
+
+            //获取钻孔信息
             if (Cesium.defined(pick) && Cesium.defined(pick.id)) {
               this.$http
                 .get("/getHoleLayerInfoByHoleCode", {
@@ -858,6 +884,7 @@ export default {
                 });
             }
 
+            // 获取图层信息
             if (Cesium.defined(rightClickHighted.feature)) {
               rightClickHighted.feature.color = rightClickHighted.originalColor;
               rightClickHighted.feature = undefined;
@@ -889,15 +916,18 @@ export default {
                     cartographic.latitude
                   );
                   Cesium.when(promise, (layerInfo) => {
-                    console.log(layerInfo);
-                    //查询结果展示
-                    if (layerInfo && layerInfo.length > 0) {
-                      Notification({
-                        title: "图层名称",
-                        message: layerInfo[0].name,
-                        duration: "2000",
-                      });
+                    this.tableCommonData = [];
+                    const properList = layerInfo[0].properties;
+                    console.log(properList);
+                    let obj = null;
+                    for (let k in properList) {
+                      obj = {
+                        label: k,
+                        value: properList[k],
+                      };
+                      this.tableCommonData.push(obj);
                     }
+                    this.isCommonVisible = true;
                   });
                 }
               }
@@ -923,7 +953,7 @@ export default {
           }
 
           // Pick a new feature
-          var pickedFeature = viewer.scene.pick(movement.endPosition);
+          let pickedFeature = viewer.scene.pick(movement.endPosition);
           if (!Cesium.defined(pickedFeature)) {
             return;
           }
@@ -936,7 +966,6 @@ export default {
           );
           pickedFeature.color = Cesium.Color.YELLOW;
         }, Cesium.ScreenSpaceEventType.MOUSE_MOVE);
-
         // 注册双击事件（注意区分单击和双击事件）
         viewer.screenSpaceEventHandler.setInputAction((movement) => {
           clearTimeout(this.flagTimer);
@@ -959,7 +988,7 @@ export default {
                 // -99999
               );
               // this.drawLine(startPoint, endPoint, Cesium.Color.RED); //绘制交汇线
-              var direction = Cesium.Cartesian3.normalize(
+              let direction = Cesium.Cartesian3.normalize(
                 Cesium.Cartesian3.subtract(
                   endPoint,
                   startPoint,
@@ -992,8 +1021,6 @@ export default {
             }
           }
         }, Cesium.ScreenSpaceEventType.LEFT_DOUBLE_CLICK);
-
-        //
       }
     },
     // 绘制线
@@ -1187,6 +1214,24 @@ export default {
   },
   created() {
     this.onMessageFromComponent(); // 接收其他组件传递过来的值
+    // geoserver集成属性查询
+    this.$http
+      .get(
+        "http://10.101.140.3/geoserver/db-24/map-124/wms?request=GetCapabilities&service=WMS&version=1.1.1"
+      )
+      .then((res) => {
+        console.log(this.$x2js.xml2js(res.data)); // 将xml解析成json格式，获取所有图层
+      });
+
+    this.$http
+      .get(
+        "http://10.101.140.3/geoserver/wfs?request=describeFeatureType&typename=db-24:map_124_lyr_2&outputFormat=application/json"
+      )
+      .then((res) => {
+        console.log(res);
+      });
+    // arcgisServer集成属性查询
+    
   },
   mounted() {
     this.initCesium(); // cesim初始化必须放在mounted里面

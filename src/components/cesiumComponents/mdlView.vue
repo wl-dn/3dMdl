@@ -4,7 +4,7 @@
  * @version: 
  * @Date: 2021-08-20 10:25:43
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-11-18 17:42:14
+ * @LastEditTime: 2021-12-01 15:57:59
 -->
 <template>
   <div class="mdlView">
@@ -81,9 +81,37 @@ export default {
             },
             {
               id: "1-6",
-              label: "holeTEST",
-              name: "holeTEST",
-              url: "3DTiles/TileModelv1/tileset.json",
+              label: "holeTEST-20",
+              name: "holeTEST-20",
+              url: "3DTiles/模型/z_20/tileset.json",
+              serviceType: "3DTiles",
+            },
+            {
+              id: "1-7",
+              label: "holeTEST-50",
+              name: "holeTEST-50",
+              url: "3DTiles/模型/z_50/tileset.json",
+              serviceType: "3DTiles",
+            },
+            {
+              id: "1-8",
+              label: "holeTEST-100",
+              name: "holeTEST-100",
+              url: "3DTiles/模型/z_100/tileset.json",
+              serviceType: "3DTiles",
+            },
+            {
+              id: "1-9",
+              label: "holeTEST-200",
+              name: "holeTEST-200",
+              url: "3DTiles/模型/z_200/tileset.json",
+              serviceType: "3DTiles",
+            },
+            {
+              id: "1-10",
+              label: "holeTEST-400",
+              name: "holeTEST-400",
+              url: "3DTiles/模型/z_400/tileset.json",
               serviceType: "3DTiles",
             },
           ],

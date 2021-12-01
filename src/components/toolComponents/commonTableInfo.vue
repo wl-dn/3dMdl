@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-11-30 14:16:54
- * @LastEditTime: 2021-11-30 14:29:06
+ * @LastEditTime: 2021-11-30 21:24:08
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: \geoinfocentere:\STUDY\开发\web3d\3dMdl\src\components\toolComponents\commonTableInfo.vue
@@ -13,7 +13,7 @@
         <span class="close_span" @click="closeOnClick">×</span>
       </div>
       <div class="content_box">
-        <table border>
+        <table>
           <tr v-for="(item, row) in tableData" :key="row">
             <td>{{ item.label }}</td>
             <td>{{ item.value }}</td>
@@ -39,9 +39,7 @@ export default {
     },
   },
   data() {
-    return {
-    
-    };
+    return {};
   },
   methods: {
     closeOnClick() {
@@ -79,6 +77,9 @@ export default {
 }
 .commonTableBox table {
   width: 100%;
+  border-top: 1px solid #999;
+  border-spacing: 0;
+  border-left: 1px solid #999;
   /* height: 400px; */
 }
 .commonTableBox table tr {
@@ -88,6 +89,9 @@ export default {
 .commonTableBox table tr td {
   width: 50%;
   height: 30px;
+  padding: 10px 30px;
+  border-bottom: 1px solid #999;
+  border-right: 1px solid #999;
 }
 .close_span {
   position: absolute;
