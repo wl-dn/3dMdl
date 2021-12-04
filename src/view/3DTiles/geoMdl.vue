@@ -4,7 +4,7 @@
  * @version: 
  * @Date: 2021-08-19 20:18:14
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-12-01 16:55:03
+ * @LastEditTime: 2021-12-04 17:11:36
 -->
 <template>
   <div id="cesiumContainer">
@@ -255,6 +255,10 @@ export default {
     initCesium() {
       // 初始化地球
       const showWedgit = false;
+      const subdomains = ["0", "1", "2", "3", "4", "5", "6", "7"];
+      let tdurl =
+        "http://t{s}.tianditu.com/img_w/wmts?service=wmts&request=GetTile&version=1.0.0&LAYER=img&tileMatrixSet=w&TileMatrix={TileMatrix}&TileRow={TileRow}&TileCol={TileCol}&style=default&format=tiles&tk=" +
+        this.tiandituTk;
       viewer = new Cesium.Viewer("cesiumContainer", {
         geocoder: showWedgit, // 地理位置查询定位控件
         homeButton: showWedgit, // 默认相机位置控件
@@ -272,9 +276,19 @@ export default {
         // terrainProvider:new Cesium.CesiumTerrainProvider(url), // 加载自定义的地形
         // terrainProvider: new Cesium.EllipsoidTerrainProvider(), // 不适用地形
 
-        imageryProvider: new Cesium.SingleTileImageryProvider({
-          url: "GlobalBkLayer.jpg",
-        }), // 简单加载，解决无法加载地图的问题
+        // imageryProvider: new Cesium.SingleTileImageryProvider({
+        //   url: "GlobalBkLayer.jpg",
+        // }), // 简单加载，解决无法加载地图的问题
+        imageryProvider: new Cesium.WebMapTileServiceImageryProvider({
+          // 加载天地图影像
+          url: tdurl,
+          subdomains: subdomains,
+          layer: "tdtImgLayer",
+          style: "default",
+          format: "image/jpeg",
+          tileMatrixSetID: "GoogleMapsCompatible",
+          show: true,
+        }),
       });
 
       // 加载三维地形
@@ -295,6 +309,7 @@ export default {
       );
 
       // viewer.extend(Cesium.viewerCesium3DTilesInspectorMixin); 3dtiles监视器
+
       // 是否开启深度检测深度检测
       // mdlScene.globe.depthTestAgainstTerrain = true;
 
@@ -333,7 +348,6 @@ export default {
             VERSION: "1.1.1",
             srs: "EPSG:4326",
             service: "WMS",
-            // CQL_FILTER: "id = 22",
             exceptions: "application/vnd.ogc.se_inimage",
           },
         });
@@ -353,7 +367,7 @@ export default {
         VERSION: "1.1.1",
         srs: "EPSG:4326",
         service: "WMS",
-        // CQL_FILTER: "",
+        styles: "hilight-polygon", // 添加自定义样式、统一高亮颜色
         exceptions: "application/vnd.ogc.se_inimage",
       };
       if (item.cqlStr) {
@@ -366,8 +380,6 @@ export default {
       });
       wmsImageLayer.name = "tempLayer";
       imageryLayers.addImageryProvider(wmsImageLayer);
-      console.log(wmsImageLayer);
-      console.log(imageryLayers);
     },
     // 根据name来判断
     layerIsExist_2(name) {
@@ -391,6 +403,7 @@ export default {
       }
       this.$http.get(url).then(async (res) => {
         // res.data就是真是geojson数据
+        console.log(res.data);
         let datasource = await Cesium.GeoJsonDataSource.load(res.data);
         datasource.name = name;
         viewer.dataSources.add(datasource);
@@ -856,15 +869,22 @@ export default {
           pickedFeature.color = Cesium.Color.BLUE;
           // let pickedFeature = viewer.scene.pick(movement.position);
           if (Cesium.defined(pickedFeature)) {
-            let cartesian = viewer.scene.pickPosition(movement.position);
-            let cartographic = Cesium.Cartographic.fromCartesian(cartesian);
-            console.log(this.getMdlDegreeCenter(cartographic));
             if (pickedFeature instanceof Cesium.Cesium3DTileFeature) {
               if (
                 pickedFeature.tileset._url ===
                 "3DTiles/drill_3dtiles/tileset.json"
               ) {
+                let cartesian = viewer.scene.pickPosition(movement.position);
+                let cartographic = Cesium.Cartographic.fromCartesian(cartesian);
                 const holecode = pickedFeature.getProperty("钻孔编码");
+                console.log(
+                  pickedFeature.getProperty("孔口标高"),
+                  this.getMdlDegreeCenter(cartographic)[0]
+                );
+                let mhDistance =
+                  pickedFeature.getProperty("孔口标高") -
+                  this.getMdlDegreeCenter(cartographic)[0];
+                console.log(mhDistance);
                 this.$http
                   .get("/getHoleLayerInfoByHoleCode", {
                     params: {
@@ -1317,7 +1337,7 @@ export default {
     getLayerInfoFromLayerGroup(url) {
       this.$http
         .get(
-          "http://192.10.3.237/geoserver/crcc-dev/geomap-01/wms?request=GetCapabilities&service=WMS&version=1.1.1"
+          "http://10.101.140.3/geoserver/db-24/map-124/wms?request=GetCapabilities&service=WMS&version=1.1.1"
         )
         .then((res) => {
           console.log(this.$x2js.xml2js(res.data)); // 将xml解析成json格式，获取所有图层

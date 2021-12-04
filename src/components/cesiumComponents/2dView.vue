@@ -4,7 +4,7 @@
  * @version: 
  * @Date: 2021-08-20 10:25:43
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-12-01 11:43:13
+ * @LastEditTime: 2021-12-04 17:09:31
 -->
 <template>
   <div class="mapView">
@@ -100,12 +100,13 @@ export default {
                   id: "2-1-1",
                   label: "区域地质图(株洲幅)",
                   name: "geoserver_wms_geomap",
-                  url: "http://192.10.3.237/geoserver/crcc-dev/wms",
-                  layers: "crcc-dev:geomap-01",
+                  // url: "http://192.10.3.237/geoserver/crcc-dev/wms",
+                  // layers: "crcc-dev:geomap-01",
                   // layers:"geostratumzone",
 
-                  // url:"http://10.101.140.3/geoserver/db-24/wms",
-                  // layers:"map-124",
+                  url:"http://10.101.140.3/geoserver/db-24/wms",
+                  layers:"map-124",
+                  // layers:"map_124_lyr_1",
                   serviceType: "wms",
                 },
                 {

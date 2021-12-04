@@ -4,7 +4,7 @@
  * @version: 
  * @Date: 2021-08-20 10:25:43
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-12-01 15:57:59
+ * @LastEditTime: 2021-12-04 16:56:11
 -->
 <template>
   <div class="mdlView">
@@ -55,8 +55,8 @@ export default {
               id: "1-2",
               label: "三维钻孔模型",
               name: "holemdl",
-              // url: "3DTiles/drill_3dtiles/tileset.json",
-              url: "3DTiles/testHoleMdl/tileset.json",
+              url: "3DTiles/drill_3dtiles/tileset.json",
+              // url: "3DTiles/testHoleMdl/tileset.json",
               serviceType: "3DTiles",
             },
             {
@@ -118,6 +118,13 @@ export default {
               url: "3DTiles/模型/z_400/tileset.json",
               serviceType: "3DTiles",
             },
+            // {
+            //   id: "1-11",
+            //   label: "桩基模型",
+            //   name: "zhuangjimdl",
+            //   url: "桩基模型/正顺花园b1基础图/tileset.json",
+            //   serviceType: "3DTiles",
+            // },
           ],
         },
         {

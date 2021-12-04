@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-11-22 10:34:44
- * @LastEditTime: 2021-12-04 09:28:28
+ * @LastEditTime: 2021-12-04 17:16:10
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: \geoinfocentere:\STUDY\开发\web3d\3dMdl\src\components\toolComponents\searchComopent.vue
@@ -22,43 +22,55 @@
     </el-autocomplete>
   </div> -->
   <div class="searchBox">
-    <div class="searchBar">
-      <div :class="['ladder', { ladder_selected: selectIndex === 1 }]">
-        <span class="position_center" @click="selectIndex = 1">通用检索</span>
+    <div class="searchSubBox" v-if="isShowSearchBox">
+      <div class="searchBar">
+        <div :class="['ladder', { ladder_selected: selectIndex === 1 }]">
+          <span class="position_center" @click="selectIndex = 1">通用检索</span>
+        </div>
+        <div :class="['ladder', { ladder_selected: selectIndex === 2 }]">
+          <span class="position_center" @click="selectIndex = 2">高级检索</span>
+        </div>
       </div>
-      <div :class="['ladder', { ladder_selected: selectIndex === 2 }]">
-        <span class="position_center" @click="selectIndex = 2">高级检索</span>
+      <div class="serachContent">
+        <commonSearch
+          v-if="selectIndex === 1"
+          @sendResetInfoEvent="receptResetInfoEvent"
+          @sendSearachResultDataEvent="receptSearachResultDataEvent"
+          v-on="$listeners"
+        ></commonSearch>
+        <specialSearch v-if="selectIndex === 2"></specialSearch>
+        <!-- 收纳盒子 -->
       </div>
+      <transition name="searchResultFade">
+        <div class="searchResultBox" v-if="isSearchResultDialog">
+          <ul>
+            <li
+              v-for="(item, i) in resultList"
+              :key="i"
+              @click="itemOnclick(item)"
+              @dblclick="flyToView(item)"
+              :class="{ activeSpan: item.active === true }"
+            >
+              <div>
+                <img src="../../../assets/images/imageIcon.png" alt="" />
+              </div>
+              <div>
+                {{ item.label }}
+              </div>
+            </li>
+          </ul>
+        </div>
+      </transition>
     </div>
-    <div class="serachContent">
-      <commonSearch
-        v-if="selectIndex === 1"
-        @sendResetInfoEvent="receptResetInfoEvent"
-        @sendSearachResultDataEvent="receptSearachResultDataEvent"
-        v-on="$listeners"
-      ></commonSearch>
-      <specialSearch v-if="selectIndex === 2"></specialSearch>
+
+    <div class="closeDialog_box">
+      <span v-show="isShowSearchBox === true" @click="isShowSearchBox = false"
+        >《《</span
+      >
+      <span v-show="isShowSearchBox === false" @click="isShowSearchBox = true"
+        >》》</span
+      >
     </div>
-    <transition name="searchResultFade">
-      <div class="searchResultBox" v-if="isSearchResultDialog">
-        <ul>
-          <li
-            v-for="(item, i) in resultList"
-            :key="i"
-            @click="itemOnclick(item)"
-            @dblclick="flyToView(item)"
-            :class="{ activeSpan: item.active === true }"
-          >
-            <div>
-              <img src="../../../assets/images/imageIcon.png" alt="" />
-            </div>
-            <div>
-              {{ item.label }}
-            </div>
-          </li>
-        </ul>
-      </div>
-    </transition>
   </div>
 </template>
 <script>
@@ -71,7 +83,9 @@ export default {
       timeout: null,
       selectIndex: 1,
       isSearchResultDialog: false,
+      isShowSearchBox: false,
       resultList: [],
+      closeFlag: 0,
     };
   },
   components: {
@@ -142,7 +156,15 @@ export default {
 </script>
 <style scoped>
 .searchBox {
-  position: relative;
+  position: absolute;
+  height: 320px;
+  width: 600px;
+  background-color: cadetblue;
+}
+.searchSubBox {
+  position: absolute;
+  height: 320px;
+  width: 600px;
 }
 .searchBar {
   position: absolute;
@@ -248,5 +270,33 @@ export default {
 .searchResultFade-leave-to {
   transform: translateX(-600px);
   opacity: 0;
+}
+
+/* 盒子效果 */
+.closeDialog_box {
+}
+.closeDialog_box > span {
+  display: inline-block;
+  position: absolute;
+  height: 20px;
+  width: 32px;
+  z-index: 1;
+  background-color: rgb(137,157,192);
+  color: white;
+  text-align: center;
+  
+}
+.closeDialog_box > span:nth-child(1) {
+  top: 32px;
+  right: -67px;
+  padding-right: 5px;
+  padding-bottom: 4px;
+  cursor: pointer;
+}
+.closeDialog_box > span:nth-child(2) {
+  top: 40px;
+  padding-bottom: 4px;
+  /* right: -66px; */
+  cursor: pointer;
 }
 </style>

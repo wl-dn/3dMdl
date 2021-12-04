@@ -4,7 +4,7 @@
  * @version: 
  * @Date: 2021-05-20 16:35:09
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-11-04 20:55:39
+ * @LastEditTime: 2021-12-04 13:47:28
  */
 import Vue from 'vue'
 import VueRouter from 'vue-router'
@@ -13,7 +13,7 @@ import HelloCesium from '../view/CesiumStandBox/HelloCesium'
 import CesiumWedgit from '../view/CesiumStandBox/CesiumWedgit.vue'
 import Geo3DTiles from "../view/3DTiles/geo3DTiles.vue"
 import BIM3DTiles from "../view/3DTiles/3DTilesBim.vue"
-import adjust3DTiles from "../view/3DTiles/adjustMdl.vue"
+import adjust3DTiles from "../view/3DTiles/geoMdl.vue"
 import drawEntity from "../view/3DTiles/drawEntity.vue"
 import digTerrian from "../view/3DTiles/digTerrian.vue"
 import MdlClip from "../view/3DTiles/3DTilesClip.vue"
