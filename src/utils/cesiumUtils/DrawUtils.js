@@ -7,6 +7,7 @@
  * @LastEditTime: 2021-08-24 21:28:38
  */
 import * as Cesium from "cesium"
+import * as  turf from "@turf/turf"
 export default class DrawUtils {
     constructor(viewer) {
         this._viewer = viewer;
@@ -22,7 +23,8 @@ export default class DrawUtils {
         config = config || {};
         let pointGeometry = this._viewer.entities.add({
             name: "点几何对象",
-            position: position,
+            position: Cesium.Cartesian3.fromDegrees(position[0], position[1], 0),
+            // position: position,
             point: {
                 color: Cesium.Color.SKYBLUE,
                 pixelSize: 10,
@@ -134,7 +136,7 @@ export default class DrawUtils {
         // 构建裁剪面
         this._createClipTerrian(points);
         //获取最低点高度
-        options.minHeight = this._getMinPointHeight(points,options.height)
+        options.minHeight = this._getMinPointHeight(points, options.height)
         //创建井底部
         this._createBottomSurface(points, options.bottomMaterial, options.minHeight)
 
@@ -266,7 +268,7 @@ export default class DrawUtils {
         let isR = dirRes > 0
         return isR
     }
-    _getMinPointHeight(points,height) {
+    _getMinPointHeight(points, height) {
         this._excavateMinHeight = 9999;
         points.forEach(point => {
             const Cartographic = Cesium.Cartographic.fromCartesian(point)
@@ -280,4 +282,67 @@ export default class DrawUtils {
         // this._targetHeight = this._excavateMinHeight - this._height
         // this.minHeight = this._targetHeight
     }
+
+    /**
+    * @descripttion: 生成点缓冲区
+    * @param {*} 中心点坐标array
+    * @param {*} 缓冲区半径int
+    * @return {*} true or false
+    */
+    createPointBuffer(point, radis) {
+        this.drawPointEntity(point);
+        let pointF = turf.point(point);
+        let buffered = turf.buffer(pointF, radis, { units: 'meters' });
+        let coordinates = buffered.geometry.coordinates;
+        let points = coordinates[0];
+        let degreesArray = this._pointsToDegreesArray(points);
+        this._addBufferPolyogn(Cesium.Cartesian3.fromDegreesArray(degreesArray));
+    }
+    //添加缓冲区
+    _addBufferPolyogn(positions) {
+        this._viewer.entities.add({
+            polygon: {
+                hierarchy: new Cesium.PolygonHierarchy(positions),
+                material: Cesium.Color.RED.withAlpha(0.6),
+                classificationType: Cesium.ClassificationType.BOTH
+            },
+        });
+    }
+    _pointsToDegreesArray(points) {
+        let degreesArray = [];
+        points.map(item => {
+            degreesArray.push(item[0]);
+            degreesArray.push(item[1]);
+        });
+        return degreesArray;
+    }
+
+    /**
+   * @descripttion: 生成点缓冲区
+   * @param {*} 某一点的经纬度
+   * @param {*} 另一点的经纬度
+   * @return {*} true or false
+   */
+    // 计算经纬度之间的距离（m）
+    caculateLL(lat1, lng1, lat2, lng2) {
+        let radLat1 = (lat1 * Math.PI) / 180.0;
+        let radLat2 = (lat2 * Math.PI) / 180.0;
+        let a = radLat1 - radLat2;
+        let b = (lng1 * Math.PI) / 180.0 - (lng2 * Math.PI) / 180.0;
+        let s =
+            2 *
+            Math.asin(
+                Math.sqrt(
+                    Math.pow(Math.sin(a / 2), 2) +
+                    Math.cos(radLat1) *
+                    Math.cos(radLat2) *
+                    Math.pow(Math.sin(b / 2), 2)
+                )
+            );
+        s = s * 6378.137;
+        s = Math.round(s * 10000) / 10;
+        return s;
+    }
+
+
 }

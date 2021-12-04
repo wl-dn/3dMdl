@@ -9,11 +9,13 @@
   "dependencies": {
     "3d-tiles-renderer": "^0.3.1",
     "@open-wc/webpack-import-meta-loader": "^0.4.7",
+    "@turf/turf": "^6.5.0",
     "axios": "^0.24.0",
     "cesium": "^1.87.1",
     "core-js": "^3.6.5",
     "element-ui": "^2.15.5",
     "three": "^0.131.3",
+    "v-region": "^2.2.2",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",
     "vuex": "^3.4.0",

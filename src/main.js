@@ -45,6 +45,10 @@ Vue.prototype.tiandituTk = "59e1f33a85b33bcf1b27dea77be6b96d";
 import X2JS from 'x2js';
 Vue.prototype.$x2js = new X2JS()
 
+// 引入行政区划
+import vRegion from 'v-region'
+Vue.use(vRegion)
+
 new Vue({
   router,
   store,

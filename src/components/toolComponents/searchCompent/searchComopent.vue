@@ -31,10 +31,34 @@
       </div>
     </div>
     <div class="serachContent">
-      <commonSearch v-if="selectIndex === 1"></commonSearch>
+      <commonSearch
+        v-if="selectIndex === 1"
+        @sendResetInfoEvent="receptResetInfoEvent"
+        @sendSearachResultDataEvent="receptSearachResultDataEvent"
+        v-on="$listeners"
+      ></commonSearch>
       <specialSearch v-if="selectIndex === 2"></specialSearch>
     </div>
-    <div></div>
+    <transition name="searchResultFade">
+      <div class="searchResultBox" v-if="isSearchResultDialog">
+        <ul>
+          <li
+            v-for="(item, i) in resultList"
+            :key="i"
+            @click="itemOnclick(item)"
+            @dblclick="flyToView(item)"
+            :class="{ activeSpan: item.active === true }"
+          >
+            <div>
+              <img src="../../../assets/images/imageIcon.png" alt="" />
+            </div>
+            <div>
+              {{ item.label }}
+            </div>
+          </li>
+        </ul>
+      </div>
+    </transition>
   </div>
 </template>
 <script>
@@ -46,6 +70,8 @@ export default {
       searchState: "",
       timeout: null,
       selectIndex: 1,
+      isSearchResultDialog: false,
+      resultList: [],
     };
   },
   components: {
@@ -74,6 +100,42 @@ export default {
     handleSelect(item) {
       this.searchState = item.worksiteid;
       this.$emit("sendSearchParmsFromSerachBar", item);
+    },
+    receptResetInfoEvent(index) {
+      if (index === 1) {
+        this.resultList = [];
+        this.isSearchResultDialog = false;
+      }
+    },
+    receptSearachResultDataEvent(data) {
+      if (data) {
+        this.resultList = [];
+        let tempList = [];
+        for (let i = 0; i < data.length; i++) {
+          let obj = {
+            imageUrl: "../../../assets/images/imageIcon.png",
+            label: data[i].borename,
+            value: "",
+            longitude: data[i].borelon,
+            latitude: data[i].borelat,
+            active: false,
+          };
+          tempList.push(obj);
+        }
+        this.resultList = tempList;
+        console.log(this.resultList);
+        this.isSearchResultDialog = true;
+      } else {
+        this.$message({
+          type: "warning",
+          message: "查询失败",
+        });
+      }
+    },
+    flyToView(item) {},
+    itemOnclick(item) {
+      item.active = !item.active;
+      this.$emit("sendResultItemFromSearchCompent", item);
     },
   },
 };
@@ -128,8 +190,8 @@ export default {
 }
 .serachContent {
   position: absolute;
-  width: 500px;
-  height: 280px;
+  width: 600px;
+  height: 300px;
   border: 1px solid rgb(255, 255, 255);
   box-shadow: 0 0 10px RGB(137, 157, 192);
   background-color: rgb(254, 254, 254);
@@ -137,5 +199,54 @@ export default {
   left: 30px;
   z-index: 1;
   border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.searchResultBox {
+  width: 600px;
+  position: absolute;
+  top: 331px;
+  left: 31px;
+  background-color: rgb(246, 246, 246);
+  z-index: 1;
+}
+.searchResultBox ul {
+  width: 100%;
+  height: 100%;
+  max-height: 400px;
+  overflow-y: auto;
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+}
+.searchResultBox ul li {
+  width: 100%;
+  height: 60px;
+  line-height: 60px;
+  display: flex;
+}
+.searchResultBox ul li:hover {
+  background-color: rgb(255, 251, 242);
+  cursor: pointer;
+}
+.searchResultBox ul li > div:nth-child(1) {
+  flex: 1;
+}
+.searchResultBox ul li > div:nth-child(2) {
+  flex: 6;
+}
+.activeSpan {
+  background-color: rgb(187, 192, 211) !important;
+}
+
+/* 动画效果 */
+.searchResultFade-enter-active,
+.searchResultFade-leave-active {
+  transition: all 0.2s ease;
+}
+.searchResultFade-enter,
+.searchResultFade-leave-to {
+  transform: translateX(-600px);
+  opacity: 0;
 }
 </style>
