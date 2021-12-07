@@ -7,7 +7,7 @@
  * @FilePath: \geoinfocentere:\STUDY\开发\web3d\3dMdl\src\components\toolComponents\virtralHoleInfo.vue
 -->
 <template>
-  <transition name ="fade">
+  <transition name="fade">
     <div class="virtualBox" v-if="isVisible">
       <div class="virtualBox_head_box">
         <span class="close_span" @click="closeOnClick">×</span>
@@ -19,6 +19,12 @@
         height="400px"
         v-if="virtualLayerInfo.length !== 0"
       >
+        <el-table-column
+          :prop="item.value"
+          v-for="(item, i) in fieldsList"
+          :key="i"
+          :label="item.label"
+        ></el-table-column>
         <el-table-column prop="layerNum" label="标准层号"> </el-table-column>
         <!-- <el-table-column prop="topsidedepth" label="顶板埋深">
         </el-table-column>
@@ -36,6 +42,12 @@
 export default {
   props: {
     virtualLayerInfo: {
+      type: Array,
+      default() {
+        return [];
+      },
+    },
+    fieldsList: {
       type: Array,
       default() {
         return [];

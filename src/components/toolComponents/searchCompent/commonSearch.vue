@@ -224,6 +224,8 @@ export default {
           wmsUrl: "http://192.10.3.237/geoserver/crcc-dev/wms",
           attrUrl:
             "http://192.10.3.237/geoserver/wfs?request=describeFeatureType&typename=crcc-dev:geostratumzone&outputFormat=application/json",
+          wfsUrl:
+            "http://192.10.3.237/geoserver/crcc-dev/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=crcc-dev:geostratumzone&maxFeatures=10000&outputFormat=application/json",
           value: "geostratumzone",
         },
         {
@@ -232,6 +234,8 @@ export default {
           wmsUrl: "http://192.10.3.237/geoserver/crcc-dev/wms",
           attrUrl:
             "http://192.10.3.237/geoserver/wfs?request=describeFeatureType&typename=crcc-dev:aterationp&outputFormat=application/json",
+          wfsUrl:
+            "http://192.10.3.237/geoserver/crcc-dev/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=crcc-dev:aterationp&maxFeatures=10000&outputFormat=application/json",
           value: "aterationp",
         },
         {
@@ -240,6 +244,8 @@ export default {
           wmsUrl: "http://192.10.3.237/geoserver/crcc-dev/wms",
           attrUrl:
             "http://192.10.3.237/geoserver/wfs?request=describeFeatureType&typename=crcc-dev:geoboundzone&outputFormat=application/json",
+          wfsUrl:
+            "http://192.10.3.237/geoserver/crcc-dev/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=crcc-dev:geoboundzone&maxFeatures=10000&outputFormat=application/json",
           value: "geoboundzone",
         },
         {
@@ -248,6 +254,8 @@ export default {
           wmsUrl: "http://192.10.3.237/geoserver/crcc-dev/wms",
           attrUrl:
             "http://192.10.3.237/geoserver/wfs?request=describeFeatureType&typename=crcc-dev:faultzone&outputFormat=application/json",
+          wfsUrl:
+            "http://192.10.3.237/geoserver/crcc-dev/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=crcc-dev:faultzone&maxFeatures=10000&outputFormat=application/json",
           value: "faultzone",
         },
         {
@@ -256,6 +264,8 @@ export default {
           wmsUrl: "http://192.10.3.237/geoserver/crcc-dev/wms",
           attrUrl:
             "http://192.10.3.237/geoserver/wfs?request=describeFeatureType&typename=crcc-dev:occurrence&outputFormat=application/json",
+          wfsUrl:
+            "http://192.10.3.237/geoserver/crcc-dev/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=crcc-dev:occurrence&maxFeatures=10000&outputFormat=application/json",
           value: "occurrence",
         },
         {
@@ -264,7 +274,53 @@ export default {
           wmsUrl: "http://192.10.3.237/geoserver/crcc-dev/wms",
           attrUrl:
             "http://192.10.3.237/geoserver/wfs?request=describeFeatureType&typename=crcc-dev:alterationt&outputFormat=application/json",
+          wfsUrl:
+            "http://192.10.3.237/geoserver/crcc-dev/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=crcc-dev:alterationt&maxFeatures=10000&outputFormat=application/json",
           value: "alterationt",
+        },
+        {
+          label: "地形地貌",
+          layer: "landform",
+          name: "landform",
+          wmsUrl: "http://192.10.3.237/geoserver/crcc-dev/wms",
+          attrUrl:
+            "http://192.10.3.237/geoserver/wfs?request=describeFeatureType&typename=crcc-dev:landform&outputFormat=application/json",
+          wfsUrl:
+            "http://192.10.3.237/geoserver/crcc-dev/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=crcc-dev:landform&maxFeatures=10000&outputFormat=application/json",
+          value: "landform",
+        },
+        {
+          label: "矿产开发及采空区",
+          layer: "minegoaf",
+          name: "minegoaf",
+          wmsUrl: "http://192.10.3.237/geoserver/crcc-dev/wms",
+          attrUrl:
+            "http://192.10.3.237/geoserver/wfs?request=describeFeatureType&typename=crcc-dev:minegoaf&outputFormat=application/json",
+          wfsUrl:
+            "http://192.10.3.237/geoserver/crcc-dev/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=crcc-dev:minegoaf&maxFeatures=10000&outputFormat=application/json",
+          value: "minegoaf",
+        },
+        {
+          label: "特殊岩体",
+          layer: "specialrocksoil",
+          name: "specialrocksoil",
+          wmsUrl: "http://192.10.3.237/geoserver/crcc-dev/wms",
+          attrUrl:
+            "http://192.10.3.237/geoserver/wfs?request=describeFeatureType&typename=crcc-dev:specialrocksoil&outputFormat=application/json",
+          wfsUrl:
+            "http://192.10.3.237/geoserver/crcc-dev/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=crcc-dev:specialrocksoil&maxFeatures=10000&outputFormat=application/json",
+          value: "specialrocksoil",
+        },
+        {
+          label: "不良地质",
+          layer: "unfavorablegeology",
+          name: "unfavorablegeology",
+          wmsUrl: "http://192.10.3.237/geoserver/crcc-dev/wms",
+          attrUrl:
+            "http://192.10.3.237/geoserver/wfs?request=describeFeatureType&typename=crcc-dev:faultzone&outputFormat=application/json",
+          wfsUrl:
+            "http://192.10.3.237/geoserver/crcc-dev/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=crcc-dev:unfavorablegeology&maxFeatures=10000&outputFormat=application/json",
+          value: "unfavorablegeology",
         },
       ],
       fieldOptions: [
@@ -307,6 +363,7 @@ export default {
     };
   },
   methods: {
+    // 检索
     searchOnClick(index) {
       // 模糊查询
       if (index === 1) {
@@ -325,33 +382,81 @@ export default {
             });
         }
       } else if (index === 2) {
-        if (this.layerSelectValue === "") return;
-        let layerItem = this.layerOptions.find((obj) => {
-          if (obj.layer === this.layerSelectValue) {
-            return obj;
-          }
-        });
-        let tempLayreItem = JSON.parse(JSON.stringify(layerItem));
-        if (this.fieldSelectValue !== "" && this.fieldValue !== "") {
-          layerItem.cqlStr = `${this.fieldSelectValue} = ${this.fieldValue}`;
-          this.$emit("sendLayerSearchInfo", tempLayreItem);
-          console.log(layerItem);
-        } else {
-          this.$emit("sendLayerSearchInfo", tempLayreItem);
-          console.log(layerItem);
-        }
+        // if (this.layerSelectValue === "") return;
+        // let layerItem = this.layerOptions.find((obj) => {
+        //   if (obj.layer === this.layerSelectValue) {
+        //     return obj;
+        //   }
+        // });
+        // let tempLayreItem = JSON.parse(JSON.stringify(layerItem));
+        // if (this.fieldSelectValue !== "" && this.fieldValue !== "") {
+        //   tempLayreItem.cqlStr = `${this.fieldSelectValue} = ${this.fieldValue}`;
+        //   this.$emit("sendLayerSearchInfo", tempLayreItem);
+        //   console.log(tempLayreItem);
+        // } else {
+        //   this.$emit("sendLayerSearchInfo", tempLayreItem);
+        //   console.log(tempLayreItem);
+        // }
+        this.searchByTC();
       }
     },
+    // 图层查询
+    searchByTC() {
+      if (this.layerSelectValue === "") return;
+      let layerItem = this.layerOptions.find((obj) => {
+        if (obj.layer === this.layerSelectValue) {
+          return obj;
+        }
+      });
+      let tempLayreItem = JSON.parse(JSON.stringify(layerItem));
+      let url = tempLayreItem.wfsUrl;
+      let cqlStr = "";
+      const reg = /^\d+$/; // 判断是否为数字
+      const flag = reg.test(this.fieldValue);
+      let tempStr = this.fieldValue;
+      if (!flag) {
+        tempStr = `'${tempStr}'`;
+      }
+      if (this.fieldSelectValue !== "" && this.fieldValue !== "") {
+        cqlStr = `${this.fieldSelectValue}=${tempStr}`;
+        url = url + "&cql_filter=" + cqlStr;
+      }
+      let sendData = [];
+      this.$http(url).then((res) => {
+        console.log(res.data);
+        let featureList = res.data.features;
+        for (let i = 0; i < featureList.length; i++) {
+          for (let k in featureList[i].properties) {
+            if (k.indexOf("id") >= 0) {
+              let obj = {
+                url: tempLayreItem.wmsUrl,
+                layer: tempLayreItem.layer,
+                cqlStr: cqlStr,
+                label: `${k}=${featureList[i].properties[k]}`,
+              };
+              sendData.push(obj);
+              break;
+            }
+          }
+        }
+
+        this.$emit("sendSearchInfoInwmsLayer", sendData);
+      });
+
+      // this.$emit("sendLayerSearchInfo", url, tempLayreItem.name);
+    },
+
     resetOnClick(index) {
       if (index === 1) {
         this.vagueInput = "";
         this.$emit("sendResetInfoEvent", 0);
-        this.$emit("sendResetInfoEvent", 1);
+        this.$emit("sendResetInfoEvent", 1); // 隐藏对话框
       } else if (index === 2) {
         this.fieldOptions = [];
         this.fieldValue = "";
         this.layerSelectValue = "";
         this.fieldSelectValue = "";
+        this.$emit("sendResetInfoEvent", 1); // 隐藏对话框
         this.$emit("sendResetInfoEvent", 2);
       }
     },
@@ -364,6 +469,7 @@ export default {
       }
       this.fieldValue = "";
       this.fieldSelectValue = "";
+      this.fieldOptions = [];
       let url = "";
       for (let i = 0; i < this.layerOptions.length; i++) {
         if (this.layerOptions[i].layer === val) {
@@ -371,8 +477,8 @@ export default {
           break;
         }
       }
+
       this.$http.get(url).then((res) => {
-        console.log(res.data);
         const tempData = res.data.featureTypes[0].properties;
         let resultData = [];
         for (let i = 0; i < tempData.length; i++) {

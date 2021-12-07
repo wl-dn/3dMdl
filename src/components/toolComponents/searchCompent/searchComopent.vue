@@ -36,6 +36,7 @@
           v-if="selectIndex === 1"
           @sendResetInfoEvent="receptResetInfoEvent"
           @sendSearachResultDataEvent="receptSearachResultDataEvent"
+          @sendSearchInfoInwmsLayer="receptSearchInfoInwmsLayer"
           v-on="$listeners"
         ></commonSearch>
         <specialSearch v-if="selectIndex === 2"></specialSearch>
@@ -121,6 +122,7 @@ export default {
         this.isSearchResultDialog = false;
       }
     },
+    // 接受钻孔的查询
     receptSearachResultDataEvent(data) {
       if (data) {
         this.resultList = [];
@@ -133,6 +135,34 @@ export default {
             longitude: data[i].borelon,
             latitude: data[i].borelat,
             active: false,
+            type: 1,
+          };
+          tempList.push(obj);
+        }
+        this.resultList = tempList;
+        console.log(this.resultList);
+        this.isSearchResultDialog = true;
+      } else {
+        this.$message({
+          type: "warning",
+          message: "查询失败",
+        });
+      }
+    },
+    // 接受图层的查询
+    receptSearchInfoInwmsLayer(data) {
+      if (data) {
+        this.resultList = [];
+        let tempList = [];
+        for (let i = 0; i < data.length; i++) {
+          let obj = {
+            url: data[i].url,
+            layer: data[i].layer,
+            label: data[i].label,
+            value: "",
+            cqlStr: data[i].cqlStr,
+            active: false,
+            type: 2,
           };
           tempList.push(obj);
         }
@@ -149,7 +179,12 @@ export default {
     flyToView(item) {},
     itemOnclick(item) {
       item.active = !item.active;
-      this.$emit("sendResultItemFromSearchCompent", item);
+      if (item.type === 1) {
+        this.$emit("sendResultItemFromSearchCompent", item);
+      } else if (item.type === 2) {
+        console.log(item);
+        this.$emit("sendLayerItemFromSearchCompent", item);
+      }
     },
   },
 };
@@ -235,7 +270,7 @@ export default {
 .searchResultBox ul {
   width: 100%;
   height: 100%;
-  max-height: 400px;
+  max-height: 300px;
   overflow-y: auto;
   margin: 0px;
   padding: 0px;
@@ -281,10 +316,9 @@ export default {
   height: 20px;
   width: 32px;
   z-index: 1;
-  background-color: rgb(137,157,192);
+  background-color: rgb(137, 157, 192);
   color: white;
   text-align: center;
-  
 }
 .closeDialog_box > span:nth-child(1) {
   top: 32px;
