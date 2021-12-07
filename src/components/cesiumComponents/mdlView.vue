@@ -4,7 +4,7 @@
  * @version: 
  * @Date: 2021-08-20 10:25:43
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-12-04 16:56:11
+ * @LastEditTime: 2021-12-07 10:09:14
 -->
 <template>
   <div class="mdlView">
@@ -55,8 +55,8 @@ export default {
               id: "1-2",
               label: "三维钻孔模型",
               name: "holemdl",
-              url: "3DTiles/drill_3dtiles/tileset.json",
-              // url: "3DTiles/testHoleMdl/tileset.json",
+              // url: "3DTiles/drill_3dtiles/tileset.json",
+              url: "3DTiles/testHoleMdl/tileset.json",
               serviceType: "3DTiles",
             },
             {

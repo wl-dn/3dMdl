@@ -4,7 +4,7 @@
  * @version: 
  * @Date: 2021-08-19 20:18:14
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-12-04 17:11:36
+ * @LastEditTime: 2021-12-07 15:26:09
 -->
 <template>
   <div id="cesiumContainer">
@@ -298,10 +298,10 @@ export default {
       });
 
       // 加载三维地形
-      let terrainProvider = new Cesium.CesiumTerrainProvider({
-        url: "http://192.10.3.237:81/tsyTerrain/",
-      });
-      viewer.terrainProvider = terrainProvider;
+      // let terrainProvider = new Cesium.CesiumTerrainProvider({
+      //   url: "http://192.10.3.237:81/tsyTerrain/",
+      // });
+      // viewer.terrainProvider = terrainProvider;
 
       viewer._cesiumWidget._creditContainer.style.display = "none"; //是否显示cesium标识
 
@@ -342,7 +342,6 @@ export default {
     loadWmsLayer(url, layers, isChecked) {
       // 判断图层是否存在
       let obj = this.layerIsExist_2(layers);
-      console.log(obj);
       if (obj.flag) {
         imageryLayers._layers[obj.index].show = isChecked;
       } else {
@@ -1077,6 +1076,10 @@ export default {
               let cartesian = viewer.scene.pickPosition(movement.position);
               let cartographic = Cesium.Cartographic.fromCartesian(cartesian);
               let degreeCenter = this.getMdlDegreeCenter(cartographic);
+              // degreeCenter 就是获取到的高度，经度，维度
+              console.log(degreeCenter);
+              
+              return
               let startPoint = Cesium.Cartesian3.fromDegrees(
                 degreeCenter[1],
                 degreeCenter[2],
