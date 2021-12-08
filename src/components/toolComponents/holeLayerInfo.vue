@@ -12,8 +12,8 @@
       <div class="holeLayer_head_box">
         <span>{{ drillname }}</span>
         <span class="close_span" @click="closeOnClick">×</span>
-      </div>
-      <el-table :data="layerInfo" border style="width: 100%" height="400px">
+      </div> <!--缩小宽度sisi-->
+      <el-table :data="layerInfo" border style="width: 100%" height="350px">
         <el-table-column prop="stdstratumcode" label="标准层号">
         </el-table-column>
         <el-table-column prop="topsidedepth" label="顶板埋深">

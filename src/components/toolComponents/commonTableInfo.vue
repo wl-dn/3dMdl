@@ -10,6 +10,7 @@
   <transition name="fade">
     <div class="commonTableBox" v-if="isCommonVisible">
       <div class="head_box">
+        {{tableTheme}} <!--添加表名 sisi-->
         <span class="close_span" @click="closeOnClick">×</span>
       </div>
       <div class="content_box">
@@ -37,6 +38,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    tableTheme: { //添加表名sisi
+      type: String,
+      default: "",
+    }
   },
   data() {
     return {};

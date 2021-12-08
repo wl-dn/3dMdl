@@ -21,10 +21,10 @@ export default {
   data() {
     return {
       fenxiList: [
-        {
-          id: 1,
-          label: "地形挖掘",
-        },
+        // {专业分析中，删除地形挖掘功能 sisi
+        //   id: 1,
+        //   label: "地形挖掘",
+        // },
         {
           id: 2,
           label: "虚拟钻孔",
