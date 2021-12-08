@@ -10,7 +10,7 @@
   <transition name="fade">
     <div class="virtualBox" v-if="isVisible">
       <div class="virtualBox_head_box">
-        {{tableTheme}}
+        {{tableTheme}}  <!--sisi  设置表名-->
         <span class="close_span" @click="closeOnClick">×</span>
       </div>
       <el-table
@@ -25,7 +25,7 @@
           v-for="(item, i) in fieldsList"
           :key="i"
           :label="item.label"
-        ></el-table-column> -->
+        ></el-table-column> --> <!--sisi  设置表字段-->
         <el-table-column prop="topElevation" label="顶板高程">
         </el-table-column>
         <el-table-column prop="bottomElevation" label="底板高程">
@@ -58,7 +58,7 @@ export default {
       type: Boolean,
       default: false,
     },
-    tableTheme: {
+    tableTheme: {  //<!--sisi  设置表名-->
       type: String,
       default: "",
     }

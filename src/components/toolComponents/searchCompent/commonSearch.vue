@@ -593,16 +593,16 @@ export default {
 </script>
 <style>
 .commonSearchBox .vaguebox .el-input {
-  width: 215px;
+  width: 215px; /**sisi */
 }
 .layerSelectBox > div:nth-child(1) .el-input {
-  width: 170px;
+  width: 170px; /**sisi */
 }
 .layerSelectBox > div:nth-child(2) .el-select {
-  width: 105px;
+  width: 105px; /**sisi */
 }
 .layerSelectBox > div:nth-child(2) .fieldValueinput {
-  width: 101px;
+  width: 101px; /**sisi */
 }
 .spaceSearchTool_box_3 .el-input .el-input__inner {
   height: 30px;
@@ -626,7 +626,7 @@ export default {
 }
 .vaguebox {
   margin-top: 30px;
-  margin-left: 15px;
+  margin-left: 15px; /**sisi */
 }
 .commonSearchBtn {
   position: absolute;
@@ -666,7 +666,7 @@ export default {
 }
 .spaceSearchBox > div:nth-child(1) .el-select {
   margin-left: 20px;
-  width: 236px;
+  width: 236px; /**sisi */
 }
 .spaceSearchBox .spaceSearchTool_box {
   margin-top: 20px;
@@ -674,7 +674,7 @@ export default {
 .spaceSearchTool_box_1 {
   width: 300px;
   height: 80px;
-  margin-left: 10px;
+  margin-left: 10px; /**sisi */
   display: flex;
 }
 .spaceSearchTool_box_1 > div {
@@ -707,7 +707,7 @@ export default {
 
 /* 空间位置 */
 .spaceSearchTool_box_3 {
-  margin-left: 0px;
+  margin-left: 0px; /**sisi */
 }
 .spaceSearchTool_box_3 > div {
   margin-top: 10px;

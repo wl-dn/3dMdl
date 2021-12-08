@@ -1,5 +1,6 @@
 <template>
   <div class="home_box">
+    <!--删除侧边导航栏 sisi-->
     <!-- <div class="aside_box" v-if="isShowAsideBox">
       <el-menu
         class="el-menu-vertical-demo"
@@ -30,8 +31,8 @@
     </div> -->
     <div class="main_box" id="view_map">
       <router-view />
-      <!-- <img src="../assets/images/CRCC.png" style="z-index : 999"/> -->
     </div>
+    <!--删除侧边导航栏 sisi-->
     <!-- <span
       :class="[
         isShowAsideBox ? 'el-icon-caret-left' : 'el-icon-caret-right',
@@ -112,7 +113,7 @@ export default {
         //   ]
         // }
       ],
-      activeItem: "adjust3DTiles",
+      activeItem: "adjust3DTiles",//默认加载模型页面 sisi
       isShowAsideBox: true,
     };
   },

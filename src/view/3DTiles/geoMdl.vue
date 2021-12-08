@@ -8,6 +8,7 @@
 -->
 <template>
   <div id="cesiumContainer">
+    <!--添加附件logo以及标题 sisi-->
     <div class="logo_class">
       <img src="../../assets/images/CRCC.png" />
     </div>
@@ -115,6 +116,7 @@ import commonTableBox from "../../components/toolComponents/commonTableInfo.vue"
 import { CesiumUtils } from "../../utils/utils.js";
 import { DrawPolygon } from "../../utils/drawUtils";
 import TerrainClipPlan from "../../utils/TerrainClipPlan";
+//引入虚拟钻孔grpc服务 sisi
 import * as VirtualHoleService from "../../../public/proto/dummy_hole_service_grpc_web_pb"
 
 import { Notification } from "element-ui";
@@ -168,7 +170,7 @@ export default {
           icon: "icon-gongju",
           label: "模型工具",
         },
-        {
+        {//模型分析移到右侧 sisi
           id: 5,
           checked: false,
           icon: "icon-gongju",
@@ -203,12 +205,12 @@ export default {
       isvirtualLayerDialogVisible: false,
       virtualLayerInfo: [],
       fieldsList: [],
-      virtualTableTheme: null,
+      virtualTableTheme: null,//设置表格title sisi
 
       // 通用盒子信息
       isCommonVisible: false,
       tableCommonData: [],
-      tableTitleTheme: null,
+      tableTitleTheme: null,//设置表格title sisi
 
       // 地层厚度
       layerThickness: [4.3, 7.2, 3.4, 5.8, 10.0, 3.9, 3.7, 4.5],
@@ -263,7 +265,7 @@ export default {
       }
     },
     activeIndex(val) {
-      console.log("val",val);
+      //监视选择的index， 路由跳转 sisi
       if(val === 5) {
         this.$router.push("mdlScene")
       }
@@ -956,7 +958,7 @@ export default {
               ) {
                 this.tableCommonData = [];
                 let titles = "地层编码";
-                this.tableTitleTheme = "钻孔分层信息";
+                this.tableTitleTheme = "钻孔分层信息";//设置表格title sisi
                 let resStr = pickedFeature.getProperty("地层编码");
                 let obj = {
                   label: titles,
@@ -972,7 +974,7 @@ export default {
                     label: propertyList[i],
                     value: pickedFeature.getProperty(propertyList[i]),
                   };
-                  this.tableTitleTheme = "地层信息";
+                  this.tableTitleTheme = "地层信息"; //设置表格title sisi
                   this.tableCommonData.push(obj);
                   this.isCommonVisible = true;
                 }
@@ -1101,6 +1103,7 @@ export default {
               let degreeCenter = this.getMdlDegreeCenter(cartographic);
               // degreeCenter 就是获取到的高度，经度，维度
               // console.log(degreeCenter);
+              //查询虚拟钻孔信息  sisi
               this.virtualLayerInfo = [];
               let client = new VirtualHoleService.DummyHoleServicePromiseClient("http://10.101.140.3:8011");
               let virtualRequest = new VirtualHoleService.DummyHoleServiceRequest();
@@ -1485,7 +1488,7 @@ export default {
 </script>
 
 <style scoped>
-.class_title {
+.class_title { /*设置title标题样式 sisi*/
   position: absolute;
   color: rgb(174, 179, 177);
   font-size: 34px;
@@ -1493,7 +1496,7 @@ export default {
   margin-left: 109px;
   margin-top: 31px;
 }
-.logo_class {
+.logo_class { /*sisi */
   position: absolute;
   z-index: 1;
 }

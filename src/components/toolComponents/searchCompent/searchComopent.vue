@@ -195,7 +195,7 @@ export default {
   height: 320px;
   width: 600px;
   background-color: cadetblue;
-  margin-top: 100px;
+  margin-top: 100px; /*sisi  缩小高度 */ 
 }
 .searchSubBox {
   position: absolute;
@@ -248,7 +248,7 @@ export default {
 }
 .serachContent {
   position: absolute;
-  width: 500px;
+  width: 500px; /*sisi  缩小宽度 */
   height: 300px;
   border: 1px solid rgb(255, 255, 255);
   box-shadow: 0 0 10px RGB(137, 157, 192);
@@ -327,7 +327,7 @@ export default {
   padding-right: 5px;
   padding-bottom: 4px;
   cursor: pointer;
-  margin-right: 100px;
+  margin-right: 100px; /*sisi  */
 }
 .closeDialog_box > span:nth-child(2) {
   top: 40px;
