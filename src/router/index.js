@@ -27,7 +27,7 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home,
-    redirect: "/helloCesium",
+    redirect: "/adjust3DTiles",
     children: [
       {
         path: "/helloCesium",

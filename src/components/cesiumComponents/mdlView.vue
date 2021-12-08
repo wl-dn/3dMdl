@@ -4,7 +4,7 @@
  * @version: 
  * @Date: 2021-08-20 10:25:43
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-12-04 16:56:11
+ * @LastEditTime: 2021-12-07 10:09:14
 -->
 <template>
   <div class="mdlView">
@@ -55,8 +55,8 @@ export default {
               id: "1-2",
               label: "三维钻孔模型",
               name: "holemdl",
-              // url: "3DTiles/drill_3dtiles/tileset.json",
-              url: "3DTiles/testHoleMdl/2/tileset.json",
+              url: "3DTiles/drill_3dtiles/tileset.json",
+              // url: "3DTiles/testHoleMdl/2/tileset.json",
               serviceType: "3DTiles",
             },
             {
@@ -83,41 +83,41 @@ export default {
               url: "3DTiles/testSecMdl/sec-3/tileset.json",
               serviceType: "3DTiles",
             },
-            {
-              id: "1-6",
-              label: "holeTEST-20",
-              name: "holeTEST-20",
-              url: "3DTiles/模型/z_20/tileset.json",
-              serviceType: "3DTiles",
-            },
-            {
-              id: "1-7",
-              label: "holeTEST-50",
-              name: "holeTEST-50",
-              url: "3DTiles/模型/z_50/tileset.json",
-              serviceType: "3DTiles",
-            },
-            {
-              id: "1-8",
-              label: "holeTEST-100",
-              name: "holeTEST-100",
-              url: "3DTiles/模型/z_100/tileset.json",
-              serviceType: "3DTiles",
-            },
-            {
-              id: "1-9",
-              label: "holeTEST-200",
-              name: "holeTEST-200",
-              url: "3DTiles/模型/z_200/tileset.json",
-              serviceType: "3DTiles",
-            },
-            {
-              id: "1-10",
-              label: "holeTEST-400",
-              name: "holeTEST-400",
-              url: "3DTiles/模型/z_400/tileset.json",
-              serviceType: "3DTiles",
-            },
+            // { 删除测试钻孔的目录树 sisi
+            //   id: "1-6",
+            //   label: "holeTEST-20",
+            //   name: "holeTEST-20",
+            //   url: "3DTiles/模型/z_20/tileset.json",
+            //   serviceType: "3DTiles",
+            // },
+            // {
+            //   id: "1-7",
+            //   label: "holeTEST-50",
+            //   name: "holeTEST-50",
+            //   url: "3DTiles/模型/z_50/tileset.json",
+            //   serviceType: "3DTiles",
+            // },
+            // {
+            //   id: "1-8",
+            //   label: "holeTEST-100",
+            //   name: "holeTEST-100",
+            //   url: "3DTiles/模型/z_100/tileset.json",
+            //   serviceType: "3DTiles",
+            // },
+            // {
+            //   id: "1-9",
+            //   label: "holeTEST-200",
+            //   name: "holeTEST-200",
+            //   url: "3DTiles/模型/z_200/tileset.json",
+            //   serviceType: "3DTiles",
+            // },
+            // {
+            //   id: "1-10",
+            //   label: "holeTEST-400",
+            //   name: "holeTEST-400",
+            //   url: "3DTiles/模型/z_400/tileset.json",
+            //   serviceType: "3DTiles",
+            // },
             // {
             //   id: "1-11",
             //   label: "桩基模型",
@@ -127,19 +127,19 @@ export default {
             // },
           ],
         },
-        {
-          id: "2",
-          label: "Gltf",
-          children: [
-            {
-              id: "2-1",
-              label: "三维地质模型",
-              name: "",
-              url: "",
-              serviceType: "Gltf",
-            },
-          ],
-        },
+        // {删除gltf三维地质模型目录树  sisi
+        //   id: "2",
+        //   label: "Gltf",
+        //   children: [
+        //     {
+        //       id: "2-1",
+        //       label: "三维地质模型",
+        //       name: "",
+        //       url: "",
+        //       serviceType: "Gltf",
+        //     },
+        //   ],
+        // },
       ],
       currentChecked: false,
       positionX: 0,
