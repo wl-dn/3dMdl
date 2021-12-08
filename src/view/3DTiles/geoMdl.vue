@@ -295,13 +295,24 @@ export default {
           tileMatrixSetID: "GoogleMapsCompatible",
           show: true,
         }),
-      });
 
-      // 加载三维地形
-      let terrainProvider = new Cesium.CesiumTerrainProvider({
-        url: "http://192.10.3.237:81/tsyTerrain/",
+        orderIndependentTranslucency: false,
+        contextOptions: {
+          webgl: {
+            alpha: true,
+          },
+        },
       });
-      viewer.terrainProvider = terrainProvider;
+      // 修改背景颜色
+      viewer.scene.skyBox.show = false;
+      viewer.scene.sun.show = false;
+      viewer.scene.moon.show = false;
+      viewer.scene.backgroundColor = Cesium.Color.BLACK;
+      // 加载三维地形
+      // let terrainProvider = new Cesium.CesiumTerrainProvider({
+      //   url: "http://192.10.3.237:81/tsyTerrain/",
+      // });
+      // viewer.terrainProvider = terrainProvider;
 
       viewer._cesiumWidget._creditContainer.style.display = "none"; //是否显示cesium标识
 
