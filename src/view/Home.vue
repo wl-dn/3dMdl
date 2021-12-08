@@ -1,6 +1,6 @@
 <template>
   <div class="home_box">
-    <div class="aside_box" v-if="isShowAsideBox">
+    <!-- <div class="aside_box" v-if="isShowAsideBox">
       <el-menu
         class="el-menu-vertical-demo"
         background-color="#545C64"
@@ -27,18 +27,19 @@
           </el-menu-item>
         </el-submenu>
       </el-menu>
-    </div>
+    </div> -->
     <div class="main_box" id="view_map">
       <router-view />
+      <!-- <img src="../assets/images/CRCC.png" style="z-index : 999"/> -->
     </div>
-    <span
+    <!-- <span
       :class="[
         isShowAsideBox ? 'el-icon-caret-left' : 'el-icon-caret-right',
         'taggleAsideSpan',
         isShowAsideBox ? 'taggleOpenSpan' : 'taggleHiddenSpan',
       ]"
       @click="isShowAsideBox = !isShowAsideBox"
-    ></span>
+    ></span> -->
   </div>
 </template>
 
@@ -63,7 +64,7 @@ export default {
         // },
         {
           // label: "3DTILES",
-          label: "3DTILES",
+          label: "地理地质信息系统测试平台",
           index: "三维地质模型",
           children: [
             // {
@@ -111,7 +112,7 @@ export default {
         //   ]
         // }
       ],
-      activeItem: "HelloCesium",
+      activeItem: "adjust3DTiles",
       isShowAsideBox: true,
     };
   },

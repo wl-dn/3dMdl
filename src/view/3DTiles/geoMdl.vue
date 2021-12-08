@@ -8,6 +8,10 @@
 -->
 <template>
   <div id="cesiumContainer">
+    <div class="logo_class">
+      <img src="../../assets/images/CRCC.png" />
+    </div>
+    <div class="class_title">地理地质信息系统测试平台</div>
     <div class="cesiumMenu_box">
       <ul>
         <li
@@ -73,12 +77,14 @@
       :virtualLayerInfo="virtualLayerInfo"
       :fieldsList="fieldsList"
       :isVisible="isvirtualLayerDialogVisible"
+      :tableTheme="virtualTableTheme"
       @sendCloseVirtualDialog="isvirtualLayerDialogVisible = false"
     ></virtualBox>
 
     <commonTableBox
       :tableData="tableCommonData"
       :isCommonVisible="isCommonVisible"
+      :tableTheme="tableTitleTheme"
       @sendCommonCloseInfo="isCommonVisible = false"
     ></commonTableBox>
 
@@ -109,6 +115,7 @@ import commonTableBox from "../../components/toolComponents/commonTableInfo.vue"
 import { CesiumUtils } from "../../utils/utils.js";
 import { DrawPolygon } from "../../utils/drawUtils";
 import TerrainClipPlan from "../../utils/TerrainClipPlan";
+import * as VirtualHoleService from "../../../public/proto/dummy_hole_service_grpc_web_pb"
 
 import { Notification } from "element-ui";
 import PathGraphics from "cesium/Source/DataSources/PathGraphics";
@@ -161,12 +168,18 @@ export default {
           icon: "icon-gongju",
           label: "模型工具",
         },
+        {
+          id: 5,
+          checked: false,
+          icon: "icon-gongju",
+          label: "模型分析",
+        },
       ],
       activeIndex: 0,
       isWireframevCheck: false,
       mdlName: "",
       layerInfo: [],
-      drillName: "Jz-Ⅲ2101-123533-2",
+      drillName: "钻孔分层信息",
       isLayerDialogVisible: false,
       isMdlSelectVisible: false,
       isCesiumCommonToolVisible: true,
@@ -190,10 +203,12 @@ export default {
       isvirtualLayerDialogVisible: false,
       virtualLayerInfo: [],
       fieldsList: [],
+      virtualTableTheme: null,
 
       // 通用盒子信息
       isCommonVisible: false,
       tableCommonData: [],
+      tableTitleTheme: null,
 
       // 地层厚度
       layerThickness: [4.3, 7.2, 3.4, 5.8, 10.0, 3.9, 3.7, 4.5],
@@ -247,6 +262,12 @@ export default {
         }
       }
     },
+    activeIndex(val) {
+      console.log("val",val);
+      if(val === 5) {
+        this.$router.push("mdlScene")
+      }
+    }
   },
   methods: {
     // 切换图层杨样式
@@ -935,6 +956,7 @@ export default {
               ) {
                 this.tableCommonData = [];
                 let titles = "地层编码";
+                this.tableTitleTheme = "钻孔分层信息";
                 let resStr = pickedFeature.getProperty("地层编码");
                 let obj = {
                   label: titles,
@@ -950,6 +972,7 @@ export default {
                     label: propertyList[i],
                     value: pickedFeature.getProperty(propertyList[i]),
                   };
+                  this.tableTitleTheme = "地层信息";
                   this.tableCommonData.push(obj);
                   this.isCommonVisible = true;
                 }
@@ -1077,7 +1100,35 @@ export default {
               let cartographic = Cesium.Cartographic.fromCartesian(cartesian);
               let degreeCenter = this.getMdlDegreeCenter(cartographic);
               // degreeCenter 就是获取到的高度，经度，维度
-              console.log(degreeCenter);
+              // console.log(degreeCenter);
+              this.virtualLayerInfo = [];
+              let client = new VirtualHoleService.DummyHoleServicePromiseClient("http://10.101.140.3:8011");
+              let virtualRequest = new VirtualHoleService.DummyHoleServiceRequest();
+              virtualRequest.setMdlDbId(81);
+              virtualRequest.setMdlId(1);
+              let dots = new VirtualHoleService.A3dDot();
+              dots.setX(449527.060);
+              dots.setY(2714965.480);
+              dots.setZ(0);
+              let dotList  = [];
+              dotList.push(dots);
+              virtualRequest.setRgnDotsList(dotList);
+              client.createDummyHoles(virtualRequest, {})
+              .then(res =>{
+                let resObject = res.toObject();
+                let holeList = resObject.holeListList[0];
+                let infoFileds = Object.keys(holeList.layerInfoListList[0]);
+                this.fieldsList = [];
+                // for(let i = 0; i < infoFileds.length; i++) {
+                //   this.fieldsList.push({
+                //     value: infoFileds[i],
+                //     lable: infoFileds[i],
+                //   })
+                // }
+                this.virtualLayerInfo = holeList.layerInfoListList
+                this.virtualTableTheme = "虚拟钻孔点位信息";
+                this.isvirtualLayerDialogVisible = true;
+              })
               
               return
               let startPoint = Cesium.Cartesian3.fromDegrees(
@@ -1434,6 +1485,18 @@ export default {
 </script>
 
 <style scoped>
+.class_title {
+  position: absolute;
+  color: rgb(174, 179, 177);
+  font-size: 34px;
+  z-index: 1;
+  margin-left: 109px;
+  margin-top: 31px;
+}
+.logo_class {
+  position: absolute;
+  z-index: 1;
+}
 .cesiumMenu_box {
   position: absolute;
   right: 0px;

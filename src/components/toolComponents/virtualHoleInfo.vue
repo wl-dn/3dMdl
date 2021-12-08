@@ -10,29 +10,30 @@
   <transition name="fade">
     <div class="virtualBox" v-if="isVisible">
       <div class="virtualBox_head_box">
+        {{tableTheme}}
         <span class="close_span" @click="closeOnClick">×</span>
       </div>
       <el-table
         :data="virtualLayerInfo"
         border
         style="width: 100%"
-        height="400px"
+        height="350px"
         v-if="virtualLayerInfo.length !== 0"
       >
-        <el-table-column
+        <!-- <el-table-column
           :prop="item.value"
           v-for="(item, i) in fieldsList"
           :key="i"
           :label="item.label"
-        ></el-table-column>
-        <el-table-column prop="layerNum" label="标准层号"> </el-table-column>
-        <!-- <el-table-column prop="topsidedepth" label="顶板埋深">
+        ></el-table-column> -->
+        <el-table-column prop="topElevation" label="顶板高程">
         </el-table-column>
-        <el-table-column prop="undersidedepth" label="顶底埋深">
+        <el-table-column prop="bottomElevation" label="底板高程">
         </el-table-column>
-        <el-table-column prop="qgenesis" label="地质成因"> </el-table-column>
-        <el-table-column prop="stratumeras" label="地质年代"> </el-table-column>
-        <el-table-column prop="lithology" label="岩性"> </el-table-column> -->
+        <el-table-column prop="stratCode" label="地层编码"> </el-table-column> -->
+        <!-- <el-table-column prop="qgenesis" label="地质成因"> </el-table-column> -->
+        <!-- <el-table-column prop="stratumeras" label="地质年代"> </el-table-column>
+        <el-table-column prop="lithology" label="岩性"> </el-table-column> --> -->
       </el-table>
     </div>
   </transition>
@@ -57,6 +58,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    tableTheme: {
+      type: String,
+      default: "",
+    }
   },
   data() {
     return {};

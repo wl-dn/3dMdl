@@ -235,19 +235,19 @@ export default {
                 },
               ],
             },
-            {
-              id: "2-2",
-              label: "WfsServer",
-              children: [
-                {
-                  label: "地层界限分布",
-                  name: "dicengjiexian_wfs_geomap",
-                  url: "http://192.10.3.237/geoserver/crcc-dev/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=crcc-dev:geoboundzone&maxFeatures=50&outputFormat=application/json",
-                  layers: "",
-                  serviceType: "wfs",
-                },
-              ],
-            },
+            // {  WFSServer要么像WMS调好，要么就直接删掉不要 sisi
+            //   id: "2-2",
+            //   label: "WfsServer",
+            //   children: [
+            //     {
+            //       label: "地层界限分布",
+            //       name: "dicengjiexian_wfs_geomap",
+            //       url: "http://192.10.3.237/geoserver/crcc-dev/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=crcc-dev:geoboundzone&maxFeatures=50&outputFormat=application/json",
+            //       layers: "",
+            //       serviceType: "wfs",
+            //     },
+            //   ],
+            // },
           ],
         },
         {

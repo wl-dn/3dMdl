@@ -10,6 +10,7 @@
   <transition name="fade">
     <div class="commonTableBox" v-if="isCommonVisible">
       <div class="head_box">
+        {{tableTheme}}
         <span class="close_span" @click="closeOnClick">×</span>
       </div>
       <div class="content_box">
@@ -37,6 +38,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    tableTheme: {
+      type: String,
+      default: "",
+    }
   },
   data() {
     return {};
